@@ -20,6 +20,14 @@
     {
       "type": "page",
       "path": "../existing-databases"
+    },
+    {
+      "type": "page",
+      "path": "../compatibility"
+    },
+    {
+      "type": "page",
+      "path": "../database-configuration"
     }
   ]
 }

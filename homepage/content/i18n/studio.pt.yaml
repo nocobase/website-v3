@@ -5,7 +5,7 @@ notes: |-
   vibe coding = vibe coding；self-hosted = auto-hospedado；make the call = dar a palavra final / decidir；at a glance = à vista
   页面用语：issue = tarefa；coordinator agent = agente coordenador；My sessions 等产品界面名称照英文
 title: NocoBase Studio — Os agentes fazem o trabalho avançar. Sua equipe mantém o controle.
-description: O NocoBase Studio é a plataforma de governança para pessoas e agentes que desenvolvem software juntos.
+description: O NocoBase Studio é o espaço de trabalho do NocoBase. Transforme Claude Code, Codex e OpenCode de seus dispositivos em uma equipe de agentes 24/7 que desenvolve, testa e revisa seguindo seu processo, enquanto as pessoas orientam e decidem pelo computador ou celular.
 strings:
   "000": Os agentes fazem o trabalho avançar. <span class="m">Sua equipe mantém o controle.</span>
   "002": Experimente online
@@ -70,3 +70,90 @@ strings:
   "072": Experimente o NocoBase Studio online
   "073": Abrir em tela cheia em uma nova aba
   "074": Você entrou com uma conta de demonstração. Todos os dados são fictícios, então teste à vontade.
+  "075": O NocoBase Studio é o espaço de trabalho do NocoBase. Ele reúne Claude Code, Codex e OpenCode dos seus dispositivos em uma equipe de agentes 24/7 que cuida de desenvolvimento, testes e revisão por processo, enquanto as pessoas fazem solicitações, acompanham o progresso e decidem no computador ou no celular.
+  "076": Comece grátis
+  "078": A edição Community é gratuita e inclui os recursos essenciais do Studio
+  "079": Auto-hospedado nos seus próprios servidores, pronto para redes isoladas
+  "080": Funciona com Claude Code, Codex, OpenCode e muito mais
+  "081": Uma equipe de agentes <span class="m">24/7.</span>
+  "082": Conecte ferramentas de código em notebooks e servidores da equipe em um só espaço de trabalho. Um agente coordenador distribui as tarefas, e os agentes rodam em ambientes isolados em vários projetos, 24 horas por dia.
+  "083": Vários dispositivos, qualquer ferramenta de código
+  "084": Conecte Claude Code, Codex, OpenCode e outras ferramentas em notebooks e servidores sem dependência de fornecedor. Adicione máquinas para executar mais tarefas em paralelo.
+  "085": Distribuição automática por especialidade
+  "086": Um agente coordenador distribui tarefas de design, desenvolvimento, testes e revisão conforme os pontos fortes de cada agente — sem precisar vigiar terminais, mantendo a aceitação final com as pessoas.
+  "087": Execuções paralelas isoladas
+  "088": Cada tarefa roda no próprio branch, worktree e ambiente de teste, permitindo que dezenas de tarefas avancem em paralelo sem conflito.
+  "089": Colaboração e decisões
+  "090": Decisões claras, <span class="m">de qualquer lugar.</span>
+  "091": As áreas de negócio enviam solicitações e aceitam entregas pelo computador ou celular com relatórios de entrega e ambientes de teste ativos, enquanto progresso, tempo de ciclo e gastos com modelos ficam à vista em todos os projetos.
+  "092": Pedidos em linguagem natural e aceitação direta
+  "093": Descreva o que precisa em linguagem natural e responda a perguntas rápidas. Cada entrega traz relatório, checklist, capturas de tela e um ambiente de teste ativo.
+  "094": Pronto no computador e no celular
+  "095": Adicione à tela inicial do celular para enviar solicitações, responder perguntas, conferir capturas de tela e aprovar de qualquer lugar com notificações instantâneas.
+  "096": Progresso, carga e gastos em um só lugar
+  "097": As tarefas, o contexto e as entregas de cada projeto ficam reunidos, com painéis de vazão, tempo de ciclo, retrabalho, carga dos agentes e custo por tarefa.
+  "098": Processo e qualidade
+  "099": Processo estruturado, <span class="m">qualidade em cada etapa.</span>
+  "100": Da solicitação e do design até desenvolvimento, testes, revisão, aceitação e publicação, cada etapa tem responsáveis claros, critérios de controle e trilha de auditoria completa.
+  "101": Fluxo na medida certa
+  "102": Fluxos prontos que vão do mais leve ao mais rigoroso, ou personalize o seu conforme os padrões de engenharia da equipe.
+  "103": Testes e revisão entre modelos
+  "104": Os testes automáticos rodam primeiro, seguidos pela revisão de código por um modelo de outro fornecedor; falhas voltam automaticamente para correção.
+  "105": Aceitação dupla
+  "106": Os responsáveis de negócio validam o comportamento em um preview ativo enquanto líderes técnicos aprovam arquitetura e segurança.
+  "107": Planos de qualidade e regressão
+  "108": Execute testes completos de regressão em funcionalidades, permissões, segurança, desempenho e qualidade de código antes de cada publicação.
+  "109": Publicação aprovada e rollback
+  "110": Implantações em produção exigem aprovação, suportam janelas de publicação e fazem rollback seguro para a última versão estável.
+  "111": Papéis claros
+  "112": As áreas de negócio cuidam dos requisitos e da aceitação; os líderes técnicos definem as regras e aprovam as publicações.
+  "113": As áreas de negócio descrevem regras em linguagem natural e validam com dados reais em um ambiente de teste — branches, testes, revisões e implantações ficam com os agentes e o Studio.
+  "114": Conhecimento da equipe
+  "115": Coloque as práticas da equipe em skills, guarde os materiais de negócio na base de conhecimento e salve o que os agentes aprendem na memória do projeto — nada se perde quando mudam pessoas ou modelos.
+  "116": Transforme padrões de desenvolvimento, checklists de revisão e práticas da equipe em skills com escopo global, por projeto ou por diretório — aplicadas automaticamente em cada execução.
+  "117": Reúna políticas de negócio, regras, especificações e modelos em um só lugar com leitura automática de arquivos, para que pessoas e agentes consultem a mesma fonte oficial.
+  "118": As lições que os agentes aprendem durante o desenvolvimento e as revisões ficam salvas no repositório, são revisadas em PRs e lidas antes de a próxima tarefa começar.
+  "119": Edições e auto-hospedagem
+  "120": Comece grátis com o Community, <span class="m">escale conforme sua equipe cresce.</span>
+  "121": Todas as edições são auto-hospedadas nos seus próprios servidores, inclusive em redes isoladas sem internet. Comece grátis com o Community ou faça upgrade com licença perpétua de pagamento único.
+  "124": Para uso individual e pequenas equipes
+  "125": Inclui tarefas, equipes de agentes, runtimes, testes e revisão entre modelos, aceitação em preview, skills/base de conhecimento/memória, aprovações pelo celular, registros de uso e permissões por papel.
+  "126": Pro
+  "127": Licença de pagamento único
+  "128": Para equipes com entregas contínuas
+  "129": Adiciona fluxos com múltiplos papéis e aceitação dupla, aprovação de implantações, SSO corporativo (SAML/LDAP/Feishu/DingTalk/WeCom) e limites de orçamento.
+  "130": Comparar edições
+  "131": Enterprise
+  "132": Para várias equipes e sistemas críticos
+  "133": Adiciona planos de qualidade por projeto, testes automáticos de regressão por versão, promoção entre ambientes com janelas de publicação e períodos de congelamento, além de cluster de alta disponibilidade.
+  "135": Código e dados ficam nos seus servidores
+  "136": Qualquer modelo ou ferramenta de código, incluindo modelos locais
+  "137": Apps publicados rodam de forma independente, sem passar pelo Studio
+  "138": Ler a documentação do Studio
+  "139": "Conheça a base por trás do Studio: NocoBase Core"
+  "140": Veja apps open source criados no NocoBase
+  "142": Fluxos estruturados, <span class="m">pessoas nos pontos-chave.</span>
+  "144": Fluxos integrados e personalizados
+  "146": Controles claros e retrabalho automático
+  "148": Skills fixas em cada execução
+  "149": Vincule regras de desenvolvimento, critérios de revisão e formatos de relatório como skills fixas que carregam automaticamente e não podem ser removidas por tarefa, combinadas com publicações aprovadas e rollback.
+  "150": Gestão de qualidade
+  "151": Testes automáticos de qualidade, <span class="m">correção em ciclo fechado.</span>
+  "152": Ferramentas de teste comprovadas rodam em paralelo em sete dimensões — em vez de os agentes deduzirem a partir do código —, gerando relatórios automaticamente e transformando achados em tarefas de acompanhamento que corrigem e retestam em ciclo fechado.
+  "153": Ferramentas comprovadas e padrões próprios
+  "154": Cobre funcionalidades, smoke tests, permissões, segurança, desempenho, qualidade de código e UX com Playwright, motor de matriz de papéis, OWASP ZAP, gitleaks, Lighthouse, PostgreSQL EXPLAIN e jscpd. Personalize limites, skills e dimensões; pré-requisitos ausentes ficam claramente marcados como não verificados.
+  "155": Quatro gatilhos, execução em paralelo
+  "156": Execuções diárias, de lançamento, de projeto e personalizadas compartilham um só motor e conjunto de regras. Os cenários principais ficam no repositório e evoluem com o produto enquanto várias máquinas de teste executam as dimensões em paralelo.
+  "157": Relatórios automáticos e correção em ciclo fechado
+  "158": Os relatórios por dimensão se consolidam em um único relatório de entrega. Defeitos deduplicados, regressões de desempenho, achados de segurança e itens de limpeza entram no fluxo de desenvolvimento para os agentes corrigirem, revisarem e retestarem — deixando apenas regras ambíguas para as pessoas.
+  "160": Adiciona fluxos com múltiplos papéis com aceitação dupla e fluxos personalizados, aprovação de implantações, SSO corporativo (SAML/LDAP/Feishu/DingTalk/WeCom) e limites de orçamento.
+  "161": Adiciona gestão de qualidade por projeto em sete dimensões com ferramentas comprovadas, regressão automática com correção em ciclo fechado, promoção entre ambientes com janelas de publicação e períodos de congelamento, além de cluster de alta disponibilidade.
+  "162": Solicitantes e líderes técnicos conduzem o início e o fechamento, enquanto os agentes cuidam de planejamento, código, revisão somente leitura por outro modelo e verificações automáticas de CI no meio — com devoluções retornando automaticamente para correção.
+  "163": NocoBase Studio
+  "164": O NocoBase Studio é o espaço de trabalho de desenvolvimento em equipe do NocoBase. Ele reúne Claude Code, Codex e OpenCode dos seus dispositivos em uma equipe de agentes 24/7 que cuida de desenvolvimento, testes e revisão por processo, enquanto as pessoas fazem solicitações, acompanham o progresso e decidem no computador ou no celular.
+  "165": Instalar Studio rápido
+  "166": Escolha para cada tarefa um fluxo simples, padrão ou personalizado com skills fixas carregadas em cada execução, mantendo responsáveis claros, ciclos automáticos de retrabalho e trilha de auditoria completa.
+  "167": O Community já vem com os fluxos simples e padrão; o Professional adiciona fluxos com múltiplos papéis, etapas personalizadas e regras configuráveis de responsabilidade.
+  "168": Community grátis
+  "169": Inclui tarefas, equipes de agentes, runtimes, dois fluxos integrados (simples e padrão) com skills fixas, verificações de CI e revisão entre modelos, aceitação em preview, base de conhecimento/memória, aprovações pelo celular e permissões por papel.
+  "170": Ou comece direto com o NocoBase Core

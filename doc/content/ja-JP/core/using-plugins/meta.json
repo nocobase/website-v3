@@ -1,5 +1,5 @@
 {
-  "title": "プラグインを使う",
+  "title": "組み込み機能とプラグイン",
   "pages": [
     {
       "type": "page",
@@ -44,6 +44,14 @@
     {
       "type": "page",
       "path": "collaboration/approval"
+    },
+    {
+      "type": "page",
+      "path": "collaboration/task-center"
+    },
+    {
+      "type": "page",
+      "path": "collaboration/lifecycle-coordination"
     },
     {
       "type": "page",

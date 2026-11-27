@@ -13,10 +13,10 @@ import { githubStars } from '@nocobase/site-shared/config';
 import { blogPages } from './blog.mjs';
 import { changelogPages } from './changelog.mjs';
 import { ALL, BY_CODE, LANGS, LEADS_ENDPOINT, ORIGIN, ZH_EN } from './config.mjs';
-import { Lingo, localize } from './html.mjs';
+import { Lingo, localize, unescape } from './html.mjs';
 import * as i18n from './i18n.mjs';
 import * as links from './links.mjs';
-import { collectText, languageList, makeHref, navSpec } from './nav.mjs';
+import { collectText, languageList, makeHref, navSpec, qsModalSpec } from './nav.mjs';
 import { readHome, readPage } from './pages.mjs';
 import { CONTENT } from './paths.mjs';
 
@@ -103,12 +103,28 @@ function navLingo(lang) {
   return NAV_LINGO.get(lang);
 }
 
-// 导航和页脚的文字一起处理：用不会出现在文案里的分隔符连起来，localize 一次，再拆开放回去
-function localizeAll(spec, lang) {
+// 导航和页脚的文字一起处理：用不会出现在文案里的分隔符连起来，localize 一次，再拆开放回去。
+// plain=true 时去掉 <t-zh>/<t-en> 包装标签并还原实体，供纯文本插值和 HTML 属性（如 qsModal）使用。
+function localizeAll(spec, lang, { plain = false } = {}) {
   const refs = collectText(spec);
   const SEP = '\u0001';
   const out = localize(refs.map(([n, k]) => n[k]).join(SEP), navLingo(lang)).split(SEP);
-  refs.forEach(([n, k], i) => { n[k] = out[i]; });
+  refs.forEach(([n, k], i) => {
+    n[k] = plain ? unescape(out[i].replace(/<\/?t-(?:zh|en)(?:\s[^>]*)?>/g, '')) : out[i];
+  });
+}
+
+export function localizeQsModal(lang) {
+  const qsModal = qsModalSpec();
+  localizeAll(qsModal, lang, { plain: true });
+  const qsDocsUrl = lang === 'zh' || lang === 'zh-TW'
+    ? 'https://docs.nocobase.com/zh-CN/getting-started/develop-your-first-app/'
+    : lang === 'ja'
+      ? 'https://docs.nocobase.com/ja-JP/getting-started/develop-your-first-app/'
+      : 'https://docs.nocobase.com/getting-started/develop-your-first-app/';
+  qsModal.prompt = qsModal.prompt.replace('{url}', qsDocsUrl);
+  qsModal.docsHref = qsDocsUrl;
+  return qsModal;
 }
 
 function mapHrefs(node, fn) {
@@ -154,9 +170,9 @@ export function renderPage(page, lang) {
     const data = Object.keys(t.ui).length ? { strings: used, ui: sortKeys(t.ui) } : { strings: used };
     inline += ` window.NB_I18N = {}; window.NB_I18N[${JSON.stringify(lang)}] = ${inlineJson(data)};`;
   }
-  if (page.kind !== 'home' && /\bdata-lead-form\b/.test(page.main)) inline += ` window.NB_LEADS_ENDPOINT = ${inlineJson(LEADS_ENDPOINT)};`;
-  if (page.kind !== 'home' && /\bdata-(public|lead)-form\b/.test(page.main) && lang !== 'zh' && lang !== 'en') {
-    // 表单脚本（public-form.js、lead-form.js）在浏览器里要用的译文（提示语、下拉和多选的选项）
+  if (page.kind !== 'home' && /\bdata-(lead|partner)-form\b/.test(page.main)) inline += ` window.NB_LEADS_ENDPOINT = ${inlineJson(LEADS_ENDPOINT)};`;
+  if (page.kind !== 'home' && /\bdata-(public|lead|partner)-form\b/.test(page.main) && lang !== 'zh' && lang !== 'en') {
+    // 表单脚本（public-form.js、lead-form.js、partner-forms.js）在浏览器里要用的译文（提示语、下拉和多选的选项）
     const keys = [...new Set([...i18n.formKeys('site'), ...(page.group ? i18n.formKeys(page.group) : [])])].sort();
     inline += ` window.NB_STRINGS = ${inlineJson(Object.fromEntries(keys.map(k => [k, lingo.tr(k)]).filter(([k, v]) => v !== k)))};`;
   }
@@ -164,6 +180,7 @@ export function renderPage(page, lang) {
   const { header, footer } = navSpec(m.page);
   localizeAll(header, lang);
   localizeAll(footer, lang);
+  const qsModal = localizeQsModal(lang);
   const href = makeHref(resolve, lang);
   mapHrefs(header, href);
   mapHrefs(footer, href);
@@ -185,7 +202,7 @@ export function renderPage(page, lang) {
     style: page.style,
     main: finish(main),
     after: deferInlineScripts(finish(page.after)),
-    header, footer,
+    header, footer, qsModal,
     stars: githubStars(),
   };
 }

@@ -20,3 +20,74 @@ strings:
   "050": Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut, oder schreiben Sie an {mail}.
   "051": Lizenzvereinbarung
   "052": Bedingungen der Open-Source- und der kommerziellen Lizenz
+  "053": 1–10 Personen
+  "054": 11–50 Personen
+  "055": 51–200 Personen
+  "056": 201–500 Personen
+  "057": Über 500 Personen
+  "058": In der Evaluierung
+  "059": In der Einarbeitung
+  "060": Intern im Einsatz
+  "061": Bereits Kundenprojekte geliefert
+  "062": Experten, wir entwickeln Erweiterungen
+  "063": Start-ups
+  "064": Kleine und mittlere Unternehmen
+  "065": Großunternehmen
+  "066": Privatpersonen
+  "067": IT und Software
+  "068": Finanzwesen
+  "069": Bildung
+  "070": Gesundheitswesen
+  "071": Fertigung
+  "072": Handel und E-Commerce
+  "073": Immobilien
+  "074": Verwaltung und öffentlicher Sektor
+  "075": Medien und Unterhaltung
+  "076": Sonstiges
+  "077": So bald wie möglich
+  "078": Innerhalb 1 Monats
+  "079": Innerhalb von 3 Monaten
+  "080": Innerhalb von 6 Monaten
+  "081": Flexibel
+  "082": Lösungsbereitstellung
+  "083": Systemeinführung
+  "084": Schulung und Support
+  "085": Beratung
+  "086": Unter 10.000 ¥
+  "087": 10.000–50.000 ¥
+  "088": 50.000–200.000 ¥
+  "089": Über 200.000 ¥
+  "090": Noch offen
+  "091": Unter 3.000 $
+  "092": 3.000–10.000 $
+  "093": 10.000–30.000 $
+  "094": Über 30.000 $
+  "095": Suchen
+  "096": Bitte wählen
+  "097": "{n} ausgewählt"
+  "098": Bitte mindestens eine Option wählen
+  "099": Bitte zuerst Land oder Region wählen
+  "100": Einige Angaben konnten nicht übernommen werden. Bitte prüfen Sie sie und versuchen Sie es erneut, oder schreiben Sie an {mail}.
+  "101": Zu viele Anfragen. Bitte versuchen Sie es in ein paar Minuten erneut.
+  "102": Der neue Weg, Unternehmenssoftware mit KI zu entwickeln
+  "103": Apps
+  "104": Vertriebs-CRM · Open Source, 6 Vertriebs-Agenten
+  "105": IT-Asset-Management · Open Source, 3 IT-Agenten
+  "106": Wachstum · Open Source, Content-Agent
+  "107": Alle Open-Source-Apps
+  "108": Sofort einsetzbar oder in Studio anpassbar
+  "110": Der neue Weg, Unternehmenssoftware mit KI zu entwickeln.
+  "111": Open-Source-Apps
+  "112": Studio
+  "113": Core
+  "114": NocoBase Studio
+  "115": NocoBase Core
+  "116": Sofort installieren und nutzen – oder mit Coding-Tools bzw. Studio anpassen
+  "117": Schnellstart · NocoBase Core
+  "118": Kopieren Sie diesen Prompt und senden Sie ihn in einem leeren Verzeichnis an Claude Code, Codex, Cursor oder einen anderen Coding-Agenten.
+  "119": Schließen
+  "120": Lesen Sie {url} und erstellen Sie in diesem leeren Verzeichnis eine lokale NocoBase-3-App mit der Standardvorlage und SQLite. Starten Sie sie und teilen Sie mir die lokale URL sowie die ersten Anmeldedaten mit.
+  "121": Prompt kopieren
+  "122": Kopiert
+  "123": Kopieren fehlgeschlagen
+  "124": Vollständige Schnellstart-Anleitung

@@ -1,91 +1,101 @@
 ---
 title: What is NocoBase 3
-metaDescription: "NocoBase 3 is the open-source platform for building, running, and evolving business systems with AI, with an application foundation, development governance, and customizable business apps."
+metaDescription: "NocoBase is the open-source platform for enterprises to build and run business systems with AI. People define needs and make decisions; agents write code and execute; NocoBase keeps systems reliable and the process under control."
 ---
 
-NocoBase 3 is the open-source platform for building, running, and evolving business systems with AI. Agents write the code and do the work, NocoBase provides the foundation and governance, and people make the decisions.
+NocoBase is the open-source platform for enterprises to build and run business systems with AI. People define needs and make decisions; agents write code and execute; NocoBase keeps systems reliable and the process under control.
+
+NocoBase is made up of the application foundation (Core) and the workbench (Studio). Depending on where your team is, you can start directly with Core on its own or adopt Studio for team collaboration; together they turn AI's ability to build software into an organization's ability to deliver and run reliable business systems continuously.
 
 ## Why NocoBase
 
-Vibe coding makes building software faster. But business systems are used for years: features keep getting added, processes keep changing, and people hand the work over. NocoBase adds an application foundation, development standards, and governance to vibe coding, while your team keeps using Claude Code, Codex, and other coding tools.
+AI writes code fast. Building reliable business systems is still hard. Whether your organization is just starting to build systems with AI or your engineering team already uses Claude Code, Codex, or other coding tools, four core challenges show up as soon as a system goes into production and evolves over time.
 
-### Reliable building blocks
+### Stop rebuilding foundational modules from scratch
 
-Even with AI writing the code, permissions, workflow engines, and approvals are hard to design from scratch. They are full of edge cases and take a lot of work to maintain.
+Even with AI writing code, permissions, sign-in and authentication, workflow engines, and approvals are complex, full of edge cases, and expensive to verify and maintain.
 
-Core provides ready-made building blocks, and NocoBase keeps maintaining and upgrading them. Say the purchasing team needs a supplier management system: agents write only the business parts, such as supplier profiles, purchase orders, and approval rules, and use Core's permissions and approvals as they are. There is far less code to write and verify.
+Core provides 30+ ready-made building blocks maintained and upgraded by NocoBase. Agents write only your business logic, sharply reducing the code you need to build, test, and review for security.
 
-### Consistent development standards
+### Keep one consistent architecture as systems evolve
 
-Switch developers, models, or even sessions, and the AI may improvise differently each time. The same system ends up written several different ways and gets harder and harder to maintain.
+Switch developers, models, or sessions, and AI improvises differently each time. Multiple coding styles accumulate inside the same system, causing architecture drift and making it harder to maintain.
 
-Core provides one project structure and one set of development standards, and agents write code by the development skills that ship with the packages, so the system evolves steadily for years on a consistent architecture.
+Core provides one project structure, one set of development standards, and versioned development skills shipped with the foundation. Across people, models, and sessions, agents build on the same architecture so the system evolves steadily for years and developers can step in to maintain it at any time.
 
-### Teamwork and shared knowledge
+### Keep delivery under control with tool-backed quality gates
 
-Your team juggles several projects and issues, and everyone switches between terminals and chats. Agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.
+When a team advances multiple projects and issues in parallel, juggling terminals and chat sessions produces more agent changes than anyone can review, yet releasing without verification feels risky.
 
-Studio coordinates one agent team that moves many projects and issues forward at once, with progress clear at a glance. When a person needs to step in, agents attach reports, checklists, and screenshots, so people decide with the evidence in hand.
+Studio runs every issue through a structured workflow with resident skills loaded automatically on every run. Changes pass automated checks and cross-model review, then arrive with a delivery report, screenshots, and a live test environment for human sign-off. The Enterprise edition also runs proven industry testing tools across features, smoke checks, permissions, security, performance, code quality, and UX, automatically turning findings into follow-up issues for closed-loop fixes.
 
-Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers. When people or agents change, they are hard to find.
+### Keep collaboration and know-how with the team
 
-Studio captures methods and experience in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off.
+When everyone runs AI on their own computer, requirement context, business documents, project progress, and lessons learned stay trapped in private sessions that others cannot see or inherit.
 
-## The parts of NocoBase 3
+Studio keeps requests, discussions, progress, and spend across every project in one place. Team methods live in skills, business documents live in the knowledge base, and confirmed rules and lessons stay in project memory, so a new person or agent can pick up where the last one left off.
 
-<figure class="layers" aria-label="Solution templates generate business apps; Studio governs their development; Core provides the foundation">
-<div class="ly-node ly-studio"><b>NocoBase Studio</b><strong>People and agents build together</strong><p>People decide; agents execute. Coordinate development, checks, and delivery.</p></div>
-<div class="ly-link ly-develop"><span>Develop & govern</span><i aria-hidden="true"></i></div>
-<div class="ly-node ly-app"><b>Business apps</b><strong>Your organization’s business systems</strong><p>Own your code and data. Run independently after release.</p></div>
-<div class="ly-link ly-generate"><span>Generate</span><i aria-hidden="true"></i></div>
-<div class="ly-node ly-solution"><b>Solution</b><strong>Business app templates</strong><p>Start with a ready-made app and customize it for your business.</p></div>
-<div class="ly-foundation"><div><b>NocoBase Core</b><span>The open-source application foundation</span></div><p>20+ building blocks, including permissions, workflows, and files · Consistent project structure and development standards</p></div>
+## What makes up NocoBase 3
+
+<figure class="arch-overview" aria-label="Build business apps with local coding tools or NocoBase Studio; business apps and built-in business agents run independently on NocoBase Core">
+<div class="ao-zone">
+<p class="ao-zone-head"><span>Development &amp; delivery</span></p>
+<div class="ao-stack">
+<div class="ao-box"><b>Local coding tools</b><span>Start directly with Core</span><p>Use Claude Code, Codex, Cursor, and more to build business systems without installing Studio first.</p></div>
+<div class="ao-or">Or upgrade to team collaboration</div>
+<div class="ao-box ao-studio"><b>NocoBase Studio</b><span>Team development workbench</span><p>Coordinate a 24/7 agent team with structured workflows, review, and quality testing.</p></div>
+</div>
+</div>
+<div class="ao-link"><span>Build &amp; iterate</span><svg viewBox="0 0 44 16" fill="none" aria-hidden="true"><path d="M2 8h36M32 2.5L39 8l-7 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="ao-zone ao-zone-sys">
+<p class="ao-zone-head"><span>Your organization's business systems</span><span class="ao-pill">Independent runtime · No Studio in path</span></p>
+<div class="ao-runtime">
+<div class="ao-app-row">
+<div class="ao-app-card"><b>Business apps</b><p>Pages, APIs, data models, and business rules. Your organization owns the source code.</p></div>
+<div class="ao-app-card"><b>Business agents</b><p>Handle routine work 24/7 within their owner's permissions, handing key decisions to people.</p></div>
+</div>
+<div class="ao-core">
+<div class="ao-core-head"><b>NocoBase Core</b><span>Open-source application foundation</span></div>
+<div class="ao-core-band"><span class="ao-chip">Permissions &amp; auth</span><span class="ao-chip">Workflows &amp; approvals</span><span class="ao-chip">Multi-database</span><span class="ao-chip">Files &amp; notifications</span><span class="ao-chip">AI &amp; business agents</span><span class="ao-chip">Consistent architecture</span></div>
+</div>
+</div>
+</div>
 </figure>
 
-### Core: the open-source app foundation
+### NocoBase Core (application foundation)
 
-**[Core](../core/index.md)** is the open-source application foundation for business systems built and run with AI. It provides shared building blocks and development standards.
+**[NocoBase Core](../core/index.md)** is the open-source application foundation built for AI development. It is free and open source, ready to start on its own, and runs independently.
 
-One person or a small team working on one or a few apps can open Claude Code, Codex, or another coding tool in the app directory and build with the agent. Your team organizes testing, review, and deployment itself, with deployment tools and development guides from Core. You do not need to install Studio to use Core.
+From the moment you initialize a new app, 30+ building blocks are ready out of the box, including users and permissions, sign-in and authentication, workflows, databases, file storage, notifications, and AI integration, along with one project structure and development standards. Both individuals and teams can start directly with Core using Claude Code, Codex, Cursor, or other coding tools without installing Studio first.
 
-### Studio: collaboration and governance
+### NocoBase Studio (workbench)
 
-**[Studio](../studio/index.md)** is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team.
+**[NocoBase Studio](../studio/index.md)** is the development workbench for team collaboration and governance.
 
-Use Studio when your team moves many projects and issues forward at once, or business experts need to raise requests and make decisions directly. The lead agent assigns design, development, testing, and review. Work reaches a person for acceptance after it passes checks and review, and deployments to protected environments need an approver's sign-off.
+It brings Claude Code, Codex, OpenCode, and other coding tools on personal computers and team servers into one 24/7 agent team. A coordinator agent assigns design, development, testing, and review across multiple projects based on each agent's strengths. People can submit requests, answer questions, inspect acceptance reports and live test environments, and make decisions on desktop or mobile, while seeing progress and spend across every project at a glance.
 
-Studio is provided in the commercial edition.
+Studio Community Edition is free to use and includes two built-in workflows (simple workflow and standard workflow) along with foundational collaboration features. When your team needs multi-role and custom workflows, deployment approvals, or quality management, upgrade to Professional or Enterprise. See [Choose an edition](../studio/setup/index.md#choose-an-edition).
 
-### Solution: ready-made business apps
-
-**Solution** is a line of agent-driven business apps built on Core, such as NocoCRM and NocoITAM. Agents do most of the work, and people make only the key decisions. Install and use them as they are, or have an agent tailor them to your business.
-
-## From development to daily operations
+## How the way you work changes
 
 ### Development and delivery
 
-For a supplier management system, you decide which supplier details to record, how purchase orders are approved, and what each role can view and change. Agents build the pages, data structures, and business rules on Core, with the application code in your own repository. Your team checks business flows, permissions, and test results, then releases the app for business users once it meets the requirements.
+People define goals, business rules, and acceptance criteria. Coding agents build pages, APIs, data structures, and business rules on Core, with source code stored in your own repository. Changes pass automated checks, cross-model review, and human sign-off before release, and continue evolving on the existing app as business needs change.
 
-### Ongoing development
+### Business agents in daily operations
 
-After launch, the purchasing team may need supplier ratings or different purchase order approval rules. You can keep working with agents to change the existing app and check the effects on existing data and processes.
+After launch, business agents can stay active inside your business systems to handle routine operations. Connected through Core's Agents capability, these business agents inherit their owner's permissions, proactively handle routine work 24/7 following your business rules, and ask a person to confirm key actions with supporting evidence.
 
-### Agents in daily operations
+## Self-hosting and full control
 
-Once an app is live, agents can also take on business work inside it, such as researching customers, drafting emails, reconciling asset records, and handling support tickets. These business agents are connected through Core's Agents plugin and use the same permissions as people. When something needs a decision, they hand it to the person responsible with the supporting evidence. Every Solution app comes with built-in business agents, and you can add them to your own apps as needed.
-
-## Full control
-
-### Self-hosting and independent operation
-
-Core, Solution, and Studio all run on your own servers, and your code and data belong to you. Once released, your business apps run on their own, and day-to-day business requests never go through Studio.
-
-### Choose your models and agents
-
-You choose your own models and agents, with no vendor lock-in. Claude Code, Codex, and other coding tools and a wide range of models all work.
+- **Your code and data belong to you**: Both Core and Studio run on your own servers, including air-gapped networks.
+- **Apps run independently**: Once released, your business apps run on their own, and day-to-day business requests never go through Studio.
+- **Your choice of models and tools**: No vendor lock-in. Use Claude Code, Codex, Cursor, and other coding tools with cloud or locally hosted models.
 
 ## Get started
 
-- Build an app yourself: [Develop your first app](develop-your-first-app.md).
-- Experience team delivery with agents: [Collaborate with Studio](collaborate-with-studio.md).
-- Used NocoBase 2 before: [NocoBase 2 and NocoBase 3](../faq/from-v2.md).
+- Start directly with Core and your local coding tool: [Develop your first app](develop-your-first-app.md)
+- Try the free Studio Community Edition on your computer with one command: [Quick install Studio](quick-install-studio.md)
+- Walk through a request in a team Studio environment: [Collaborate with Studio](collaborate-with-studio.md)
+- Follow a complete IT asset management project from start to finish: [Build reliable enterprise apps with NocoBase 3](../guides/build-reliable-enterprise-apps.md)
+- Compare NocoBase with vibe coding and low-code platforms, or learn how NocoBase 2 relates to NocoBase 3: [Frequently asked questions](../faq/index.md)

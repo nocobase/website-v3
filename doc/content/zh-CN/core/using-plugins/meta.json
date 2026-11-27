@@ -1,5 +1,5 @@
 {
-  "title": "使用插件",
+  "title": "内置能力与插件",
   "pages": [
     {
       "type": "page",
@@ -44,6 +44,14 @@
     {
       "type": "page",
       "path": "collaboration/approval"
+    },
+    {
+      "type": "page",
+      "path": "collaboration/task-center"
+    },
+    {
+      "type": "page",
+      "path": "collaboration/lifecycle-coordination"
     },
     {
       "type": "page",

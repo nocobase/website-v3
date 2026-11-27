@@ -13,7 +13,7 @@ Use the task's **Code & previews** tab to see its URL, commit, and build status.
 
 New commits update the preview after the new build completes. Before accepting a task, confirm that the preview matches the changes being merged.
 
-Initial deployment loads sample data, not business data. Initial administrator credentials are visible only to people allowed to edit the linked task. Set missing required variables on the preview environment or individual application as indicated.
+Initial deployment loads sample data, not business data. Once the preview has started, people who can edit the task can select **Account** on its PR line to copy the initial administrator credentials. Set missing required variables on the preview environment or individual application as indicated.
 
 ## Skip a preview
 

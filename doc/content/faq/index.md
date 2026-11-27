@@ -4,6 +4,8 @@ title: "Frequently asked questions"
 
 ## Product and selection
 
+- [How is NocoBase different from vibe coding?](vibe-coding.md)
+- [How is NocoBase different from low-code platforms?](low-code.md)
 - [NocoBase 2 and NocoBase 3](from-v2.md)
 - [Is NocoBase 3 just Skills? Do I need to build users, organizations, and permissions myself?](core-capabilities.md)
 - [Which frontend, backend, and databases does NocoBase 3 use?](technology-and-databases.md)

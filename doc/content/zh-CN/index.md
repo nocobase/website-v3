@@ -1,6 +1,6 @@
 ---
 title: NocoBase 3 文档
-description: NocoBase 是企业用 AI 开发和持续改进业务系统的开源平台。Agent 写业务部分，NocoBase 提供底座和工作流程，人确定目标、作出决定。
+description: NocoBase 是企业用 AI 开发和运行业务系统的开源平台。人提需求、做决策；Agent 写代码、做执行；NocoBase 确保系统可靠、过程可控。
 ---
 
 <div class="doc-home-modules">
@@ -17,7 +17,7 @@ description: NocoBase 是企业用 AI 开发和持续改进业务系统的开源
 
 ## [Core](core/index.md)
 
-让 Agent 专心写业务，底座已经就绪。
+让 Agent 专心写业务，底座已经就绪。提供 30 多项基础能力与统一规范，可独立起步、独立运行。
 
 </section>
 
@@ -39,7 +39,7 @@ Agent 自主推进，团队掌控全局。
 
 <section class="doc-home-card">
 
-## [FAQ](faq/from-v2.md)
+## [FAQ](faq/index.md)
 
 解答使用中的疑问。
 

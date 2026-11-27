@@ -56,7 +56,7 @@ description: NocoBase Core のランタイム、ライブラリー、データ�
 | [`@nocobase/db-mssql`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/db-mssql) | Microsoft SQL Server |
 | [`@nocobase/db-oracle`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/db-oracle) | Oracle Database |
 
-商用のダイアレクトには `@nocobase/db-dameng`、`@nocobase/db-kingbase`、`@nocobase/db-oceanbase` があります。接続のモードとバージョンの確認については [データベースの対応状況とバージョンの互換性](compatibility.md) を参照してください。
+商用のダイアレクトには `@nocobase/db-dameng`、`@nocobase/db-kingbase`、`@nocobase/db-oceanbase` があります。接続のモードとバージョンの確認については [データベースの対応状況とバージョンの互換性](../developing-apps/compatibility.md) を参照してください。
 
 ## エージェントとリモートコマンドのパッケージ
 

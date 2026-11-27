@@ -6,15 +6,7 @@ title: クイックスタート
 
 Node.js 24+、テンプレートに対応する pnpm、Main と子アプリテンプレートの取得権限を用意します。以下のコマンドは互換パッケージが配布元に公開されていることが前提です。未提供の場合は利用可能な版を取得してください。
 
-商用レジストリを設定します。`<read-token>` をダウンロードトークンに置き換えてください。
-
-```bash
-npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
-npm config set "//pkg-v3.nocobase.com/:_authToken" "<read-token>"
-npm whoami --registry=https://pkg-v3.nocobase.com/
-```
-
-これらのコマンドはユーザーの `~/.npmrc` に設定を書き込み、npm と pnpm が読み取ります。トークンをプロジェクトファイルに保存しないでください。
+開始前に、[商用パッケージの認証済みレジストリーを設定する](../../developing-apps/overview.md#商用パッケージの認証済みレジストリーを設定する)に従って商用レジストリーと読み取りトークンを設定してください。
 
 Main 用に `13230`、ノード用に `13231`、子アプリのローカル開発用に `13240` を空けます。この例は SQLite を使いますが、必要に応じて他の対応データベースを選べます。
 

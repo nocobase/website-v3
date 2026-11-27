@@ -1,22 +1,34 @@
 ---
 // Top-level categories are always-visible group headings; nested folders remain collapsible. Rendered in both the desktop sidebar and mobile menu.
+import type { DocsUi } from '../lib/define-config.ts';
 import Self from './Sidebar.astro';
-export interface Props { nodes: any[]; current?: string; urlOf: (key: string) => string; planned: string; root?: boolean }
-const { nodes, current, urlOf, planned, root = true } = Astro.props as Props;
+export interface Props { nodes: any[]; current?: string; urlOf: (key: string) => string; planned: string; editions?: DocsUi['editions']; inheritedEdition?: string; root?: boolean }
+const { nodes, current, urlOf, planned, editions, inheritedEdition, root = true } = Astro.props as Props;
 const has = (list: any[]): boolean => list.some(n => (n.type === 'page' && n.key === current) || (n.type === 'folder' && ((n.link && n.link.key === current) || has(n.children))) || (n.type === 'group' && has(n.children)));
+const badgeOf = (edition?: string, parent?: string) => (edition === 'professional' || edition === 'enterprise') && edition !== parent && editions ? { edition, ...editions[edition] } : null;
 ---
-{root ? nodes.map(n => n.type === 'group' || n.type === 'folder' ? (
-<div class="doc-group"><p class="doc-group-title">{n.title}</p><Self nodes={n.link ? [n.link, ...n.children] : n.children} {current} {urlOf} {planned} root={false} /></div>
-) : (
-<Self nodes={[n]} {current} {urlOf} {planned} root={false} />
-)) : (
-<ul>{nodes.map(n => n.type === 'page' ? (
-<li><a href={urlOf(n.key)} class:list={[{ todo: n.placeholder }]} aria-current={n.key === current ? 'page' : undefined}>{n.title}</a></li>
-) : n.type === 'planned' ? (
-<li><span class="doc-planned">{n.title} <small>{planned}</small></span></li>
-) : n.type === 'folder' ? (
-<li><details class="doc-folder" data-doc-folder={n.dir} open={n.defaultOpen || has([n])}><summary>{n.link ? <a href={urlOf(n.link.key)} class="doc-folder-link" aria-current={n.link.key === current ? 'page' : undefined}>{n.title}</a> : <span class="doc-folder-link">{n.title}</span>}<i class="doc-chevron" aria-hidden="true"></i></summary><Self nodes={n.children} {current} {urlOf} {planned} root={false} /></details></li>
-) : (
-<li><div class="doc-group"><p class="doc-group-title">{n.title}</p><Self nodes={n.children} {current} {urlOf} {planned} root={false} /></div></li>
-))}</ul>
+{root ? nodes.map(n => {
+  if (n.type === 'group' || n.type === 'folder') {
+    const b = badgeOf(n.minimumEdition, inheritedEdition);
+    const nextEdition = n.minimumEdition ?? inheritedEdition;
+    return <div class="doc-group"><p class:list={['doc-group-title', { 'has-edition': Boolean(b) }]}><span>{n.title}</span>{b && <span class:list={['doc-edition', b.edition]} title={b.title}>{b.short}</span>}</p><Self nodes={n.link ? [n.link, ...n.children] : n.children} {current} {urlOf} {planned} {editions} inheritedEdition={nextEdition} root={false} /></div>;
+  }
+  return <Self nodes={[n]} {current} {urlOf} {planned} {editions} {inheritedEdition} root={false} />;
+}) : (
+<ul>{nodes.map(n => {
+  if (n.type === 'page') {
+    const b = !n.placeholder ? badgeOf(n.minimumEdition, n.explicitEdition ? undefined : inheritedEdition) : null;
+    return <li><a href={urlOf(n.key)} class:list={[{ todo: n.placeholder, 'has-edition': Boolean(b) }]} aria-current={n.key === current ? 'page' : undefined}><span>{n.title}</span>{b && <span class:list={['doc-edition', b.edition]} title={b.title}>{b.short}</span>}</a></li>;
+  }
+  if (n.type === 'planned') return <li><span class="doc-planned">{n.title} <small>{planned}</small></span></li>;
+  if (n.type === 'folder') {
+    const folderEdition = n.minimumEdition ?? (n.link && !n.link.placeholder ? n.link.minimumEdition : undefined);
+    const b = badgeOf(folderEdition, inheritedEdition);
+    const nextEdition = n.minimumEdition ?? inheritedEdition;
+    return <li><details class="doc-folder" data-doc-folder={n.dir} open={n.defaultOpen || has([n])}><summary>{n.link ? <a href={urlOf(n.link.key)} class:list={['doc-folder-link', { 'has-edition': Boolean(b) }]} aria-current={n.link.key === current ? 'page' : undefined}><span>{n.title}</span>{b && <span class:list={['doc-edition', b.edition]} title={b.title}>{b.short}</span>}</a> : <span class:list={['doc-folder-link', { 'has-edition': Boolean(b) }]}><span>{n.title}</span>{b && <span class:list={['doc-edition', b.edition]} title={b.title}>{b.short}</span>}</span>}<i class="doc-chevron" aria-hidden="true"></i></summary><Self nodes={n.children} {current} {urlOf} {planned} {editions} inheritedEdition={nextEdition} root={false} /></details></li>;
+  }
+  const b = badgeOf(n.minimumEdition, inheritedEdition);
+  const nextEdition = n.minimumEdition ?? inheritedEdition;
+  return <li><div class="doc-group"><p class:list={['doc-group-title', { 'has-edition': Boolean(b) }]}><span>{n.title}</span>{b && <span class:list={['doc-edition', b.edition]} title={b.title}>{b.short}</span>}</p><Self nodes={n.children} {current} {urlOf} {planned} {editions} inheritedEdition={nextEdition} root={false} /></div></li>;
+})}</ul>
 )}

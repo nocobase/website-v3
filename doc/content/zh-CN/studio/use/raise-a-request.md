@@ -30,7 +30,7 @@ description: 通过会话或表单创建任务，明确业务规则、范围与�
 
 ![直接填写任务的标题、要求和开始时间](https://static-docs.nocobase.com/studio-zh-manual-task-20261111-normal-2x.webp)
 
-负责人负责确认业务规则和验收结果。「待规划」任务不会自动执行，准备好后需点「开始」。
+如果由业务方确认需求和验收结果，可在创建任务时指定开发负责人，见[工作流程](multi-role-workflow.md#requester)。
 
 ## 怎样说清一个需求
 

@@ -51,7 +51,7 @@ Collection 由物理数据库结构和补充元数据共同解析。逻辑名可
 
 数据库服务不自动推断 HTTP 用户。数据策略从授权结果产生，再绑定到 Repository；查询筛选只能缩小请求范围，不能代替权限控制。
 
-依次阅读结构、读写、关联、事务和迁移；精确签名见[数据库 API 索引](../../reference/api.md)。数据库版本与方言条件见[兼容性参考](../../reference/compatibility.md)。
+依次阅读结构、读写、关联、事务和迁移；精确签名见[数据库 API 索引](../../reference/api.md)。数据库版本与方言条件见[兼容性参考](../../developing-apps/compatibility.md)。
 
 ## 接口与实现
 

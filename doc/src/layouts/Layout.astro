@@ -1,5 +1,5 @@
 ---
-// The shell of every docs page: head (title, canonical, hreflang, analytics), the shared header and footer, the sidebar and table of contents columns, and the search dialog. Styles: tokens and shell of the shared package, then the docs' own.
+// The shell of every docs page: head (title, canonical, hreflang, analytics), the shared header and footer, the sidebar and table of contents columns (on narrow screens a bar under the header opens them as a drawer and a drop-down), and the search dialog. Styles: tokens and shell of the shared package, then the docs' own.
 import '@nocobase/site-shared/styles/tokens.css';
 import '@nocobase/site-shared/fonts/fonts.css';
 // The Latin subset of Archivo is used by every page; preloading it lets the first paint use it instead of swapping from the fallback font
@@ -42,7 +42,8 @@ const abs = (path: string) => site.absolute(path);
 const alternates = pageKey ? config.languages.filter(l => site.page(l.code, pageKey)) : [];
 const siteTitle = config.siteTitle(lang);
 const section = !home && sectionId ? site.sections(lang).find(s => s.id === sectionId) : undefined;
-const hasToc = !home && Astro.slots.has('toc');
+// Rendered once here and used twice: in the right column and in the drop-down of the narrow-screen bar. Empty when the page has fewer than two headings.
+const toc = !home && Astro.slots.has('toc') ? (await Astro.slots.render('toc')).trim() : '';
 const search = ui.search;
 const chat = askUi[lang] || askUi.en;
 ---
@@ -73,10 +74,10 @@ const chat = askUi[lang] || askUi.en;
 <a class="skip-link" href="#content">{ui.skip}</a>
 <Header {...header}>
 {config.ask?.endpoint ? <button slot="action" class="plain doc-chat-trigger" type="button" data-chat-open aria-label={chat.label} aria-controls="docChat" aria-expanded="false" aria-haspopup="dialog"><Icon name="sparkles" /><span>{chat.label}</span></button> : <button slot="action" class="search-btn" type="button" data-search-open aria-label={search.label}><Icon name="search" /><span class="search-text">{search.placeholder}</span>{search.shortcut && <kbd>{search.shortcut}</kbd>}</button>}
-{section && <nav slot="mobile" class="doc-nav doc-nav-m" aria-label={ui.sidebar}><Sidebar nodes={section.tree} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} /></nav>}
 </Header>
 <div class:list={['doc-layout', { 'no-side': !section, 'doc-home-layout': home }]}>
-{section && <aside class="doc-side"><nav class="doc-nav" aria-label={ui.sidebar}><Sidebar nodes={section.tree} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} /></nav></aside>}
+{section && <aside class="doc-side"><nav class="doc-nav" aria-label={ui.sidebar}><Sidebar nodes={section.tree} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} editions={ui.editions} /></nav></aside>}
+{section && <dialog id="docDrawer" class="doc-drawer" aria-label={ui.sidebar}><div class="doc-drawer-head"><span>{section.title}</span><button type="button" class="doc-drawer-close" aria-label={search.close}><Icon name="x" /></button></div><nav class="doc-nav" aria-label={ui.sidebar}><Sidebar nodes={section.tree} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} editions={ui.editions} /></nav></dialog>}
 {section && <script is:inline>
 // 侧栏在第一次绘制前就定好滚动位置，切换页面时不跳：先恢复同一侧栏上次的位置（按侧栏第一个链接区分板块和语言），当前页不在可视范围内再把它滚到上方三分之一处
 (() => {
@@ -104,9 +105,13 @@ const chat = askUi[lang] || askUi.en;
 })();
 </script>}
 <main id="content" class="doc-main" data-pagefind-body={searchable ? '' : undefined}>
+{(section || toc) && <div class:list={['doc-localnav', { 'has-toc': toc }]} data-pagefind-ignore>
+{section && <button type="button" class="doc-localnav-menu" aria-controls="docDrawer" aria-expanded="false" aria-haspopup="dialog"><Icon name="align-left" /><span>{ui.menu}</span></button>}
+{toc && <div class="doc-localnav-toc"><button type="button" aria-controls="docLocalToc" aria-expanded="false"><span>{ui.toc}</span><Icon name="chevron-right" /></button><nav id="docLocalToc" class="doc-localnav-panel" aria-label={ui.toc} hidden set:html={toc}></nav></div>}
+</div>}
 <slot />
 </main>
-{hasToc && <aside class="doc-toc" aria-label={ui.toc}><slot name="toc" /></aside>}
+{toc && <aside class="doc-toc" aria-label={ui.toc} set:html={toc}></aside>}
 </div>
 <Footer {...footer} />
 </div>

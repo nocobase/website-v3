@@ -40,7 +40,7 @@ For a database with existing data, follow your team's replacement procedure rath
 
 ## Upgrade Studio
 
-1. Complete the backup and obtain the target image version.
+1. Back up Studio and select a new image tag for your edition. For CE, use the public registry in [Deploy Studio](../setup/install.md). For Professional or Enterprise, use the registry supplied with your image.
 2. Update `services.studio.image` in the Compose file.
 3. Pull the image and recreate the Studio container.
 
@@ -51,7 +51,7 @@ docker compose ps
 docker compose logs --tail=100 studio
 ```
 
-Migrations run at startup. Check service health, sign-in, tasks, and runtimes. Studio is a commercial product; [contact us](https://www.nocobase.com/contact/) for the image.
+Migrations run at startup. Check service health, sign-in, tasks, and runtimes.
 
 Before returning to an older image, check database compatibility. If migrations must be rolled back, restore the pre-upgrade database and files, then start the matching old version.
 

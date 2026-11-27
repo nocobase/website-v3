@@ -1,5 +1,5 @@
 {
-  "title": "Using plugins",
+  "title": "Built-in capabilities & plugins",
   "pages": [
     {
       "type": "page",
@@ -44,6 +44,14 @@
     {
       "type": "page",
       "path": "collaboration/approval"
+    },
+    {
+      "type": "page",
+      "path": "collaboration/task-center"
+    },
+    {
+      "type": "page",
+      "path": "collaboration/lifecycle-coordination"
     },
     {
       "type": "page",

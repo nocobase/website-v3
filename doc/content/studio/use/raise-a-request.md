@@ -30,7 +30,7 @@ Select **Fill in manually** in the new-task conversation:
 
 ![Enter the task’s title, requirements, and start option](https://static-docs.nocobase.com/studio-en-manual-task-20261111-normal-2x.webp)
 
-The owner confirms business rules and accepts results. Backlog tasks do not run automatically; select **Start** when ready.
+If the requester will confirm requirements and accept the result, assign a separate owner when you create the task. See [Workflows](multi-role-workflow.md#requester).
 
 ## Write a clear request
 

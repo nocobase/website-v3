@@ -4,6 +4,8 @@ title: "よくある質問"
 
 ## 製品と選定
 
+- [NocoBase と Vibe Coding の違いは何ですか？](vibe-coding.md)
+- [NocoBase とローコードプラットフォームの違いは何ですか？](low-code.md)
 - [NocoBase 2 と NocoBase 3](from-v2.md)
 - [NocoBase 3 は Skills だけですか？ユーザー・組織・権限を自分で開発する必要がありますか？](core-capabilities.md)
 - [NocoBase 3 のフロントエンド・バックエンドと対応データベースは何ですか？](technology-and-databases.md)

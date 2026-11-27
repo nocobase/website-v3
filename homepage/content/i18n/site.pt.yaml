@@ -19,3 +19,74 @@ strings:
   "050": Algo deu errado. Tente novamente ou escreva para {mail}.
   "051": Contrato de licença
   "052": Termos das licenças de código aberto e comercial
+  "053": 1–10 pessoas
+  "054": 11–50 pessoas
+  "055": 51–200 pessoas
+  "056": 201–500 pessoas
+  "057": Mais de 500 pessoas
+  "058": Avaliando
+  "059": Aprendendo
+  "060": Usamos internamente
+  "061": Já entregamos projetos para clientes
+  "062": Especialistas, desenvolvemos extensões
+  "063": Startups
+  "064": Pequenas e médias empresas
+  "065": Grandes empresas
+  "066": Pessoas físicas
+  "067": TI e software
+  "068": Finanças
+  "069": Educação
+  "070": Saúde
+  "071": Indústria
+  "072": Varejo e e-commerce
+  "073": Imobiliário
+  "074": Governo e setor público
+  "075": Mídia e entretenimento
+  "076": Outro
+  "077": O quanto antes
+  "078": Em até 1 mês
+  "079": Em até 3 meses
+  "080": Em até 6 meses
+  "081": Flexível
+  "082": Entrega de soluções
+  "083": Implantação do sistema
+  "084": Treinamento e suporte
+  "085": Consultoria
+  "086": Menos de ¥10.000
+  "087": ¥10.000–50.000
+  "088": ¥50.000–200.000
+  "089": Mais de ¥200.000
+  "090": A definir
+  "091": Menos de US$ 3.000
+  "092": US$ 3.000–10.000
+  "093": US$ 10.000–30.000
+  "094": Mais de US$ 30.000
+  "095": Pesquisar
+  "096": Selecione
+  "097": "{n} selecionados"
+  "098": Escolha pelo menos uma opção
+  "099": Escolha primeiro um país ou região
+  "100": Algumas respostas não foram aceitas. Confira e tente de novo, ou escreva para {mail}.
+  "101": Muitos envios. Tente de novo em alguns minutos.
+  "102": A nova forma de criar software de negócio com IA
+  "103": Apps
+  "104": CRM de vendas · Open source, 6 agentes de vendas
+  "105": Gestão de ativos de TI · Open source, 3 agentes de TI
+  "106": Crescimento · Open source, agente de conteúdo
+  "107": Todos os apps open source
+  "108": Instale e use na hora, ou personalize no Studio
+  "110": A nova forma de criar software de negócio com IA.
+  "111": Apps open source
+  "112": Studio
+  "113": Core
+  "114": NocoBase Studio
+  "115": NocoBase Core
+  "116": Instale e use na hora, ou personalize com ferramentas de código ou no Studio
+  "117": Início rápido · NocoBase Core
+  "118": Copie e envie este prompt para o Claude Code, Codex, Cursor ou qualquer agente de código em um diretório vazio.
+  "119": Fechar
+  "120": Leia {url} e crie um app local do NocoBase 3 neste diretório vazio usando o modelo padrão e SQLite. Inicie o app e compartilhe a URL local e as credenciais iniciais de acesso.
+  "121": Copiar prompt
+  "122": Copiado
+  "123": Falha ao copiar
+  "124": Guia completo de início rápido

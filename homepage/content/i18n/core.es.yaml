@@ -4,7 +4,7 @@ notes: |-
   coding agent = agente de programación；business logic = lógica de negocio；business systems = sistemas empresariales；
   vibe coding = vibe coding；self-hosted = autoalojado；make the call = decidir；at a glance = de un vistazo
 title: NocoBase Core — Deja que los agentes se centren en tu lógica de negocio
-description: NocoBase Core es la base de aplicaciones de código abierto para sistemas empresariales creados y operados con IA.
+description: NocoBase Core es la base de aplicaciones de código abierto diseñada para el desarrollo con IA. Permisos, flujos de trabajo, archivos y capacidades de IA vienen listos para usar para que empieces directamente con tus herramientas de programación y las apps funcionen de forma independiente.
 strings:
   "000": Deja que los agentes se centren en tu lógica de negocio. <span class="m">La base ya está lista.</span>
   "002": Inicio rápido
@@ -87,3 +87,59 @@ strings:
   "099": Primeros pasos
   "111": Descubre Studio
   "113": Ver la documentación de Core
+  "114": NocoBase Core es la base de aplicaciones de código abierto detrás de Studio. Con más de 20 componentes base listos para permisos, flujos de trabajo, archivos e IA, los agentes solo desarrollan lo propio de tu negocio sobre una misma arquitectura y los sistemas publicados funcionan de forma independiente.
+  "116": Las apps funcionan de forma independiente sin Studio
+  "117": Más de 20 componentes base probados, <span class="m">listos para usar.</span>
+  "118": Los permisos, flujos de trabajo, aprobaciones y almacenamiento de archivos son complejos y exigen la máxima confiabilidad, por eso la IA nunca los reescribe desde cero. NocoBase los mantiene y actualiza mientras los agentes se centran únicamente en tu lógica de negocio.
+  "119": Contraseñas, recuperación y sesiones; OIDC, SSO empresarial y autenticación en dos pasos
+  "120": Carga, almacenamiento, vista previa, comprobaciones de estado y ACL vinculados a los registros
+  "121": Flujos de trabajo y aprobaciones
+  "122": Diagramas de flujo e historial de ejecuciones; los administradores ajustan aprobadores y umbrales en la interfaz
+  "123": Tareas programadas</t-zh></b><span><t-zh></t-zh><t-en>Se ejecutan según un calendario, y cada ejecución queda registrada
+  "124": Servicios de modelos
+  "125": Conecta modelos en la nube o locales bajo una sola interfaz, sin dependencia de proveedores
+  "126": Ejecución 24/7 dentro de las apps empresariales con los permisos del responsable y confirmación humana
+  "127": Base de conocimiento de IA
+  "128": Documentos y archivos versionados con búsqueda de texto completo para personas y agentes
+  "129": Ver toda la documentación de plugins
+  "130": Arquitectura y estándares
+  "131": Una sola arquitectura, <span class="m">hecha para evolucionar durante años.</span>
+  "132": Al cambiar de desarrollador, de modelo o de sesión, la IA puede desviarse fácilmente. Core incluye una estructura estándar, reglas de arquitectura y skills de desarrollo versionadas para que cada colaborador y modelo escriba exactamente en la misma estructura.
+  "133": Cada app nueva parte de la misma estructura para páginas, APIs, migraciones y pruebas, incorporando las capacidades de la base mediante <code>@nocobase/*</code>.
+  "134": <code>AGENTS.md</code> especifica dónde va el código de negocio, qué reutilizar de Core y cómo escribir las migraciones y comprobaciones de permisos.
+  "135": Skills incluidas con Core
+  "136": Las skills se distribuyen y actualizan junto con los paquetes de Core para que Claude Code, Codex y OpenCode sigan siempre exactamente las mismas pautas.
+  "137": IA integrada
+  "138": IA integrada en <span class="m">cada sistema empresarial.</span>
+  "139": Servicios de modelos, agentes de negocio y base de conocimiento de IA integrados. Cada sistema construido sobre Core cuenta con sus propios empleados de IA trabajando 24/7 en tareas rutinarias, mientras las personas confirman las acciones clave.
+  "140": Usa cualquier modelo
+  "141": Conecta modelos en la nube o locales autoalojados sin dependencia de proveedores, con gestión centralizada de secretos y seguimiento de uso.
+  "142": Empleados de IA activos 24/7
+  "143": "Trabajan dentro de tus apps empresariales como compañeros digitales: recopilan datos, redactan informes y propuestas, y consultan antes de las decisiones clave."
+  "144": Acceso acotado y conocimiento
+  "145": Los empleados de IA operan estrictamente dentro de los permisos de datos otorgados y consultan directamente tu base de conocimiento empresarial versionada.
+  "146": Código abierto e independiente
+  "147": Código abierto, mantenido <span class="m">y de ejecución independiente.</span>
+  "148": El código fuente de Core es abierto y auditable, con correcciones y mejoras continuas en cada versión. Tu código de negocio vive en tu propio repositorio Git y las apps publicadas funcionan de forma independiente, sin pasar por Studio en el flujo de solicitudes.
+  "149": Código abierto y mantenido
+  "150": Totalmente de código abierto y auditable, con correcciones de seguridad y mejoras continuas del equipo de NocoBase.
+  "151": Código real en tu repositorio
+  "152": Código fuente estándar en TypeScript en tu propio repositorio Git, sin dependencias propietarias.
+  "153": Autoalojado y multibase de datos
+  "154": Autoaloja en tu propia infraestructura, incluso en redes aisladas, con PostgreSQL, MySQL, Oracle o SQL Server.
+  "155": Ejecución independiente en producción
+  "156": "Funciona de forma independiente una vez desplegado: el tráfico diario nunca pasa por Studio, con actualizaciones y reversiones desde la CLI."
+  "157": Sigue la guía de inicio rápido para inicializar una app y deja que tu agente de programación desarrolle la lógica de negocio sobre la base lista de Core.
+  "158": Apps de código abierto
+  "159": Listas y personalizables
+  "160": Instala NocoCRM, NocoITAM o NocoReach al instante, o personalízalas con agentes en Studio.
+  "161": Ver apps de código abierto
+  "162": Edición Community gratuita
+  "163": Dirige un equipo de agentes 24/7
+  "164": Coordina agentes de programación en varios dispositivos con controles de calidad estructurados y aprobaciones en computadora o móvil, gratis para empezar.
+  "165": NocoBase Core
+  "166": NocoBase Core es la base de aplicaciones de código abierto detrás de Studio. Con más de 30 componentes base listos para permisos, flujos de trabajo, archivos e IA, los agentes solo desarrollan lo propio de tu negocio sobre una misma arquitectura y los sistemas publicados funcionan de forma independiente.
+  "167": Más de 30 componentes base probados, <span class="m">listos para usar.</span>
+  "168": <b>Más de 30 componentes base</b>, mantenidos y actualizados por NocoBase.
+  "169": NocoBase Core es la base de aplicaciones de código abierto diseñada para el desarrollo con IA, lista para empezar por tu cuenta y ejecutarse de forma independiente. Con más de 30 componentes base listos para permisos, autenticación, flujos de trabajo, archivos e IA, desarrolla tu lógica de negocio de inmediato con tus herramientas de programación o escala a la colaboración en equipo con Studio.
+  "170": Instala NocoCRM, NocoITAM o NocoReach al instante, o personalízalas con tus herramientas de programación o con agentes en Studio.

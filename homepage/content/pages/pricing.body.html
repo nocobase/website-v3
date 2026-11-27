@@ -2,87 +2,101 @@ page: pricing
 i18n: pricing
 title_zh: 版本与价格 — NocoBase 3
 title_en: Editions & Pricing — NocoBase 3
-desc_zh: Core 和所有 Solution 应用开源免费。专业版 5 万元一次买断，含 Studio、1 年升级与技术支持和一次部署服务；企业版按需报价。
-desc_en: Core and every Solution app are free and open source. Professional is $8,000 one-time, with Studio, 1 year of upgrades and support, and one deployment. Enterprise is quoted to your needs.
+desc_zh: Core 与全部 Solution 开源免费，Studio 社区版免费使用（含工作台基础功能与两种内置工作流程）；专业版 5 万元一次买断，含多角色与自定义流程、部署审批、企业 SSO、成本控制与 1 年支持；企业版按需报价。
+desc_en: Core and all Solution apps are free and open source, and Studio Community Edition is free to use (with two built-in workflows). Professional is $8,000 one-time with team governance, custom workflows, and 1 year of upgrades and support. Enterprise is quoted to your needs.
 ---
-<!-- 开源与商业的划分取自《NocoBase 产品定义与标准表述》的「开源与私有部署」一节：Core 和所有 Solution 应用开源，Studio 在商业版。 -->
+<!-- 版本与功能划分严格对齐《Studio 版本划分.md》与《NocoBase 产品定义与标准表述.md》的「版本与私有部署」一节：
+     Core 全部基础能力与全部 Solution 开源免费，Studio 社区版免费使用（含两种内置工作流程，目前不开源）；
+     专业版增加 Studio 多角色与自定义流程、部署审批、企业 SSO、成本控制，以及 Core 高级审批/信创数据库/企业 SSO 与一次部署服务；
+     企业版增加 Studio 质量管理、自动回归与问题闭环、跨环境发布，以及 Core 集群高可用/多租户/多应用/审计日志/离线交付与 3 天实施服务。 -->
 <section class="phero">
   <div class="container">
     <p class="label"><b><t-zh>版本与价格</t-zh><t-en>Editions &amp; Pricing</t-en></b><i></i><span>NocoBase 3</span></p>
     <h1><t-zh>免费起步，<span class="m">一次买断，永久使用。</span></t-zh><t-en>Start free. <span class="m">Buy once, use forever.</span></t-en></h1>
+    <p class="lede"><t-zh>应用底座（Core）和全部开源应用开源免费，工作台（Studio）社区版免费使用，可从 Core 独立起步或直接部署 Studio；商业版一次买断、永久授权，全部私有部署在企业自己的服务器上。</t-zh><t-en>Core and all open-source apps are free and open source, and Studio Community Edition is free to use. Start directly with Core or deploy Studio; commercial editions are a one-time perpetual license self-hosted on your own servers.</t-en></p>
   </div>
 </section>
 
-<section class="sec tight" style="padding-top:64px">
+<section class="sec tight" style="padding-top:44px">
   <div class="container">
     <div class="plans">
       <div class="plan">
-        <div class="top"><h3><t-zh>社区版</t-zh><t-en>Community</t-en></h3><span class="pill"><t-zh>开源</t-zh><t-en>Open source</t-en></span></div>
-        <p class="for"><t-zh>用自己的 Coding Agent 开发和运行业务系统。</t-zh><t-en>Build and run business systems with your own coding agents.</t-en></p>
+        <div class="top"><h3><t-zh>社区版</t-zh><t-en>Community</t-en></h3><span class="pill"><t-zh>社区版免费</t-zh><t-en>Free</t-en></span></div>
+        <p class="for"><t-zh>适合个人和小团队，可从 Core 独立起步，也可直接部署 Studio。</t-zh><t-en>For individuals and small teams—start directly with Core or deploy Studio.</t-en></p>
         <p class="price"><t-zh>免费</t-zh><t-en>Free</t-en></p>
-        <a class="btn btn-sec" href="{{DOCS}}core/" target="_blank" rel="noopener"><t-zh>开始使用</t-zh><t-en>Get Started</t-en></a>
+        <p class="pmeta"><t-zh>Core 与 Solution 开源免费 · Studio 社区版免费 · 可用于生产</t-zh><t-en>Core &amp; Solutions open source · Studio Community free · production ready</t-en></p>
+        <a class="btn btn-sec" href="{{DOCS}}getting-started/develop-your-first-app/" target="_blank" rel="noopener"><t-zh>免费开始使用</t-zh><t-en>Get Started Free</t-en><i data-lucide="arrow-right"></i></a>
         <ul>
-          <li><i data-lucide="check"></i><span><t-zh>Core 全部基础能力：权限、流程、文件等</t-zh><t-en>All Core building blocks: permissions, workflows, files, notifications, and more</t-en></span></li>
-          <li><i data-lucide="check"></i><span><t-zh>项目脚手架、开发规范和开发技能，任意 Coding Agent 可用</t-zh><t-en>Project scaffolding, development standards, and skills for any coding agent</t-en></span></li>
-          <li><i data-lucide="check"></i><span><t-zh>NocoCRM、NocoITAM、NocoReach 等全部 Solution 应用及其业务 Agent</t-zh><t-en>Every Solution app, such as NocoCRM, NocoITAM, and NocoReach, with its business agents</t-en></span></li>
-          <li><i data-lucide="check"></i><span><t-zh>可以用于生产和商业交付</t-zh><t-en>Free for production and client delivery</t-en></span></li>
-          <li><i data-lucide="check"></i><span><t-zh>文档与社区支持</t-zh><t-en>Docs and community support</t-en></span></li>
+          <li class="hd grp"><span class="h">NocoBase Core &amp; Solution</span></li>
+          <li><i data-lucide="check"></i><span><t-zh>Core 全部 30 多项基础能力、统一规范与开发技能（可独立起步）</t-zh><t-en>All 30+ Core building blocks, standards, and dev skills (start standalone)</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>全部开源业务应用（NocoCRM、NocoITAM、NocoReach 等）</t-zh><t-en>All open-source business apps (NocoCRM, NocoITAM, NocoReach, and more)</t-en></span></li>
+          <li class="hd grp"><span class="h">NocoBase Studio</span></li>
+          <li><i data-lucide="check"></i><span><t-zh>项目与任务、Agent 团队与多设备运行环境</t-zh><t-en>Projects, issues, agent team, and multi-device runtimes</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>两种内置工作流程（精简与标准流程）与常驻技能</t-zh><t-en>Two built-in workflows (simple &amp; standard) with resident skills</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>自动检查、不同模型交叉评审、验收上线与回滚</t-zh><t-en>Automated checks, cross-model review, sign-off, and rollback</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>技能、知识库、项目记忆与在手机上做决策</t-zh><t-en>Skills, knowledge base, project memory, and mobile decisions</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>运行记录与用量、成员权限（支持 OIDC 登录）与社区支持</t-zh><t-en>Run history, usage &amp; cost logs, OIDC permissions, and community support</t-en></span></li>
         </ul>
       </div>
+
       <div class="plan hl">
-        <div class="top"><h3><t-zh>专业版</t-zh><t-en>Professional</t-en></h3><span class="pill brand"><t-zh>包含 Studio</t-zh><t-en>Includes Studio</t-en></span></div>
-        <p class="for"><t-zh>用 Studio 带领 Agent 团队，持续开发和交付业务系统。</t-zh><t-en>Lead an agent team in Studio to keep building and shipping business systems.</t-en></p>
+        <div class="top"><h3><t-zh>专业版</t-zh><t-en>Professional</t-en></h3><span class="pill brand"><t-zh>团队推荐</t-zh><t-en>For teams</t-en></span></div>
+        <p class="for"><t-zh>适合一个团队用 AI 持续开发、把关和交付业务系统。</t-zh><t-en>For a team shipping and governing business systems continuously with AI.</t-en></p>
         <p class="price"><t-zh>¥50,000</t-zh><t-en>$8,000</t-en><small><t-zh>一次买断</t-zh><t-en>one-time</t-en></small></p>
-        <p style="margin-top:4px;font-size:13.5px;color:var(--ink-2)"><t-zh>永久授权 · 含 1 年升级与技术支持</t-zh><t-en>Perpetual license · 1 year of upgrades and support</t-en></p>
+        <p class="pmeta"><t-zh>永久授权 · 含 1 年升级与技术支持</t-zh><t-en>Perpetual license · 1 year of upgrades and support</t-en></p>
         <a class="btn btn-pri" href="contact.html"><t-zh>联系购买</t-zh><t-en>Contact Us to Buy</t-en><i data-lucide="arrow-right"></i></a>
         <ul>
           <li class="hd"><span class="h"><t-zh>包含社区版全部内容，另增：</t-zh><t-en>Everything in Community, plus:</t-en></span></li>
           <li class="hd grp"><span class="h">NocoBase Studio</span></li>
-          <li><i data-lucide="check"></i><span><t-zh>调度 Agent 团队，同时推进多个项目</t-zh><t-en>An agent team that moves many projects forward at once</t-en></span></li>
-          <li><i data-lucide="check"></i><span><t-zh>每次合并前检查、评审、人工验收</t-zh><t-en>Checks, review, and human sign-off before every merge</t-en></span></li>
-          <li><i data-lucide="check"></i><span><t-zh>技能、知识库和项目记忆，换人、换 Agent 都能接上</t-zh><t-en>Skills, knowledge base, and project memory, so work carries over between people and agents</t-en></span></li>
-          <li><i data-lucide="check"></i><span><t-zh>在手机上提需求、回答提问、做验收</t-zh><t-en>Raise requests, answer questions, and sign off from your phone</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>多角色与自定义流程：技术审批开发、业务与技术双重验收，自定义步骤与权责</t-zh><t-en>Multi-role &amp; custom workflows: tech approval before dev, dual sign-off, custom steps and ownership</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>部署审批：受保护环境的部署和回滚须经审批人批准</t-zh><t-en>Deployment approvals for protected environments and rollbacks</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>企业 SSO：SAML 2.0、LDAP，企业微信、飞书、钉钉登录</t-zh><t-en>Enterprise SSO: SAML 2.0, LDAP, WeCom, Feishu, and DingTalk</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>成本控制：按项目、成员、Agent 设预算，超出即暂停</t-zh><t-en>Cost controls: budgets per project, member, or agent with auto-pause</t-en></span></li>
           <li class="hd grp"><span class="h">NocoBase Core</span></li>
-          <li><i data-lucide="check"></i><span><t-zh>商业插件：高级审批、信创数据库、企业 SSO</t-zh><t-en>Commercial plugins: advanced approvals and enterprise SSO</t-en></span></li>
-          <li class="hd grp"><span class="h"><t-zh>服务</t-zh><t-en>Services</t-en></span></li>
-          <li><i data-lucide="check"></i><span><t-zh>一次部署服务，由 NocoBase 团队完成</t-zh><t-en>One deployment, done by the NocoBase team</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>高级审批、信创数据库、企业 SSO</t-zh><t-en>Advanced approvals and enterprise SSO</t-en></span></li>
+          <li class="hd grp"><span class="h"><t-zh>服务与支持</t-zh><t-en>Services &amp; support</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>1 年升级与技术支持（首次响应不超过 12 小时）</t-zh><t-en>1 year of upgrades and support (first response within 12&nbsp;hours)</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>一次部署服务，由 NocoBase 团队完成</t-zh><t-en>One deployment service by the NocoBase team</t-en></span></li>
         </ul>
       </div>
+
       <div class="plan">
         <div class="top"><h3><t-zh>企业版</t-zh><t-en>Enterprise</t-en></h3><span class="pill"><t-zh>关键业务</t-zh><t-en>Mission-critical</t-en></span></div>
-        <p class="for"><t-zh>关键业务系统需要高可用和内网交付，开发过程需要质量、审批和成本管控。</t-zh><t-en>For critical systems: high availability, air-gapped delivery, and development controls.</t-en></p>
+        <p class="for"><t-zh>适合多个团队协作和关键业务，强化质量体系、发布管控与高可用。</t-zh><t-en>For multi-team delivery and critical systems needing quality plans, release controls, and HA.</t-en></p>
         <p class="price"><t-zh>联系我们</t-zh><t-en>Contact us</t-en></p>
-        <p style="margin-top:4px;font-size:13.5px;color:var(--ink-2)"><t-zh>按需报价 · 同样一次买断、永久授权</t-zh><t-en>Custom quote · also a one-time perpetual license</t-en></p>
-        <a class="btn btn-sec" href="contact.html"><t-zh>联系购买</t-zh><t-en>Contact Us to Buy</t-en></a>
+        <p class="pmeta"><t-zh>按需报价 · 一次买断、永久授权</t-zh><t-en>Custom quote · one-time perpetual license</t-en></p>
+        <a class="btn btn-sec" href="contact.html"><t-zh>联系购买</t-zh><t-en>Contact Us to Buy</t-en><i data-lucide="arrow-right"></i></a>
         <ul>
           <li class="hd"><span class="h"><t-zh>包含专业版全部内容，另增：</t-zh><t-en>Everything in Professional, plus:</t-en></span></li>
           <li class="hd grp"><span class="h">NocoBase Studio</span></li>
-          <li><i data-lucide="check"></i><span><t-zh>质量计划：按项目把关质量，内置 8 种测试方式</t-zh><t-en>Quality plans per project, with 8 built-in testing methods</t-en></span></li>
-          <li><i data-lucide="check"></i><span><t-zh>部署审批与成本控制</t-zh><t-en>Deployment approval and cost controls</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>质量管理：按项目配置标准与规则，调用成熟工具实测功能、冒烟、权限、安全、性能、代码质量和 UX</t-zh><t-en>Quality management: customizable standards with proven tools across features, smoke checks, permissions, security, performance, code quality, and UX</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>自动回归与问题闭环：维护核心场景，每日/发布/项目/自定义测试，问题自动登记为跟进任务修复并复测</t-zh><t-en>Automated regression &amp; closed-loop fixes: core scenarios with daily, release, project, and custom runs that file follow-up issues and retest</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>跨环境发布：预发布验证过的版本原样上生产，规定上线窗口与冻结期</t-zh><t-en>Cross-environment promotion from staging to production with release windows and freeze periods</t-en></span></li>
           <li class="hd grp"><span class="h">NocoBase Core</span></li>
-          <li><i data-lucide="check"></i><span><t-zh>集群与高可用、多租户架构、多应用架构</t-zh><t-en>Clustering and high availability, multi-tenant and multi-app architecture</t-en></span></li>
-          <li><i data-lucide="check"></i><span><t-zh>审计日志、离线交付</t-zh><t-en>Audit logs and air-gapped delivery</t-en></span></li>
-          <li class="hd grp"><span class="h"><t-zh>服务</t-zh><t-en>Services</t-en></span></li>
-          <li><i data-lucide="check"></i><span><t-zh>优先支持，首次响应不超过 4 小时</t-zh><t-en>Priority support, with a first response within 4&nbsp;hours</t-en></span></li>
-          <li><i data-lucide="check"></i><span><t-zh>3 天服务：部署、培训、实施</t-zh><t-en>3 days of deployment, training, and implementation</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>集群与高可用、多租户架构、多应用架构、多门户架构</t-zh><t-en>Clustering and high availability, multi-tenant, multi-app, and multi-portal architecture</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>完整审计日志、纯内网离线交付</t-zh><t-en>Complete audit logs and air-gapped offline delivery</t-en></span></li>
+          <li class="hd grp"><span class="h"><t-zh>服务与支持</t-zh><t-en>Services &amp; support</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>优先支持，首次响应不超过 4 小时</t-zh><t-en>Priority support with a first response within 4&nbsp;hours</t-en></span></li>
+          <li><i data-lucide="check"></i><span><t-zh>3 天服务：部署、培训与实施</t-zh><t-en>3 days of deployment, training, and implementation</t-en></span></li>
         </ul>
       </div>
     </div>
-    <p class="subnote"><t-zh>服务器、大模型和 Coding Agent 由你自选，直接向服务商付费。</t-zh><t-en>You choose your own servers, models, and coding agents, and pay their providers directly.</t-en></p>
+    <p class="subnote"><t-zh>工作台与业务系统均私有部署在企业自己的服务器上，支持纯内网。服务器、大模型和编码工具由企业自选，直接向服务商付费。</t-zh><t-en>Studio and your business apps self-host on your own servers, including air-gapped networks. You choose your own servers, models, and coding tools and pay their providers directly.</t-en></p>
   </div>
 </section>
 
-<section class="sec tint">
+<section class="sec tint" id="compare">
   <div class="container">
     <div class="sec-head">
-      <p class="label"><b><t-zh>功能明细</t-zh><t-en>Details</t-en></b></p>
+      <p class="label"><b><t-zh>功能明细</t-zh><t-en>Feature matrix</t-en></b></p>
       <h2 class="h2"><t-zh>各版本包含什么</t-zh><t-en>What each edition includes</t-en></h2>
+      <p class="lead"><t-zh>社区版开箱即得完整应用底座与工作台基础功能，可从 Core 起步或直接部署 Studio；专业版补齐团队协作与治理；企业版面向多团队与关键业务的质量、发布和高可用。</t-zh><t-en>Community includes the full open-source foundation and Studio basics—start with Core or Studio. Professional adds team governance. Enterprise adds release quality, cross-environment promotions, and high availability.</t-en></p>
     </div>
     <div class="sec-body">
       <div class="cmp-wrap"><table class="cmp">
         <thead><tr><th></th><th><t-zh>社区版</t-zh><t-en>Community</t-en><small><t-zh>免费</t-zh><t-en>Free</t-en></small></th><th><t-zh>专业版</t-zh><t-en>Professional</t-en><small><t-zh>¥50,000</t-zh><t-en>$8,000</t-en></small></th><th><t-zh>企业版</t-zh><t-en>Enterprise</t-en><small><t-zh>联系我们</t-zh><t-en>Contact us</t-en></small></th></tr></thead>
         <tbody>
-          <tr class="g"><th colspan="4">NocoBase Core<span><t-zh>开源应用底座</t-zh><t-en>The open-source application foundation</t-en></span></th></tr>
+          <tr class="g"><th colspan="4">NocoBase Core<span><t-zh>应用底座 — 现成基础能力与统一架构</t-zh><t-en>Foundation — ready-made building blocks and one architecture</t-en></span></th></tr>
           <tr><td><t-zh>登录与单点登录</t-zh><t-en>Sign-in and SSO</t-en><small><t-zh>账号密码、社交账号、OIDC</t-zh><t-en>Password, social accounts, OIDC</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>用户与组织</t-zh><t-en>Users and organization</t-en><small><t-zh>用户、部门与上下级</t-zh><t-en>Users, departments, and reporting lines</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>权限</t-zh><t-en>Permissions</t-en><small><t-zh>按角色授权页面、操作和数据范围，人和 Agent 用同一套规则</t-zh><t-en>Role-based access to pages, actions, and data, with the same rules for people and agents</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
@@ -94,13 +108,13 @@ desc_en: Core and every Solution app are free and open source. Professional is $
           <tr><td><t-zh>通知</t-zh><t-en>Notifications</t-en><small><t-zh>站内信、邮件、飞书、钉钉</t-zh><t-en>In-app, email, Feishu, DingTalk</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>邮箱</t-zh><t-en>Email</t-en><small><t-zh>在业务记录里收发邮件</t-zh><t-en>Send and receive email from records</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>模型接入</t-zh><t-en>Models</t-en><small><t-zh>云端或本地模型</t-zh><t-en>Cloud or local</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>业务 Agent</t-zh><t-en>Business agents</t-en><small><t-zh>按用户权限查询数据，确认后执行操作</t-zh><t-en>Query data within the user’s permissions, act after confirmation</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>业务 Agent</t-zh><t-en>Business agents</t-en><small><t-zh>按授权范围处理日常事务，关键操作请求人确认</t-zh><t-en>Handle routine work within granted permissions and confirm key actions</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>AI 知识库</t-zh><t-en>AI knowledge base</t-en><small><t-zh>按权限访问，有版本，回答注明来源</t-zh><t-en>Permission-aware and versioned, with cited answers</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>源码开发</t-zh><t-en>Source-code development</t-en><small><t-zh>统一的项目结构、开发规范和开发技能，任意 Coding Agent 可用</t-zh><t-en>One project structure, development standards, and skills for any coding agent</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>源码开发</t-zh><t-en>Source-code development</t-en><small><t-zh>统一的项目结构、开发规范和开发技能，任意编码工具可用</t-zh><t-en>One project structure, development standards, and skills for any coding agent</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>界面</t-zh><t-en>Interface</t-en><small><t-zh>多语言、主题、业务组件</t-zh><t-en>Languages, themes, business components</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>模板打印</t-zh><t-en>Template printing</t-en></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>模板打印</t-zh><t-en>Template printing</t-en><small><t-zh>按 Office 模板生成合同、报价单等文档</t-zh><t-en>Generate contracts, quotes, and documents from Office templates</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>基础操作记录</t-zh><t-en>Basic activity history</t-en><small><t-zh>流程、审批和 Agent 的操作都有记录</t-zh><t-en>Workflow, approval, and agent actions on record</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>部署与升级</t-zh><t-en>Deploy and upgrade</t-en><small><t-zh>部署、升级和回滚</t-zh><t-en>Deploy, upgrade, and roll back</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>部署与升级</t-zh><t-en>Deploy and upgrade</t-en><small><t-zh>应用发布后独立运行，支持命令行部署、升级和回滚</t-zh><t-en>Standalone runtime with CLI deploy, upgrade, and rollback</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>企业 SSO</t-zh><t-en>Enterprise SSO</t-en><small><t-zh>SAML 2.0、LDAP，企业微信、飞书、钉钉登录</t-zh><t-en>SAML 2.0, LDAP, WeCom, Feishu, DingTalk</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>高级审批</t-zh><t-en>Advanced approvals</t-en><small><t-zh>多级条件路由、会签或签、加签转交、退回撤回</t-zh><t-en>Conditional routing, joint sign-off, add signers, delegate, send back</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <!-- 信创数据库只在中文版列出 -->
@@ -108,37 +122,40 @@ desc_en: Core and every Solution app are free and open source. Professional is $
           <tr><td><t-zh>集群与高可用</t-zh><t-en>Clustering and high availability</t-en></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>多租户架构</t-zh><t-en>Multi-tenant architecture</t-en></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>多应用架构</t-zh><t-en>Multi-app architecture</t-en></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>多门户架构</t-zh><t-en>Multi-portal architecture</t-en></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>审计日志</t-zh><t-en>Audit logs</t-en><small><t-zh>完整操作记录</t-zh><t-en>A complete record of every action</t-en></small></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>离线交付</t-zh><t-en>Air-gapped delivery</t-en><small><t-zh>纯内网环境部署</t-zh><t-en>For networks with no internet access</t-en></small></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
 
-          <tr class="g"><th colspan="4">NocoBase Studio<span><t-zh>人与 Agent 协同开发的治理平台</t-zh><t-en>The governance platform for people and agents building software together</t-en></span></th></tr>
-          <tr><td><t-zh>工作台</t-zh><t-en>Workspace</t-en><small><t-zh>我的任务、我的会话、仪表盘</t-zh><t-en>My issues, My sessions, dashboard</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>Agent 团队</t-zh><t-en>Agent team</t-en><small><t-zh>调度 Agent 分派任务，多台机器上的 Agent 统一接入</t-zh><t-en>A coordinator agent assigns work to agents connected from any machine</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>运行环境</t-zh><t-en>Runtimes</t-en><small><t-zh>Agent 的运行环境，多个任务并行推进</t-zh><t-en>Where agents run, working on issues in parallel</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>技能、知识库和项目记忆</t-zh><t-en>Skills, knowledge base, and project memory</t-en><small><t-zh>团队的做法和资料，每次运行自动带上</t-zh><t-en>Your team’s methods and knowledge, loaded into every run</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>检查、评审与验收</t-zh><t-en>Checks, review, and sign-off</t-en><small><t-zh>CI 或 Agent 自检、换厂商的模型评审、预览与人工验收</t-zh><t-en>CI or agent self-checks, review by another vendor’s model, previews, and human sign-off</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>部署与回滚</t-zh><t-en>Deploy and roll back</t-en><small><t-zh>部署到 Studio 托管的测试环境，出了问题回滚到上一个版本</t-zh><t-en>Deploy to test environments hosted by Studio, and roll back when something goes wrong</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>运行记录与用量</t-zh><t-en>Run history and usage</t-en><small><t-zh>每次运行都有记录，用量和费用一目了然</t-zh><t-en>Every run on record, with usage and cost at a glance</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>自定义角色</t-zh><t-en>Custom roles</t-en><small><t-zh>按页面、设置和业务操作定义成员能做什么</t-zh><t-en>Define what members can do across pages, settings, and actions</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>交付度量</t-zh><t-en>Delivery metrics</t-en><small><t-zh>完成任务数、周期时间、返工率、单任务成本，和上一周期对比</t-zh><t-en>Completed issues, cycle time, rework rate, and cost per issue, compared with the previous period</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>在手机上做决策</t-zh><t-en>Decide from your phone</t-en><small><t-zh>添加到手机主屏幕，提需求、回答提问、验收，需要你时推送提醒</t-zh><t-en>Add Studio to your home screen to raise requests, answer questions, and sign off, with a push notification when you’re needed</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>质量计划</t-zh><t-en>Quality plans</t-en><small><t-zh>按项目把关质量，内置 8 种测试方式</t-zh><t-en>Quality checks per project, with 8 built-in testing methods</t-en></small></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>部署审批</t-zh><t-en>Deployment approval</t-en><small><t-zh>向受保护的环境部署和回滚，须经审批人批准</t-zh><t-en>Deployments and rollbacks to protected environments need an approver</t-en></small></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>成本控制</t-zh><t-en>Cost controls</t-en></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr class="g"><th colspan="4">NocoBase Studio<span><t-zh>工作台 — 人与 Agent 协同开发与把关</t-zh><t-en>Workbench — team development and governance with coding agents</t-en></span></th></tr>
+          <tr><td><t-zh>项目与任务</t-zh><t-en>Projects and issues</t-en><small><t-zh>在会话里提需求，Agent 拆成任务，多个项目的进展集中查看</t-zh><t-en>Describe needs in sessions, agents break them into issues, and progress stays visible across projects</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>Agent 团队</t-zh><t-en>Agent team</t-en><small><t-zh>调度 Agent 分派任务，多台机器上的 Claude Code、Codex 等 Agent 统一接入</t-zh><t-en>Coordinator agent assigns work to Claude Code, Codex, and other agents across your machines</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>运行环境</t-zh><t-en>Runtimes</t-en><small><t-zh>个人电脑和团队服务器都能接入，多个任务并行推进</t-zh><t-en>Connect personal computers and team servers to run multiple issues in parallel</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>内置工作流程</t-zh><t-en>Built-in workflows</t-en><small><t-zh>包含精简流程和标准流程，常驻技能每次运行自动加载</t-zh><t-en>Includes fast and standard development workflows with pinned skills loaded automatically</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>测试与评审</t-zh><t-en>Tests and review</t-en><small><t-zh>每个任务自带自动检查和不同模型交叉评审（只读审查）</t-zh><t-en>Every issue runs automated checks plus read-only cross-model review</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>验收与上线</t-zh><t-en>Sign-off and release</t-en><small><t-zh>交付附验收报告和测试环境，负责人验收后上线，出了问题回滚到上一个版本</t-zh><t-en>Deliveries include an acceptance report and test environment; owner signs off to ship, with instant rollback</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>技能、知识库和项目记忆</t-zh><t-en>Skills, knowledge base, and project memory</t-en><small><t-zh>持续沉淀工作方法和项目资料</t-zh><t-en>Continuously capture team methods, business material, and project lessons</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>在手机上做决策</t-zh><t-en>Decide on mobile</t-en><small><t-zh>添加到手机主屏幕，随时随地提需求、回答提问、验收</t-zh><t-en>Add to your phone’s home screen to submit requests, answer questions, and sign off anywhere</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>运行记录与用量</t-zh><t-en>Run history and usage</t-en><small><t-zh>每次运行都有记录，用量和费用随时看得到</t-zh><t-en>Every run is logged with transparent token usage and cost visibility</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>成员与权限</t-zh><t-en>Members and permissions</t-en><small><t-zh>账号密码或 OIDC 登录，按角色设定权限；Agent 的权限不超过发起它的人</t-zh><t-en>Password or OIDC login with role-based permissions; agents never exceed their requester’s access</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>多角色流程与自定义流程</t-zh><t-en>Multi-role and custom workflows</t-en><small><t-zh>业务人员提需求，技术负责人审批后进入开发，交付后业务、技术双重验收；支持按企业制度自定义流程与权责规则</t-zh><t-en>Business requests, tech lead approval before development, dual sign-off, and custom workflow steps and ownership rules</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>部署审批</t-zh><t-en>Deployment approvals</t-en><small><t-zh>向受保护的环境部署和回滚，须经审批人批准</t-zh><t-en>Deployments and rollbacks to protected environments require an approver</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>企业 SSO</t-zh><t-en>Enterprise SSO</t-en><small><t-zh>SAML 2.0、LDAP，企业微信、飞书、钉钉登录工作台</t-zh><t-en>SAML 2.0, LDAP, WeCom, Feishu, and DingTalk sign-in for Studio</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>成本控制</t-zh><t-en>Cost controls</t-en><small><t-zh>按项目、成员、Agent 设预算，超出就暂停</t-zh><t-en>Set budgets per project, member, or agent and pause automatically when reached</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>质量管理</t-zh><t-en>Quality management</t-en><small><t-zh>按项目配置质量标准与测试规则，调用成熟工具实测功能、冒烟、权限、安全、性能、代码质量和 UX，自动生成报告</t-zh><t-en>Project-level standards and rules using proven tools across features, smoke checks, permissions, security, performance, code quality, and UX</t-en></small></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>自动回归与问题闭环</t-zh><t-en>Automated regression and closed-loop fixes</t-en><small><t-zh>维护核心业务场景，支持每日、发布、项目和自定义测试，发现的问题自动登记为跟进任务，修复后再复测</t-zh><t-en>Core business scenarios with daily, release, project, and custom runs that file follow-up issues and retest after fixes</t-en></small></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>跨环境发布</t-zh><t-en>Cross-environment promotion</t-en><small><t-zh>预发布验证过的版本原样上生产，规定上线窗口和冻结期</t-zh><t-en>Promote verified staging builds unchanged to production with release windows and freeze periods</t-en></small></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
 
-          <tr class="g"><th colspan="4">NocoBase Solution<span><t-zh>由 Agent 驱动的企业业务应用</t-zh><t-en>Agent-driven business apps</t-en></span></th></tr>
-          <tr><td>NocoCRM<small><t-zh>销售管理</t-zh><t-en>Sales</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td>NocoReach<small><t-zh>内容与增长</t-zh><t-en>Growth</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td>NocoProject<small><t-zh>项目协作</t-zh><t-en>Projects</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr class="g"><th colspan="4">NocoBase Solution<span><t-zh>开源业务应用 — 开箱即用，可用编码工具或在工作台继续定制</t-zh><t-en>Open-source business apps — ready out of the box and customizable with coding tools or Studio</t-en></span></th></tr>
+          <tr><td>NocoCRM<small><t-zh>销售管理</t-zh><t-en>Sales CRM</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td>NocoITAM<small><t-zh>IT 资产台账与管理</t-zh><t-en>IT asset management</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td>NocoSupport<small><t-zh>客户服务</t-zh><t-en>Support</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td>NocoHR<small><t-zh>人事管理</t-zh><t-en>HR</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>在 Studio 中定制和发布</t-zh><t-en>Customize and release in Studio</t-en></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td>NocoReach<small><t-zh>内容与增长</t-zh><t-en>Growth</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>更多开源应用</t-zh><t-en>More open-source apps</t-en><small><t-zh>客户服务、项目协作、人事管理等持续推出</t-zh><t-en>Support, Projects, HR, and more coming soon</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>按企业业务二次开发与发布</t-zh><t-en>Customize and release for your business</t-en><small><t-zh>直接用编码工具或在 Studio 中让 Agent 继续定制</t-zh><t-en>Customize with your coding tools or agents in Studio</t-en></small></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
 
           <tr class="g"><th colspan="4"><t-zh>服务与支持</t-zh><t-en>Services &amp; support</t-en></th></tr>
           <tr><td><t-zh>文档与社区</t-zh><t-en>Docs and community</t-en></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>版本升级</t-zh><t-en>Upgrades</t-en><small><t-zh>购买后发布的新版本</t-zh><t-en>New releases after purchase</t-en></small></td><td class="n">—</td><td class="t"><t-zh>1 年</t-zh><t-en>1 year</t-en></td><td class="t"><t-zh>1 年</t-zh><t-en>1 year</t-en></td></tr>
-          <tr><td><t-zh>技术支持</t-zh><t-en>Technical support</t-en></td><td class="n">—</td><td class="t"><t-zh>1 年</t-zh><t-en>1 year</t-en></td><td class="t"><t-zh>1 年，优先支持</t-zh><t-en>1 year, priority</t-en></td></tr>
+          <tr><td><t-zh>版本升级</t-zh><t-en>Upgrades</t-en><small><t-zh>社区版免费获取更新；商业版含购买后 1 年新版本</t-zh><t-en>Free updates for Community; 1 year of commercial releases for Pro &amp; Enterprise</t-en></small></td><td class="t"><t-zh>免费更新</t-zh><t-en>Free updates</t-en></td><td class="t"><t-zh>1 年</t-zh><t-en>1 year</t-en></td><td class="t"><t-zh>1 年</t-zh><t-en>1 year</t-en></td></tr>
+          <tr><td><t-zh>技术支持</t-zh><t-en>Technical support</t-en></td><td class="t"><t-zh>社区</t-zh><t-en>Community</t-en></td><td class="t"><t-zh>1 年</t-zh><t-en>1 year</t-en></td><td class="t"><t-zh>1 年，优先支持</t-zh><t-en>1 year, priority</t-en></td></tr>
           <tr><td><t-zh>首次响应时间</t-zh><t-en>First response time</t-en></td><td class="n">—</td><td class="t"><t-zh>不超过 12 小时</t-zh><t-en>Within 12 hours</t-en></td><td class="t"><t-zh>不超过 4 小时</t-zh><t-en>Within 4 hours</t-en></td></tr>
           <tr><td><t-zh>实施服务</t-zh><t-en>Onboarding</t-en><small><t-zh>由 NocoBase 团队提供</t-zh><t-en>From the NocoBase team</t-en></small></td><td class="n">—</td><td class="t"><t-zh>一次部署</t-zh><t-en>One deployment</t-en></td><td class="t"><t-zh>3 天：部署、培训、实施</t-zh><t-en>3 days: deployment, training, and implementation</t-en></td></tr>
         </tbody>
@@ -147,21 +164,22 @@ desc_en: Core and every Solution app are free and open source. Professional is $
   </div>
 </section>
 
-<section class="sec">
+<section class="sec" id="faq">
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>常见问题</t-zh><t-en>FAQ</t-en></b></p>
+      <h2 class="h2"><t-zh>购买与授权说明</t-zh><t-en>Licensing &amp; purchasing FAQ</t-en></h2>
     </div>
-    <div class="sec-body" style="margin-top:24px">
+    <div class="sec-body" style="margin-top:28px">
       <div class="faq">
-        <details><summary><t-zh>专业版和企业版如何选择？</t-zh><t-en>How do I choose between Professional and Enterprise?</t-en><i data-lucide="plus"></i></summary><p><t-zh>用 Studio 开发和交付业务系统，选专业版：包含 Studio 的全部核心能力和一次部署服务，技术支持首次响应不超过 12&nbsp;小时。</t-zh><t-en>Choose Professional to build and ship business systems with Studio. It includes all of Studio’s core capabilities and one deployment by the NocoBase team, with a first response to support requests within 12&nbsp;hours.</t-en></p><p><t-zh>业务系统需要集群高可用、多租户、审计日志或离线交付，或者开发过程需要质量计划、部署审批和成本控制，选企业版：包含 3 天部署、培训和实施服务，技术支持首次响应不超过 4&nbsp;小时。</t-zh><t-en>Choose Enterprise if your systems need clustering and high availability, multi-tenancy, audit logs, or air-gapped delivery, or if development needs quality plans, deployment approval, and cost controls. It includes 3 days of deployment, training, and implementation, and a first response within 4&nbsp;hours.</t-en></p></details>
-        <details><summary><t-zh>社区版可以用于生产环境吗？</t-zh><t-en>Can I use Community in production?</t-en><i data-lucide="plus"></i></summary><p><t-zh>可以。社区版包含完整的 Core 和所有 Solution 应用，可以用于生产和商业交付。你的 Coding Agent 装上 NocoBase 的开发技能就能开发，测试、发布和运维由团队自己负责。</t-zh><t-en>Yes. Community includes all of Core plus every Solution app, free for production and client delivery. Add NocoBase’s development skills to your coding agent and start building. Your team handles testing, releases, and operations.</t-en></p></details>
-        <details><summary><t-zh>商业版授权的有效期是多久？</t-zh><t-en>How long does a commercial license last?</t-en><i data-lucide="plus"></i></summary><p><t-zh>永久有效。商业版一次付费，没有年费，已购版本可以一直使用。</t-zh><t-en>It never expires. Commercial editions are a one-time purchase with no annual fees.</t-en></p></details>
+        <details><summary><t-zh>社区版、专业版和企业版如何选择？</t-zh><t-en>How do I choose between Community, Professional, and Enterprise?</t-en><i data-lucide="plus"></i></summary><p><t-zh>个人和小团队可以直接免费起步：应用底座（Core）的全部基础能力和全部开源应用开源免费，工作台（Studio）社区版免费使用（含两种内置工作流程），可从 Core 独立起步或直接部署 Studio。</t-zh><t-en>Individuals and small teams can start free: every Core building block and all open-source apps are free and open source, and Studio Community Edition is free to use (with two built-in workflows)—start directly with Core or deploy Studio.</t-en></p><p><t-zh>一个团队需要规范分工与治理，选专业版：增加多角色流程（业务与技术双重验收）与自定义流程、部署审批、企业 SSO、成本控制，以及高级审批、信创数据库与一次部署服务，技术支持首次响应不超过 12&nbsp;小时。</t-zh><t-en>Choose Professional when a team needs governance: it adds multi-role workflows with dual sign-off and custom workflows, deployment approvals, enterprise SSO, cost controls, advanced approvals, one deployment service, and 12-hour response support.</t-en></p><p><t-zh>多团队协作或关键业务系统，选企业版：增加质量管理、自动回归与问题闭环、跨环境发布，以及集群高可用、多租户、多应用、多门户、审计日志和离线交付，包含 3 天部署、培训和实施服务，优先支持首次响应不超过 4&nbsp;小时。</t-zh><t-en>Choose Enterprise for multi-team delivery and mission-critical systems: it adds quality management, automated regression with closed-loop fixes, cross-environment promotions, HA clustering, multi-tenant/multi-app/multi-portal architecture, audit logs, air-gapped delivery, 3 days of onboarding, and 4-hour priority support.</t-en></p></details>
+        <details><summary><t-zh>社区版可以用于生产环境吗？</t-zh><t-en>Can I use Community in production?</t-en><i data-lucide="plus"></i></summary><p><t-zh>可以。社区版包含完整的 Core 底座、工作台（Studio）的基础功能和所有开源应用，可以直接用于生产环境和商业交付。</t-zh><t-en>Yes. Community includes all of Core, Studio’s core features, and every open-source app, free for production and client delivery.</t-en></p></details>
+        <details><summary><t-zh>商业版授权的有效期是多久？</t-zh><t-en>How long does a commercial license last?</t-en><i data-lucide="plus"></i></summary><p><t-zh>永久有效。商业版一次付费，没有年费，也不按席位收费，已购版本可以一直使用。</t-zh><t-en>It never expires. Commercial editions are a one-time purchase with no annual fees and no per-seat charges.</t-en></p></details>
         <details><summary><t-zh>1 年升级与技术支持到期后怎么办？</t-zh><t-en>What happens when the first year of upgrades and support ends?</t-en><i data-lucide="plus"></i></summary><p><t-zh>系统照常运行。想继续获得新版本和技术支持，可以单独购买升级和支持服务，且无需连续购买。</t-zh><t-en>Everything keeps running. For new releases and support, you can buy upgrades and support separately, and you don’t have to renew every year.</t-en></p></details>
-        <details><summary><t-zh>商业版是否私有部署？</t-zh><t-en>Are the commercial editions self-hosted?</t-en><i data-lucide="plus"></i></summary><p><t-zh>是的。Studio、Agent 和业务应用都部署在你自己的服务器上。业务应用发布后独立运行，日常业务请求不经过 Studio。</t-zh><t-en>Yes. Studio, your agents, and your apps all run on your own servers. Once released, your apps run on their own, and day-to-day business requests never go through Studio.</t-en></p></details>
+        <details><summary><t-zh>商业版是否私有部署？</t-zh><t-en>Are the commercial editions self-hosted?</t-en><i data-lucide="plus"></i></summary><p><t-zh>是的。工作台、Agent 和业务应用都部署在你自己的服务器上，支持纯内网。业务应用发布后独立运行，日常业务请求不经过工作台。</t-zh><t-en>Yes. Studio, your agents, and your apps all run on your own servers, including air-gapped networks. Once released, apps run on their own without Studio in the request path.</t-en></p></details>
         <details><summary><t-zh>可以用专业版或企业版为客户开发应用吗？</t-zh><t-en>Can I build apps for my clients with Professional or Enterprise?</t-en><i data-lucide="plus"></i></summary><p><t-zh>可以。你基于专业版或企业版开发的业务应用，可以出售给任意数量的客户，无需向 NocoBase 支付额外费用。但不能把专业版或企业版本身分发给未获授权的公司。</t-zh><t-en>Yes. You can sell the apps you build with Professional or Enterprise to any number of clients, with no extra fees to NocoBase. You can’t redistribute Professional or Enterprise itself to companies that don’t hold a license.</t-en></p></details>
-        <details><summary><t-zh>Studio 是否可以单独购买？</t-zh><t-en>Can I buy Studio on its own?</t-en><i data-lucide="plus"></i></summary><p><t-zh>不能。Studio 包含在专业版和企业版中。</t-zh><t-en>No. Studio comes with Professional and Enterprise.</t-en></p></details>
-        <details><summary><t-zh>可以把 Studio 部署给客户使用吗？</t-zh><t-en>Can I deploy Studio for my clients?</t-en><i data-lucide="plus"></i></summary><p><t-zh>不能。Studio 仅限获得授权的公司使用。你可以把用 Studio 开发的业务应用交付给客户，但 Studio 本身不能部署给客户使用。</t-zh><t-en>No. Studio may only be used by the licensed company. You can deliver the apps you build with it to your clients, but you can’t deploy Studio itself for them.</t-en></p></details>
+        <details><summary><t-zh>Studio 需要单独购买吗？</t-zh><t-en>Do I need to buy Studio separately?</t-en><i data-lucide="plus"></i></summary><p><t-zh>不需要。Studio 社区版已经免费包含在社区版里，个人和小团队可以直接部署使用；多角色与自定义流程、部署审批、企业 SSO、成本控制，以及质量管理、自动回归与问题闭环和跨环境发布等进阶功能，分别包含在专业版和企业版中。</t-zh><t-en>No. Studio Community Edition is already free to use in Community. Team governance, custom workflows, and enterprise quality/release features are included directly in Professional and Enterprise.</t-en></p></details>
+        <details><summary><t-zh>可以把商业版 Studio 部署给客户使用吗？</t-zh><t-en>Can I deploy commercial Studio for my clients?</t-en><i data-lucide="plus"></i></summary><p><t-zh>不能。商业版（专业版、企业版）Studio 仅限获得授权的公司使用。你可以把用 Studio 开发的业务应用交付给客户，或让客户自行部署 Studio 社区版，但商业版 Studio 本身不能分发给未获授权的公司。</t-zh><t-en>No. Commercial Studio (Pro/Enterprise) may only be used by the licensed company. You can deliver the business apps you build to clients or have them self-host Studio Community Edition.</t-en></p></details>
         <details><summary><t-zh>NocoBase 2 商业版用户需要重新购买吗？</t-zh><t-en>Do NocoBase 2 commercial license holders need to buy again?</t-en><i data-lucide="plus"></i></summary><p><t-zh>只要 NocoBase 2 专业版或企业版还在升级有效期内，就可以直接使用 NocoBase 3，不用重新购买。标准版不包含在内。2.x 和 3.x 会长期并行维护。</t-zh><t-en>As long as your NocoBase 2 Professional or Enterprise license is still within its upgrade period, you can use NocoBase 3 without buying again. This does not include the Standard edition. Both 2.x and 3.x are maintained in parallel.</t-en></p></details>
       </div>
     </div>
@@ -170,7 +188,7 @@ desc_en: Core and every Solution app are free and open source. Professional is $
 
 <div class="container">
   <div class="band">
-    <div><h2><t-zh>拿不准选哪个版本？</t-zh><t-en>Not sure which edition fits?</t-en></h2><p><t-zh>告诉我们你的团队背景和业务场景，我们帮你分析和设计。</t-zh><t-en>Tell us about your team and what you want to build. We’ll help you think it through and design the right setup.</t-en></p></div>
-    <div class="cta"><a class="btn btn-pri" href="contact.html"><t-zh>联系我们</t-zh><t-en>Contact Us</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="{{DOCS}}core/" target="_blank" rel="noopener"><t-zh>免费开始</t-zh><t-en>Start Free</t-en></a></div>
+    <div><h2><t-zh>拿不准选哪个版本？</t-zh><t-en>Not sure which edition fits?</t-en></h2><p><t-zh>告诉我们你的团队规模和业务场景，我们帮你评估版本与部署方案。</t-zh><t-en>Tell us about your team and what you want to build. We’ll help you choose the right edition and deployment setup.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="contact.html"><t-zh>联系我们</t-zh><t-en>Contact Us</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="{{DOCS}}getting-started/develop-your-first-app/" target="_blank" rel="noopener"><t-zh>免费开始使用</t-zh><t-en>Start Free</t-en></a></div>
   </div>
 </div>

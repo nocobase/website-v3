@@ -44,6 +44,6 @@ The application is ready. Prepare checks and previews, then invite members.
 
 ## Next steps
 
-[Configure checks and previews](ci.md) using Agent self-checks, GitHub Actions, or external CI. Then [invite members](invite.md).
+New repositories use Agent self-checks by default. Review [checks and previews](ci.md), then [invite your team](invite.md).
 
-Manage project documents, members, and default skills in [Project settings](../project/settings.md). Adjust models in [Agent configuration](../configure/agents.md) and execution resources in [Runtimes](../configure/runtimes.md).
+Manage repositories and members in [Project settings](../project/settings.md). Choose a workflow and resident skills under [Workflow](../use/multi-role-workflow.md). Adjust models in [Agent configuration](../configure/agents.md) and execution resources in [Runtimes](../configure/runtimes.md).

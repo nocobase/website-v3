@@ -30,7 +30,7 @@ description: "会話やフォームで、ルール、範囲、受け入れ基準
 
 ![タスクのタイトル、要件、開始方法を入力する](https://static-docs.nocobase.com/studio-en-manual-task-20261111-normal-2x.webp)
 
-責任者が業務ルールを確認し、結果を検収します。Backlog のタスクは自動実行されません。準備ができたら **Start** を選んでください。
+依頼者が要件確認と検収を担当する場合は、タスクの作成時に別の開発担当者を指定します。詳しくは[ワークフロー](multi-role-workflow.md#requester)を参照してください。
 
 ## 要件を明確に書く
 

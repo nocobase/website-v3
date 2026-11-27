@@ -40,7 +40,7 @@ nb-studio whoami --missing
 | `skill`、`variable`、`run` | 技能、变量和运行记录 |
 | `kb`、`memory` | 知识库与项目记忆 |
 | `git`、`pr`、`commit` | 仓库、PR 和检查 |
-| `quality` | Studio EE 的项目测试、报告、核心场景、指标和跟进任务 |
+| `quality` | 项目测试、报告、核心场景、指标和跟进任务 |
 | `app`、`deploy`、`env`、`release`、`build` | 应用、环境、制品和交付 |
 | `conversation` | Runner Agent 会话 |
 | `user`、`access`、`api-key` | 授权范围内的管理操作 |

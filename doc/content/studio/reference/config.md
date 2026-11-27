@@ -3,7 +3,7 @@ title: Configuration reference
 description: Look up Studio config.yml fields, upload limits, and environment variables.
 ---
 
-Keep Studio settings in the deployment directory’s `config.yml`, mounted at `/app/config.yml` in the container. See [Deploy Studio](../setup/install.md) to extract the template from the supplied image.
+Keep Studio settings in the deployment directory’s `config.yml`, mounted at `/app/config.yml` in the container. See [Deploy Studio](../setup/install.md) to extract the template from the Studio image.
 
 ## Use config.yml
 
@@ -38,6 +38,8 @@ Studio uses `/main` by default. Connect runtimes and the CLI with the full URL, 
 See [Deploy Studio](../setup/install.md) for a complete PostgreSQL example. For an existing database, use its host, port, and credentials.
 
 We recommend disabling JIT on the PostgreSQL server. See [Start the services](../setup/install.md#start-the-services) for configuration steps.
+
+For KingbaseES, use PostgreSQL compatibility mode (`DB_MODE=pg`). Set `dialect` to `kingbase` and enter the port, database name, and schema for your instance.
 
 ## Administrator and sign-in
 
@@ -116,7 +118,9 @@ Configure Git connections and authorization in the UI. See [Code hosts](../confi
 | --- | --- |
 | `releases.artifact` | Artifact storage; defaults to `/app/storage/releases/artifacts`, independently of `drive.default` |
 | `releases.maxArtifactSizeMB` | Release artifact size limit, `256` MiB by default; separate from attachment `maxFileSizeMb` |
-| `releases.host.memoryBudget` | `targetRatio` defaults to `0.7`, `appMemoryMb` to `320`, and `reserveMb` to `0`; size for application peaks and server resources |
+| `releases.host.memoryBudget` | `targetRatio` defaults to `0.85`, `appMemoryMb` to `320`, and `reserveMb` to `0`; size for application peaks and server resources |
+| `releases.host.artifactRead.idleTimeoutMs`, `releases.host.artifactRead.timeoutMs` | Archive download limits in milliseconds. The idle limit defaults to 60 seconds and each read attempt to 10 minutes |
+| `releases.host.artifactWorker.timeoutMs` | Time limit for each archive checksum or extraction operation. Defaults to 120 seconds |
 | `releases.host.maxActiveApps` | Optional active application limit; memory checks still apply |
 | `releases.host.launchPrefix` | Command prefix for preview processes; can switch to a system user that cannot read Studio configuration |
 | `releases.docker` | Set `enabled: true` for Docker runtimes; configure a fixed ingress port and reverse proxy |
@@ -156,6 +160,6 @@ Compose uses `.env` for variable substitution in its own configuration; it does 
 | `API_BODY_LIMIT` / `API_TIMEOUT` | `api.bodyLimit` / `api.timeout` |
 | `STUDIO_MANAGER_IDLE_MINUTES` / `STUDIO_MANAGER_IDLE_SWEEP_MINUTES` | `studio.agents.managerIdleMinutes` / `managerIdleSweepMinutes` |
 | `RELEASES_HOST_ENABLED` | `releases.host.enabled` |
-| `APP_CONFIG_FILE` | Configuration path read at startup; `/app/config.yml` in the supplied image |
-| `APP_BASE_PATH` | Mount path set at startup; `/main` in the supplied image |
-| `APP_SERVER_HOST` / `APP_SERVER_PORT` | Listener address and port; `0.0.0.0` / `13000` in the supplied image |
+| `APP_CONFIG_FILE` | Configuration path read at startup; `/app/config.yml` in the Studio image |
+| `APP_BASE_PATH` | Mount path set at startup; `/main` in the Studio image |
+| `APP_SERVER_HOST` / `APP_SERVER_PORT` | Listener address and port; `0.0.0.0` / `13000` in the Studio image |

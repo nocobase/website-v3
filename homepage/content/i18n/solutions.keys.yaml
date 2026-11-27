@@ -345,6 +345,7 @@ items:
     en: Commercial
     zh: 商业版
     where: start
+    unused: true
   "084":
     en: Lead an agent team
     zh: 带领 Agent 团队开发
@@ -424,3 +425,7 @@ items:
     en: Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies
     zh: 每天分析数据、找出值得做的事并附上依据，修改页面、撰写文章、起草社区回复
     where: decisions
+  "101":
+    en: Free Community Edition
+    zh: 社区版免费
+    where: start

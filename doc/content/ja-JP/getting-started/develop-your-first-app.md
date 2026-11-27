@@ -10,7 +10,7 @@ metaDescription: "NocoBase アプリを作成して起動し、エージェン�
 - Node.js 24 以降と pnpm 11。
 - Windows では WSL を使います。以下のコマンドは Bash などの POSIX シェルで実行します。
 
-以下の手順では、データベースサーバーを別途用意する必要がない SQLite を使います。他のデータベースを使う場合は、[異なるデータベースでアプリを作成する](../core/reference/database-configuration.md)を参照してください。
+以下の手順では、データベースサーバーを別途用意する必要がない SQLite を使います。他のデータベースを使う場合は、[異なるデータベースでアプリを作成する](../core/developing-apps/database-configuration.md)を参照してください。
 
 アプリの作成はエージェントに任せるか、自分でコマンドを実行するかを選べます。
 

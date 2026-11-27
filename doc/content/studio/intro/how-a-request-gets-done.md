@@ -52,7 +52,7 @@ Codex works on a runtime. It extends the supplier module using Core's data and p
 
 Repository CI runs checks and tests. A test finds that new suppliers have no tier instead of the agreed default B. The Lead Agent returns the issue to Codex, which fixes it and reruns checks.
 
-After checks pass, Claude reviews scoring, approval rules, and test coverage. Development, fixes, and review results remain in the task activity. See [Checks and review](../project/checks-and-review.md).
+After checks pass, Claude reviews scoring, approval rules, and test coverage. Development, fixes, and review results remain in the task activity. See [PR checks and code review](../project/checks-and-review.md).
 
 ![Codex fixes the default tier and Claude completes an independent review](https://static-docs.nocobase.com/studio-en-review-thread-20261111-normal-2x.webp)
 
@@ -66,7 +66,7 @@ This project has CI and PR previews configured. Jordan opens the preview and cre
 
 ![The PR preview includes build status and an access link](https://static-docs.nocobase.com/studio-en-req-preview-20261111-normal-2x.webp)
 
-The result meets the requirements. Jordan clicks **Merge**, and the task becomes **Done**. If it did not, Jordan could request changes and explain the problem for the Lead Agent to assign. See [Accept a result](../use/accept.md).
+The result meets the requirements. Jordan clicks **Merge**, and the task becomes **Done**. If it did not, Jordan could request changes and explain the problem for the Lead Agent to assign. See [Accept a task](../use/accept.md).
 
 ## Release and record production
 

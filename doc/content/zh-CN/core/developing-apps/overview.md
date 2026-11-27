@@ -64,3 +64,23 @@ NocoBase 支持人和 Agent 协作开发应用。
 Agent 可以结合项目规则、文档和 Skills，使用 NocoBase 已有的能力实现业务功能。
 
 开发者主要负责明确需求、审核关键设计和验收结果。
+
+## 配置商业包的授权源
+
+安装或使用商业插件、商业数据库驱动、多应用模板或多门户包时，需要具备相应的商业授权，并在执行安装命令的环境中配置商业包授权源。已有有效配置时无需重复执行。
+
+从授权账号或授权交付方获取具有下载权限的读取令牌（通常为 `nbr_…`），将下方命令中的 `<read-token>` 替换为实际令牌：
+
+```bash
+npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
+npm config set "//pkg-v3.nocobase.com/:_authToken" "<read-token>"
+npm whoami --registry=https://pkg-v3.nocobase.com/
+```
+
+如果授权交付方提供了专用私有仓库地址，将 `https://pkg-v3.nocobase.com/` 替换为该地址，并将 `//pkg-v3.nocobase.com/` 替换为去掉 `https://` 和末尾 `/` 后的主机名及路径。
+
+- **配置位置与安全**：上述命令写入用户级 `~/.npmrc`，npm 和 pnpm 都会读取。不要将令牌写入项目文件、文档、Git 仓库或 Agent 对话中。
+- **仅作用于 `@nocobase` scope**：商业源同时代理公开的 `@nocobase/*` 包，普通第三方依赖仍使用公共 npm 源或你配置的镜像。不要将默认 registry 整体改成商业源，否则安装第三方包可能返回 404。
+- **验证具体包权限**：`npm whoami` 仅确认身份认证通过，不代表拥有某个商业包的下载权限。需要确认时，可执行 `npm view <包名> version --registry=https://pkg-v3.nocobase.com/` 检查。
+- **配合 Agent 使用**：在 Agent 实际执行命令的机器和用户环境中提前完成配置；远程 Agent 不会自动继承本机的 `~/.npmrc`。
+- **常见报错**：商业包返回 401、403 或查不到版本时，检查令牌是否有效、账号是否有该包权限以及版本是否存在；第三方包返回 404 时，检查默认 registry，确保商业源只配置到 `@nocobase` scope 后重新执行 `pnpm install`。

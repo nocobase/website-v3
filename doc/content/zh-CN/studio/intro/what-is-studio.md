@@ -17,13 +17,13 @@ Studio 接入 Claude Code、Codex、OpenCode 等工具和模型。[调度 Agent]
 
 ### 需求方与开发团队共享进展
 
-业务部门、客户等需求方的请求进入统一的项目与任务。讨论、Agent 执行记录和交付结果都关联到任务，项目成员可以直接查看进展。需求负责人在「我的任务」中回答问题、验收结果，减少反复同步进度和转述需求的工作。
+业务部门、客户等需求方的请求进入统一的项目与任务。讨论、Agent 执行记录和交付结果都关联到任务，项目成员可以直接查看进展。任务负责人在「我的任务」中回答问题、验收结果，减少反复同步进度和转述需求的工作。
 
-![需求负责人处理决策与验收，团队通过任务动态查看 Agent 交接、执行结果和状态变化](https://static-docs.nocobase.com/studio-zh-req-accept-20261111-normal-2x.webp)
+![任务负责人处理决策与验收，团队通过任务动态查看 Agent 交接、执行结果和状态变化](https://static-docs.nocobase.com/studio-zh-req-accept-20261111-normal-2x.webp)
 
 ### 持续测试，跟进质量问题
 
-团队在 [质量管理](../quality/overview.md) 中维护核心场景，按计划或手动发起测试。Agent 按功能、权限、性能等维度执行检查，报告保留结果与证据。
+团队可在[质量管理](../quality/overview.md) 中维护核心场景，按计划或手动发起测试。Agent 按功能、权限、性能等维度执行检查，报告保留结果与证据。
 
 发现的问题关联到跟进任务，修复后通过后续测试验证。测试范围、结果和未解决的问题都保存在项目中，供团队持续跟进。
 
@@ -69,4 +69,4 @@ Studio 组织 Agent 基于 NocoBase Core 开发业务应用。Core 提供数据�
 
 ## 私有部署
 
-Studio 在 NocoBase 商业版中提供，Core 和 NocoCRM 等 Solution 应用开源免费。Studio 和业务应用部署在企业自己的服务器上，代码与数据归企业所有。Coding Agent 和模型可按需选择。
+Studio 提供社区版、专业版和企业版。Core 和 NocoCRM 等 Solution 应用开源免费。Studio 和业务应用部署在企业自己的服务器上，代码与数据归企业所有。Coding Agent 和模型可按需选择。

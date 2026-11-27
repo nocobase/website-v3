@@ -44,6 +44,6 @@ Studio 自动创建「初始化项目」任务。调度 Agent 分派工作，执
 
 ## 下一步
 
-[配置检查与预览](ci.md)，选择 Agent 自检、GitHub Actions 或外部 CI。然后[邀请成员](invite.md)，让团队加入项目。
+新仓库默认使用 Agent 自检。确认[检查与预览](ci.md)后，[邀请成员](invite.md)加入项目。
 
-项目资料、成员和默认技能在[项目设置](../project/settings.md)中管理。模型分工和执行资源分别在[Agent 配置](../configure/agents.md)和[运行环境](../configure/runtimes.md)中调整。
+在[项目设置](../project/settings.md)管理仓库和成员，在[工作流程](../use/multi-role-workflow.md)选择项目流程和常驻技能。模型分工和执行资源分别在[Agent 配置](../configure/agents.md)和[运行环境](../configure/runtimes.md)中调整。

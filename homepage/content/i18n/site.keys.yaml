@@ -3,6 +3,7 @@ items:
     en: The open-source foundation for AI-built business systems
     zh: AI 开发和运行业务系统的开源应用底座
     where: site
+    unused: true
   "001":
     en: The governance platform for teams building with agents
     zh: 团队与 Agent 协同开发的治理平台
@@ -12,38 +13,47 @@ items:
     en: Agent-driven business apps
     zh: 由 Agent 驱动的企业业务应用
     where: site
+    unused: true
   "003":
     en: Sales · 6 Sales Agents
     zh: 销售管理 · 配备 6 个销售 Agent
     where: site
+    unused: true
   "004":
     en: IT Asset Management · 3 IT Agents
     zh: IT 资产台账与管理 · 配备 3 个资产 Agent
     where: site
+    unused: true
   "005":
     en: Growth · Content Agent
     zh: 内容与增长 · 配备内容运营 Agent
     where: site
+    unused: true
   "006":
     en: Support · Triage &amp; Reply Agents
     zh: 客户服务 · 配备工单与客服 Agent
     where: site
+    unused: true
   "007":
     en: Projects · Research &amp; Doc Agents
     zh: 项目协作 · 配备调研与文书 Agent
     where: site
+    unused: true
   "008":
     en: HR · Onboarding Agent
     zh: 人事管理 · 配备入职与人事 Agent
     where: site
+    unused: true
   "009":
     en: No-code
     zh: 无代码
     where: site
+    unused: true
   "010":
     en: Visual configuration platform, maintained alongside v3
     zh: 可视化配置搭建，与 NocoBase 3 并行维护
     where: site
+    unused: true
   "011":
     en: Current
     zh: 当前
@@ -52,6 +62,7 @@ items:
     en: The development platform for agents
     zh: 面向 Agent 的开发平台
     where: site
+    unused: true
   "013":
     en: AI + no-code development platform
     zh: AI + 无代码开发平台
@@ -64,6 +75,7 @@ items:
     en: Solutions
     zh: 解决方案
     where: site
+    unused: true
   "016":
     en: Resources
     zh: 资源
@@ -76,6 +88,7 @@ items:
     en: Guides, core capabilities, and API reference
     zh: 上手指南、核心能力与扩展开发参考
     where: site
+    unused: true
   "019":
     en: Customers
     zh: 客户案例
@@ -150,10 +163,12 @@ items:
     en: All Solutions
     zh: 全部解决方案
     where: site
+    unused: true
   "037":
     en: AI + NocoBase. Build reliable business systems.
     zh: AI + NocoBase，构建可靠的业务系统。
     where: site
+    unused: true
   "038":
     en: NocoBase 2 No-code ↗
     zh: NocoBase 2 无代码 ↗
@@ -186,6 +201,7 @@ items:
     en: The governance platform for people and agents building software together
     zh: 人与 Agent 协同开发的治理平台
     where: site
+    unused: true
   "046":
     en: Partnerships, product questions, and support
     zh: 商务合作、产品咨询与技术支持
@@ -210,7 +226,298 @@ items:
     en: License Agreement
     zh: 许可协议
     where: site
+    unused: true
   "052":
     en: Open source and commercial license terms
     zh: 开源与商业许可的权利和义务
+    where: site
+    unused: true
+  "053":
+    en: 1–10 people
+    zh: 1–10 人
+    where: form
+  "054":
+    en: 11–50 people
+    zh: 11–50 人
+    where: form
+  "055":
+    en: 51–200 people
+    zh: 51–200 人
+    where: form
+  "056":
+    en: 201–500 people
+    zh: 201–500 人
+    where: form
+  "057":
+    en: 500+ people
+    zh: 500 人以上
+    where: form
+  "058":
+    en: Evaluating it
+    zh: 正在评估
+    where: form
+  "059":
+    en: Learning it
+    zh: 正在学习
+    where: form
+  "060":
+    en: Using it internally
+    zh: 内部使用
+    where: form
+  "061":
+    en: Delivered client projects
+    zh: 为客户交付过
+    where: form
+  "062":
+    en: Expert, building extensions
+    zh: 专家，能做二次开发
+    where: form
+  "063":
+    en: Startups
+    zh: 初创企业
+    where: form
+  "064":
+    en: Small and mid-sized businesses
+    zh: 中小企业
+    where: form
+  "065":
+    en: Large enterprises
+    zh: 大型企业
+    where: form
+  "066":
+    en: Individuals
+    zh: 个人
+    where: form
+  "067":
+    en: IT and software
+    zh: IT 与软件
+    where: form
+  "068":
+    en: Finance
+    zh: 金融
+    where: form
+  "069":
+    en: Education
+    zh: 教育
+    where: form
+  "070":
+    en: Healthcare
+    zh: 医疗健康
+    where: form
+  "071":
+    en: Manufacturing
+    zh: 制造业
+    where: form
+  "072":
+    en: Retail and e-commerce
+    zh: 零售与电商
+    where: form
+  "073":
+    en: Real estate
+    zh: 房地产
+    where: form
+  "074":
+    en: Government and public sector
+    zh: 政府与公共事业
+    where: form
+  "075":
+    en: Media and entertainment
+    zh: 传媒与娱乐
+    where: form
+  "076":
+    en: Other
+    zh: 其他
+    where: form
+  "077":
+    en: As soon as possible
+    zh: 尽快
+    where: form
+  "078":
+    en: Within 1 month
+    zh: 1 个月内
+    where: form
+  "079":
+    en: Within 3 months
+    zh: 3 个月内
+    where: form
+  "080":
+    en: Within 6 months
+    zh: 6 个月内
+    where: form
+  "081":
+    en: Flexible
+    zh: 时间灵活
+    where: form
+  "082":
+    en: Solution delivery
+    zh: 方案交付
+    where: form
+  "083":
+    en: System implementation
+    zh: 系统实施
+    where: form
+  "084":
+    en: Training and support
+    zh: 培训与支持
+    where: form
+  "085":
+    en: Consulting
+    zh: 咨询
+    where: form
+  "086":
+    en: Under ¥10,000
+    zh: ¥1 万以下
+    where: form
+  "087":
+    en: ¥10,000–50,000
+    zh: ¥1–5 万
+    where: form
+  "088":
+    en: ¥50,000–200,000
+    zh: ¥5–20 万
+    where: form
+  "089":
+    en: Over ¥200,000
+    zh: ¥20 万以上
+    where: form
+  "090":
+    en: Not decided
+    zh: 未定
+    where: form
+  "091":
+    en: Under $3,000
+    zh: $3,000 以下
+    where: form
+  "092":
+    en: $3,000–$10,000
+    zh: $3,000–$10,000
+    where: form
+  "093":
+    en: $10,000–$30,000
+    zh: $10,000–$30,000
+    where: form
+  "094":
+    en: Over $30,000
+    zh: $30,000 以上
+    where: form
+  "095":
+    en: Search
+    zh: 搜索
+    where: form
+  "096":
+    en: Select
+    zh: 请选择
+    where: form
+  "097":
+    en: "{n} selected"
+    zh: 已选 {n} 项
+    where: form
+  "098":
+    en: Choose at least one
+    zh: 请至少选择一项
+    where: form
+  "099":
+    en: Choose a country or region first
+    zh: 请先选择国家或地区
+    where: form
+  "100":
+    en: Some answers could not be accepted. Please check them and try again, or email {mail}.
+    zh: 有内容没能通过校验，请检查后再提交，或发邮件到 {mail}。
+    where: form
+  "101":
+    en: Too many submissions. Please try again in a few minutes.
+    zh: 提交得太频繁了，请过几分钟再试。
+    where: form
+  "102":
+    en: The new way to build business software with AI
+    zh: AI 时代的企业软件开发方式
+    where: site
+  "103":
+    en: Apps
+    zh: 应用
+    where: site
+  "104":
+    en: Sales CRM · Open source, 6 Sales Agents
+    zh: 销售管理 · 开源即用，配备 6 个销售 Agent
+    where: site
+  "105":
+    en: IT Asset Management · Open source, 3 IT Agents
+    zh: IT 资产管理 · 开源即用，配备 3 个资产 Agent
+    where: site
+  "106":
+    en: Growth · Open source, Content Agent
+    zh: 内容与增长 · 开源即用，配备内容运营 Agent
+    where: site
+  "107":
+    en: All Open-Source Apps
+    zh: 全部开源应用
+    where: site
+  "108":
+    en: Install and use right away, or customize in Studio
+    zh: 装上即用，也能用 Studio 按需二次开发
+    where: site
+    unused: true
+  "109":
+    en: Get Started
+    zh: 开始使用
+    where: site
+  "110":
+    en: The new way to build business software with AI.
+    zh: AI 时代的企业软件开发方式。
+    where: site
+  "111":
+    en: Open-Source Apps
+    zh: 开源应用
+    where: site
+  "112":
+    en: Studio
+    zh: 工作台
+    where: site
+  "113":
+    en: Core
+    zh: 底座
+    where: site
+  "114":
+    en: NocoBase Studio
+    zh: 工作台（Studio）
+    where: site
+  "115":
+    en: NocoBase Core
+    zh: 应用底座（Core）
+    where: site
+  "116":
+    en: Install and use right away, or customize with coding tools or Studio
+    zh: 装上即用，也能用编码工具或 Studio 按需二次开发
+    where: site
+  "117":
+    en: Quick Start · NocoBase Core
+    zh: 快速开始 · NocoBase Core
+    where: site
+  "118":
+    en: Copy and send this prompt to Claude Code, Codex, Cursor, or any coding agent in an empty directory.
+    zh: 复制下面这段提示词，在空目录发给 Claude Code、Codex、Cursor 等 Coding Agent 即可。
+    where: site
+  "119":
+    en: Close
+    zh: 关闭
+    where: site
+  "120":
+    en: Read {url} and create a local NocoBase 3 app in this empty directory using the default template and SQLite. Start it and share the local URL and initial sign-in credentials.
+    zh: 请阅读 {url} ，按文档在当前空目录创建一个本地开发用的 NocoBase 3 应用（使用默认模板和 SQLite），启动后告诉我访问地址和首次登录账号。
+    where: site
+  "121":
+    en: Copy prompt
+    zh: 复制提示词
+    where: site
+  "122":
+    en: Copied
+    zh: 已复制
+    where: site
+  "123":
+    en: Copy failed
+    zh: 复制失败
+    where: site
+  "124":
+    en: Full quick start guide
+    zh: 查看完整起步文档
     where: site

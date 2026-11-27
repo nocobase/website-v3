@@ -4,7 +4,7 @@ notes: |-
   coding agent = agen coding；business logic = logika bisnis；business systems = sistem bisnis；vibe coding = vibe coding；
   self-hosted = self-hosted；at a glance = terlihat sekilas
 title: NocoBase Core — Biarkan agen fokus pada logika bisnis Anda
-description: NocoBase Core adalah fondasi aplikasi open source untuk sistem bisnis yang dibangun dan dijalankan dengan AI.
+description: NocoBase Core adalah fondasi aplikasi open source yang dirancang untuk pengembangan dengan AI. Izin akses, alur kerja, file, dan kemampuan AI siap pakai sehingga Anda dapat mulai langsung dengan alat coding sendiri, dan aplikasi berjalan mandiri.
 strings:
   "000": Biarkan agen fokus pada logika bisnis Anda. <span class="m">Fondasinya sudah siap.</span>
   "002": Mulai cepat
@@ -87,3 +87,59 @@ strings:
   "099": Mulai
   "111": Pelajari Studio
   "113": Baca dokumentasi Core
+  "114": NocoBase Core adalah fondasi aplikasi open source di balik Studio. Dengan 20+ komponen dasar siap pakai untuk izin akses, alur kerja, file, dan AI, agen hanya membangun hal yang khas bagi bisnis Anda di atas satu arsitektur, dan sistem yang dirilis berjalan mandiri.
+  "116": Aplikasi berjalan mandiri tanpa Studio
+  "117": 20+ komponen dasar teruji, <span class="m">siap pakai.</span>
+  "118": Izin akses, alur kerja, persetujuan, dan penyimpanan file bersifat kompleks dan menuntut keandalan tertinggi—sehingga tidak pernah ditulis ulang dari nol oleh AI. NocoBase memelihara dan meningkatkannya sementara agen fokus sepenuhnya pada logika bisnis Anda.
+  "119": Kata sandi, reset, dan sesi; OIDC, SSO enterprise, dan autentikasi dua faktor
+  "120": Unggah, penyimpanan, pratinjau, pemeriksaan konektivitas, dan ACL yang terhubung ke catatan
+  "121": Alur kerja &amp; persetujuan
+  "122": Diagram alur dan riwayat eksekusi; admin menyesuaikan penyetuju dan ambang batas langsung di UI
+  "123": Tugas terjadwal</t-zh></b><span><t-zh>按时间规则执行，记录每次执行状态与日志</t-zh><t-en>Berjalan sesuai jadwal, dengan setiap eksekusi tercatat
+  "124": Layanan model
+  "125": Hubungkan model cloud maupun lokal dalam satu antarmuka tanpa ketergantungan vendor
+  "126": Berjalan 24/7 di dalam aplikasi bisnis sesuai izin akses pemiliknya, dengan konfirmasi manusia
+  "127": Basis pengetahuan AI
+  "128": Dokumen dan file berversi dengan pencarian teks lengkap untuk manusia dan agen
+  "129": Lihat Semua Dokumentasi Plugin
+  "130": Arsitektur &amp; standar
+  "131": Satu arsitektur, <span class="m">siap berkembang bertahun-tahun.</span>
+  "132": Berganti developer, model, atau sesi dapat membuat hasil AI mudah melenceng. Core menyertakan kerangka proyek standar, aturan arsitektur, dan skill pengembangan berversi agar setiap kontributor dan model menulis ke dalam struktur yang persis sama.
+  "133": Setiap aplikasi baru dimulai dengan tata letak yang sama untuk halaman, API, migrasi, dan tes, serta memanfaatkan kemampuan fondasi melalui <code>@nocobase/*</code>.
+  "134": <code>AGENTS.md</code> menjabarkan tempat meletakkan kode bisnis, apa saja yang dapat dipakai ulang dari Core, serta cara menulis migrasi dan pemeriksaan izin akses.
+  "135": Skill bawaan Core
+  "136": Skill dirilis dan diperbarui bersama paket Core sehingga Claude Code, Codex, dan OpenCode selalu mengikuti panduan yang persis sama.
+  "137": AI bawaan
+  "138": AI tertanam langsung di <span class="m">setiap sistem bisnis.</span>
+  "139": Dilengkapi layanan model bawaan, agen bisnis, dan basis pengetahuan AI. Setiap sistem yang dibangun di atas Core memiliki karyawan AI sendiri yang menangani tugas rutin 24/7, sementara manusia mengonfirmasi tindakan penting.
+  "140": Gunakan model apa saja
+  "141": Hubungkan model cloud atau model lokal self-hosted tanpa ketergantungan vendor, dengan pengelolaan rahasia dan pelacakan pemakaian terpusat.
+  "142": Karyawan AI siap bertugas 24/7
+  "143": Bekerja di dalam aplikasi bisnis Anda layaknya rekan kerja digital—mengumpulkan data, menyusun laporan dan rencana tindakan, serta meminta konfirmasi sebelum langkah penting.
+  "144": Akses terkendali &amp; pengetahuan
+  "145": Karyawan AI bekerja ketat sesuai izin akses data yang diberikan dan merujuk langsung pada basis pengetahuan perusahaan Anda yang berversi.
+  "146": Open source &amp; berjalan mandiri
+  "147": Open source, terus dipelihara, <span class="m">dan berjalan mandiri.</span>
+  "148": Kode sumber Core terbuka dan dapat diaudit, dengan perbaikan dan upgrade berkelanjutan di setiap rilis. Kode bisnis Anda tersimpan di repositori Git Anda sendiri, dan aplikasi yang dirilis berjalan mandiri tanpa melewati Studio.
+  "149": Open source &amp; terus dipelihara
+  "150": Sepenuhnya open source dan bebas diaudit, dengan perbaikan keamanan dan peningkatan kemampuan berkelanjutan dari tim NocoBase.
+  "151": Kode sumber nyata di repo Anda
+  "152": Kode sumber TypeScript standar tersimpan di repositori Git Anda sendiri tanpa ketergantungan format tertutup.
+  "153": Self-hosted &amp; multi-database
+  "154": Jalankan secara self-hosted di infrastruktur Anda sendiri, termasuk di jaringan air-gapped dengan PostgreSQL, MySQL, Oracle, atau SQL Server.
+  "155": Runtime produksi mandiri
+  "156": Berjalan mandiri setelah di-deploy—lalu lintas harian tidak pernah melewati Studio, lengkap dengan upgrade dan rollback lewat CLI.
+  "157": Ikuti panduan mulai cepat untuk membuat kerangka aplikasi dan biarkan agen coding Anda membangun logika bisnis di atas fondasi siap pakai Core.
+  "158": Aplikasi Open Source
+  "159": Siap pakai &amp; bisa dikustomisasi
+  "160": Pasang NocoCRM, NocoITAM, atau NocoReach dan gunakan langsung, atau kustomisasi bersama agen di Studio.
+  "161": Lihat Aplikasi Open Source
+  "162": Edisi Community Gratis
+  "163": Pimpin tim agen 24/7
+  "164": Koordinasikan agen coding di berbagai perangkat dengan gerbang kualitas terstruktur serta persetujuan dari desktop maupun ponsel—gratis untuk mulai.
+  "165": NocoBase Core
+  "166": NocoBase Core adalah fondasi aplikasi open source di balik Studio. Dengan 30+ komponen dasar siap pakai untuk izin akses, alur kerja, file, dan AI, agen hanya membangun hal yang khas bagi bisnis Anda di atas satu arsitektur, dan sistem yang dirilis berjalan mandiri.
+  "167": 30+ komponen dasar teruji, <span class="m">siap pakai.</span>
+  "168": <b>30+ komponen dasar</b>, dipelihara dan ditingkatkan oleh NocoBase.
+  "169": NocoBase Core adalah fondasi aplikasi open source yang dirancang untuk pengembangan dengan AI, siap dimulai secara mandiri dan berjalan mandiri. Dengan 30+ komponen dasar siap pakai untuk izin akses, autentikasi, alur kerja, file, dan AI, langsung bangun logika bisnis dengan alat coding Anda atau tingkatkan ke kolaborasi tim bersama Studio.
+  "170": Pasang NocoCRM, NocoITAM, atau NocoReach langsung siap pakai, atau kustomisasi dengan alat coding Anda maupun agen di Studio.

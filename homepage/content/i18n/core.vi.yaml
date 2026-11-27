@@ -4,7 +4,7 @@ notes: |-
   agent = agent；agent team = đội agent；coding agent = coding agent；business logic = logic nghiệp vụ；
   business systems = hệ thống nghiệp vụ；open source = mã nguồn mở；self-hosted = tự triển khai；at a glance = rõ ràng trong nháy mắt
 title: NocoBase Core — Để agent tập trung vào logic nghiệp vụ
-description: NocoBase Core là nền móng ứng dụng mã nguồn mở để phát triển và vận hành hệ thống nghiệp vụ bằng AI.
+description: NocoBase Core là nền móng ứng dụng mã nguồn mở được xây dựng cho phát triển bằng AI. Phân quyền, quy trình, tệp tin và năng lực AI đều sẵn sàng để bạn bắt đầu trực tiếp với công cụ lập trình của mình, và ứng dụng chạy độc lập.
 strings:
   "000": Để agent tập trung vào logic nghiệp vụ. <span class="m">Nền móng đã sẵn sàng.</span>
   "002": Bắt đầu nhanh
@@ -87,3 +87,59 @@ strings:
   "099": Bắt đầu
   "111": Tìm hiểu Studio
   "113": Xem tài liệu Core
+  "114": NocoBase Core là nền móng ứng dụng mã nguồn mở đứng sau Studio. Với hơn 20 khối chức năng sẵn có cho phân quyền, quy trình, tệp tin và AI, agent chỉ cần xây dựng phần đặc thù cho nghiệp vụ của bạn trên một kiến trúc thống nhất, và hệ thống sau khi phát hành chạy độc lập.
+  "116": Ứng dụng chạy độc lập, không phụ thuộc Studio
+  "117": Hơn 20 khối chức năng đã kiểm chứng, <span class="m">dùng được ngay.</span>
+  "118": Phân quyền, quy trình, phê duyệt và lưu trữ tệp tin rất phức tạp và đòi hỏi độ tin cậy cao nhất — nên không bao giờ để AI viết lại từ đầu. NocoBase liên tục bảo trì và nâng cấp chúng, còn agent chỉ tập trung vào logic nghiệp vụ của bạn.
+  "119": Mật khẩu, khôi phục mật khẩu và phiên; OIDC, SSO doanh nghiệp và xác thực hai yếu tố
+  "120": Tải lên, lưu trữ, xem trước, kiểm tra kết nối và phân quyền gắn với bản ghi nghiệp vụ
+  "121": Quy trình &amp; phê duyệt
+  "122": Sơ đồ quy trình và lịch sử chạy; quản trị viên điều chỉnh người phê duyệt và ngưỡng ngay trên giao diện
+  "123": Tác vụ định kỳ</t-zh></b><span><t-zh></t-zh><t-en>Chạy theo lịch, ghi lại trạng thái và nhật ký mỗi lần chạy
+  "124": Dịch vụ model
+  "125": Kết nối model đám mây hoặc cục bộ qua một giao diện thống nhất, không phụ thuộc nhà cung cấp
+  "126": Vận hành 24/7 trong ứng dụng nghiệp vụ theo quyền của người phụ trách, có xác nhận từ con người
+  "127": Kho tri thức AI
+  "128": Tài liệu và tệp có phiên bản, tìm kiếm toàn văn cho cả con người và agent
+  "129": Xem toàn bộ tài liệu plugin
+  "130": Kiến trúc &amp; chuẩn
+  "131": Một kiến trúc, <span class="m">vững vàng phát triển nhiều năm.</span>
+  "132": Đổi lập trình viên, đổi model hay đổi phiên làm việc, AI rất dễ viết lệch hướng. Core cung cấp sẵn khung dự án chuẩn, quy tắc kiến trúc và kỹ năng phát triển có phiên bản để mọi người và mọi model đều viết theo đúng một cấu trúc.
+  "133": Mỗi ứng dụng mới đều khởi đầu với bố cục thống nhất cho trang, API, migration và kiểm thử, đưa các năng lực nền móng vào qua <code>@nocobase/*</code>.
+  "134": <code>AGENTS.md</code> quy định rõ code nghiệp vụ đặt ở đâu, phần nào dùng lại từ Core, cũng như cách viết migration và kiểm tra phân quyền.
+  "135": Kỹ năng phát hành cùng Core
+  "136": Kỹ năng được phát hành và nâng cấp cùng các package của Core, giúp Claude Code, Codex và OpenCode luôn tuân theo đúng một bộ quy chuẩn.
+  "137": AI tích hợp sẵn
+  "138": AI tích hợp sẵn trong <span class="m">mọi hệ thống nghiệp vụ.</span>
+  "139": Tích hợp sẵn dịch vụ model, agent nghiệp vụ và kho tri thức AI. Mọi hệ thống xây dựng trên Core đều có đội ngũ nhân viên AI riêng xử lý công việc thường ngày 24/7, còn con người xác nhận các thao tác then chốt.
+  "140": Kết nối mọi model
+  "141": Kết nối model đám mây hoặc model tự triển khai cục bộ mà không phụ thuộc nhà cung cấp, quản lý tập trung khóa bí mật và theo dõi mức sử dụng.
+  "142": Nhân viên AI trực chiến 24/7
+  "143": Làm việc ngay trong ứng dụng nghiệp vụ như những đồng nghiệp số — tổng hợp dữ liệu, soạn báo cáo, đề xuất phương án và hỏi ý kiến trước các thao tác quan trọng.
+  "144": Phân quyền chặt chẽ &amp; kho tri thức
+  "145": Nhân viên AI hoạt động nghiêm ngặt trong phạm vi quyền dữ liệu được cấp và tra cứu trực tiếp từ kho tri thức doanh nghiệp có quản lý phiên bản.
+  "146": Mã nguồn mở &amp; chạy độc lập
+  "147": Mã nguồn mở, bảo trì liên tục <span class="m">và vận hành độc lập.</span>
+  "148": Mã nguồn của Core công khai và có thể kiểm toán, với các bản vá và nâng cấp xuyên suốt từng phiên bản. Code nghiệp vụ nằm trong kho Git của riêng bạn, và ứng dụng sau khi phát hành chạy độc lập, không đi qua Studio.
+  "149": Mã nguồn mở &amp; bảo trì liên tục
+  "150": Hoàn toàn mã nguồn mở và tự do kiểm toán, được đội ngũ NocoBase liên tục cập nhật bản vá bảo mật và nâng cấp năng lực.
+  "151": Mã nguồn thật trong kho mã của bạn
+  "152": Mã nguồn TypeScript chuẩn nằm ngay trong kho Git của bạn, hoàn toàn không bị khóa vào nền tảng độc quyền.
+  "153": Tự triển khai &amp; đa cơ sở dữ liệu
+  "154": Tự triển khai trên hạ tầng của riêng bạn, hỗ trợ mạng nội bộ tách biệt hoàn toàn cùng PostgreSQL, MySQL, Oracle hoặc SQL Server.
+  "155": Môi trường chạy production độc lập
+  "156": Vận hành độc lập sau khi triển khai — lưu lượng hằng ngày không đi qua Studio, hỗ trợ nâng cấp và rollback qua CLI.
+  "157": Làm theo hướng dẫn bắt đầu nhanh để khởi tạo ứng dụng và để coding agent xây dựng logic nghiệp vụ trên nền móng có sẵn của Core.
+  "158": Ứng dụng mã nguồn mở
+  "159": Dùng ngay &amp; dễ tùy biến
+  "160": Cài đặt và dùng ngay NocoCRM, NocoITAM hoặc NocoReach, hoặc tùy biến bằng agent ngay trong Studio.
+  "161": Xem ứng dụng mã nguồn mở
+  "162": Phiên bản Community miễn phí
+  "163": Dẫn dắt đội agent 24/7
+  "164": Điều phối các coding agent trên nhiều thiết bị với cổng kiểm soát chất lượng bài bản và phê duyệt trên máy tính lẫn điện thoại — bắt đầu miễn phí.
+  "165": NocoBase Core
+  "166": NocoBase Core là nền móng ứng dụng mã nguồn mở đứng sau Studio. Với hơn 30 khối chức năng sẵn có cho phân quyền, quy trình, tệp tin và AI, agent chỉ cần xây dựng phần đặc thù cho nghiệp vụ của bạn trên một kiến trúc thống nhất, và hệ thống sau khi phát hành chạy độc lập.
+  "167": Hơn 30 khối chức năng đã kiểm chứng, <span class="m">dùng được ngay.</span>
+  "168": <b>Hơn 30 khối chức năng</b>, được NocoBase bảo trì và nâng cấp.
+  "169": NocoBase Core là nền móng ứng dụng mã nguồn mở được xây dựng cho phát triển bằng AI, sẵn sàng để khởi đầu độc lập và vận hành độc lập. Với hơn 30 khối chức năng sẵn có cho phân quyền, xác thực, quy trình, tệp tin và AI, hãy xây dựng logic nghiệp vụ ngay bằng công cụ lập trình của bạn hoặc mở rộng sang cộng tác nhóm cùng Studio.
+  "170": Cài đặt và dùng ngay NocoCRM, NocoITAM hoặc NocoReach, hoặc tùy biến chúng bằng công cụ lập trình của bạn hay agent trong Studio.

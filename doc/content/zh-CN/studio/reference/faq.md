@@ -16,13 +16,29 @@ description: 排查安装、Git、运行环境、任务和交付中的常见问�
 
 安装步骤见[部署 Studio](../setup/install.md)，密码恢复见[通知与推送](../admin/notifications.md)。
 
-看不到「质量」时，确认已安装 Studio EE，且当前账号能访问项目。见[质量概览](../quality/overview.md)。
+看不到「需求负责人」或「质量」时，先核对当前 Studio 的[版本](../setup/index.md#选择版本)。要查看项目质量数据，还需有该项目的访问权限。
 
 ## Git 连接
 
 GitHub 拒绝内网 Webhook 地址时，关闭 Webhook，使用轮询。新仓库创建后不可见时，检查 GitHub App 的安装范围，将仓库加入授权后按[已有仓库](../project/settings.md#接入已有仓库)接入。
 
 个人 Git 账号只有只读权限时，不能推送 PR。为该账号授予仓库写权限，或按团队安排使用工作区连接。详见[代码平台](../configure/git.md)。
+
+### 排查 GitLab 仓库和流水线
+
+| 现象 | 先检查什么 |
+| --- | --- |
+| 保存时提示令牌看不到群组 | 从仓库 URL 核对 GitLab 的部署路径和群组拼写。检查令牌所属群组、有效期及 `api` 范围 |
+| 连接显示正常，检出却报 `HTTP Basic: Access denied` | 展开连接卡片的仓库列表，核对项目实际使用的连接和克隆地址。使用个人 Git 授权时，也检查该账号对这个私有仓库的权限 |
+| 任务提示 `glab: command not found` | 在任务实际使用的执行机上，用运行服务的系统用户检查 `glab --version` 和服务的 PATH |
+| 能看到检查失败，读不到日志 | 先确认失败项来自 GitLab CI。让 Agent 在该仓库的任务运行中查询 MR 流水线，再按作业 ID 读取日志。返回 404 时，核对项目路径、编号和本次任务使用的账号权限 |
+
+例如，查看 `inventory-team/warehouse` 的 MR 12 和其中的作业 345。替换为实际编号：
+
+```bash
+glab ci get --merge-request 12 -R inventory-team/warehouse
+glab ci trace 345 -R inventory-team/warehouse
+```
 
 ## 运行环境与任务
 
@@ -37,9 +53,13 @@ GitHub 拒绝内网 Webhook 地址时，关闭 Webhook，使用轮询。新仓�
 
 待规划任务先点「开始」。共享运行环境忙碌时，任务可能正常排队。具体状态见[跟进任务](../use/follow-progress.md)。
 
+想用的模型一直排队时，检查开发负责人能使用哪些执行机。这些机器中至少有一台需要在线、已登录对应工具和模型，并有空闲执行名额。
+
+Studio 报错时，复制错误详情中的请求 ID，连同任务编号、执行机和发生时间交给管理员。管理员可导出对应时段的 Studio 和执行机日志。GitLab 流水线的作业日志需在 GitLab 中查看。
+
 ## 检查、预览与合并
 
-没有检查结果时，先核对仓库选择的检查来源。代码平台 CI、外部 CI 和 Agent 自检互不混用，见[检查与 CI](../configure/checks.md)。
+没有检查结果时，先核对仓库选择的检查来源。代码平台 CI、外部 CI 和 Agent 自检互不混用，见[配置仓库检查与 CI](../configure/checks.md)。
 
 没有预览时，检查构建记录、CI 到 Studio 的网络、必填变量和 `no-preview` 标签。停止或休眠的预览会在访问时重新启动。
 
@@ -51,4 +71,4 @@ PR 冲突、草稿或检查尚未结束时，先解决阻塞。失败或缺失�
 
 邀请邮件未发送时，可先复制邀请链接。邀请和密码重置使用配置的 mailer，检查 SMTP 凭据与所选 mailer，见[通知与推送](../admin/notifications.md)。
 
-受保护测试环境的部署会等待审批。生产部署完成后，需要负责人[记录生产版本](../project/release.md#记录生产版本)，发布页才会更新交付标记。
+部署显示「等待审批」时，请环境审批人在收件箱核对应用和制品。生产部署完成后，需要负责人[记录生产版本](../project/release.md#记录生产版本)，发布页才会更新交付标记。

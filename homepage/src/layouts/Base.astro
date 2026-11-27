@@ -13,6 +13,7 @@ import Header from '@nocobase/site-shared/Header.astro';
 import { ANALYTICS } from '../lib/nav.mjs';
 
 const { page } = Astro.props;
+const { qsModal } = page;
 ---
 <!doctype html>
 <html lang={page.htmlLang}>
@@ -31,14 +32,42 @@ const { page } = Astro.props;
 </head>
 <body data-page={page.pageId || undefined} class={page.band ? 'has-band' : undefined}>
 <Fragment set:html={page.style} />
-<Header {...page.header} />
+<Header {...page.header}>{page.header.cta && <a slot="action" class="nav-cta" href={page.header.cta.href} set:html={page.header.cta.label} />}</Header>
 <main id={page.mainId}><Fragment set:html={page.main} /></main>
 <Footer {...page.footer} />
 <Fragment set:html={page.after} />
 <slot />
+<dialog id="qsCoreModal" class="qs-modal" closedby="any" aria-labelledby="qsCoreTitle">
+  <div class="qs-mhd">
+    <div class="qs-mhd-t">
+      <span class="qs-mic" aria-hidden="true"><i data-lucide="blocks"></i></span>
+      <div>
+        <h1 id="qsCoreTitle">{qsModal.title}</h1>
+        <p>{qsModal.desc}</p>
+      </div>
+    </div>
+    <button type="button" class="qs-close" command="close" commandfor="qsCoreModal" aria-label={qsModal.close}>
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+  <div class="qs-mbody">
+    <div class="qs-prompt-box">
+      <p class="qs-prompt" id="qs-modal-prompt">{qsModal.prompt}</p>
+    </div>
+    <div class="qs-macts">
+      <span class="qs-copy">
+        <button type="button" class="btn btn-pri qs-btn" command="--copy" commandfor="qs-modal-prompt" data-copied-label={qsModal.copied} data-failed-label={qsModal.failed} autofocus><i data-lucide="copy" class="ic-copy"></i><i data-lucide="check" class="ic-ok"></i><span>{qsModal.copy}</span></button>
+        <span class="qs-tip" role="status"></span>
+      </span>
+      <a class="qs-doc" href={qsModal.docsHref} target="_blank" rel="noopener">{qsModal.label}<i data-lucide="arrow-up-right"></i></a>
+    </div>
+  </div>
+</dialog>
 <script>
   import '@nocobase/site-shared/shell.js';
   import '../scripts/lucide.js';
+  import '../scripts/live-figs.js';
+  import '../scripts/quickstart.js';
 </script>
 </body>
 </html>

@@ -10,7 +10,7 @@ Create a NocoBase application in an empty directory, then work with an agent to 
 - Node.js 24 or later, and pnpm 11.
 - On Windows, use WSL. Run the commands below in a POSIX shell such as Bash.
 
-The steps below use SQLite, which needs no separate database server. To use another database, see [Create an app with a different database](../core/reference/database-configuration.md).
+The steps below use SQLite, which needs no separate database server. To use another database, see [Create an app with a different database](../core/developing-apps/database-configuration.md).
 
 Choose either to have an agent create the application or to run the commands yourself.
 

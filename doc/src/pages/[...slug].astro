@@ -2,6 +2,7 @@
 // Every docs page, in every language: content/<language>/<path>.md at <language dir>/<path>/ (English at the site root).
 import { getEntry, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import EditionTags from '../components/EditionTags.astro';
 import HomeAsk from '../components/HomeAsk.astro';
 import Toc from '../components/Toc.astro';
 import PageActions from '../components/PageActions.astro';
@@ -45,6 +46,7 @@ const crumb = [section.id === config.sections[0].id ? '' : section.title, ...pag
 {!page.placeholder && <PageActions mdUrl={page.mdUrl} mdHref={site.absolute(page.mdUrl)} ui={ui} />}
 </div>}
 {key === 'index' && config.ask?.endpoint ? <HomeAsk lang={lang} title={page.title} /> : <h1>{page.title}</h1>}
+{!page.placeholder && (page.minimumEdition === 'professional' || page.minimumEdition === 'enterprise') && ui.editions && <EditionTags minimum={page.minimumEdition} labels={ui.editions} pricingUrl={new URL('pricing/', config.byCode[lang].website).href} />}
 <article class:list={['prose', { 'doc-home-content': key === 'index' }]}>
 {hint ? <p set:html={hint}></p> : <Content />}
 </article>

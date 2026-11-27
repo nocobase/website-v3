@@ -4,7 +4,7 @@ notes: |-
   coding agent = agen coding；business logic = logika bisnis；business systems = sistem bisnis；vibe coding = vibe coding；
   self-hosted = self-hosted；at a glance = terlihat sekilas
 title: NocoBase 3 — Platform open source untuk sistem bisnis yang dibangun dengan AI
-description: NocoBase adalah platform open source untuk membangun, menjalankan, dan terus mengembangkan sistem bisnis dengan AI.
+description: NocoBase adalah platform open source bagi perusahaan untuk membangun dan menjalankan sistem bisnis dengan AI. Manusia merumuskan kebutuhan dan mengambil keputusan, agen menulis kode dan mengeksekusi, dan NocoBase menjaga sistem tetap andal serta proses tetap terkendali.
 strings:
   "000": Terbaru
   "001": Platform pengembangan untuk agen
@@ -254,3 +254,105 @@ strings:
   "246": AI menemukan peluang pertumbuhan. Agen mewujudkannya.
   "247": Mulai dengan Core
   "248": Baca selengkapnya
+  "249": <span class="ln">NocoBase adalah platform open source bagi perusahaan untuk membangun dan menjalankan sistem bisnis dengan AI.</span><span class="ln">Manusia merumuskan kebutuhan dan mengambil keputusan, agen menulis kode dan mengeksekusi, dan NocoBase menjaga sistem tetap andal serta proses tetap terkendali.</span>
+  "250": Kisah Pengguna · Sungrow
+  "251": Cara Kerja Baru
+  "252": "Cara membangun dan menjalankan sistem bisnis "
+  "253": sedang berubah.
+  "254": Didukung oleh Studio dan Core secara bersama, perusahaan dapat mengadopsi alur kerja baru ini sembari menjaga setiap sistem tetap andal dan terkendali.
+  "255": Tim bisnis
+  "256": Ajukan langsung, verifikasi sendiri
+  "257": Tak perlu lagi antre berbulan-bulan. Sampaikan kebutuhan Anda, dan agen membangunnya dalam hitungan jam—lengkap dengan laporan pengiriman dan lingkungan uji agar Anda dapat memverifikasinya sendiri.
+  "258": TI &amp; engineering
+  "259": Tetapkan aturan, tinjau, dan setujui rilis
+  "260": Tim agen menangani penulisan kode dan pengujian, sementara tim TI menetapkan standar arsitektur, meninjau rencana, menjaga kualitas, dan menyetujui rilis.
+  "261": Manajemen
+  "262": Pantau progres dan biaya kapan saja
+  "263": Tak perlu lagi menanyakan pembaruan secara berjenjang. Lihat progres, waktu siklus, dan biaya model di setiap proyek dalam satu tempat.
+  "264": Operasional harian
+  "265": AI menangani pekerjaan rutin 24/7
+  "266": Agen bisnis hadir di dalam setiap aplikasi, menangani pekerjaan rutin sepanjang waktu sesuai izin akses pemiliknya dan meminta konfirmasi untuk tindakan penting.
+  "267": Studio adalah ruang kerja untuk cara kerja baru ini. Studio menyatukan Claude Code, Codex, dan OpenCode di berbagai perangkat Anda menjadi satu tim agen 24/7 yang menangani pengembangan, pengujian, dan review, sementara manusia merumuskan kebutuhan, memantau progres, dan mengambil keputusan dari desktop maupun ponsel.
+  "268": Tim agen 24/7
+  "269": Hubungkan Claude Code, Codex, dan OpenCode di komputer pribadi maupun server untuk menggerakkan banyak proyek secara paralel tanpa ketergantungan vendor.
+  "270": Alur kerja terstruktur, progres jelas
+  "271": Setiap tugas mengikuti alur kerja Anda dengan tes otomatis dan review kode lintas model, sementara progres, waktu siklus, dan biaya tetap terlihat dalam satu tempat.
+  "272": Keputusan berbasis bukti di mana saja
+  "273": Ajukan kebutuhan dan verifikasi hasil dari desktop atau ponsel. Setiap pengiriman menyertakan laporan, checklist, tangkapan layar, dan lingkungan uji aktif sehingga siapa pun dapat memberi persetujuan.
+  "274": Simpan cara kerja tim dalam skill, dokumen bisnis di basis pengetahuan, dan hal yang dipelajari agen dalam memori proyek. Saat orang atau model berganti, pekerjaan langsung berlanjut.
+  "275": Dokumentasi Studio
+  "276": Core adalah fondasi engineering open source di balik Studio. Lebih dari 20 komponen dasar—izin akses, alur kerja, file, integrasi AI, dan lainnya—siap pakai sehingga agen hanya membangun logika bisnis Anda di atas satu arsitektur yang konsisten.
+  "277": 20+ komponen dasar siap pakai dan andal
+  "278": Pengguna, izin akses, data, file, alur kerja, persetujuan, dan notifikasi sudah tersedia bawaan—tidak pernah dibuat dari nol—sehingga review berfokus pada logika bisnis Anda.
+  "279": Arsitektur konsisten yang siap berkembang
+  "280": Kerangka proyek, aturan arsitektur, dan skill pengembangan hadir bersama Core, menjaga struktur tetap konsisten di berbagai orang, model, dan sesi.
+  "281": AI bawaan di dalam setiap sistem bisnis
+  "282": Koneksi model, penjadwalan agen bisnis, dan basis pengetahuan AI sudah tersedia bawaan. Agen bisnis berjalan 24/7 sesuai izin akses pemiliknya dan meminta konfirmasi untuk tindakan penting.
+  "283": Open source, terus dipelihara, aplikasi berjalan mandiri
+  "284": Core bersifat open source dan terus dipelihara. Kode sumber bisnis Anda tetap berada di repositori sendiri, dan aplikasi yang telah dirilis berjalan mandiri tanpa bergantung pada Studio.
+  "285": Dokumentasi Core
+  "286": Edisi Community gratis dan open source, mencakup fitur dasar Studio serta seluruh kemampuan Core. Edisi komersial dibeli sekali bayar dengan lisensi permanen.
+  "287": Kode dan data milik Anda
+  "288": Studio dan aplikasi bisnis Anda berjalan di server Anda sendiri, termasuk di jaringan air-gapped.
+  "289": Tanpa ketergantungan vendor. Gunakan Claude Code, Codex, alat coding lainnya, serta model cloud maupun lokal.
+  "290": Setelah dirilis, aplikasi bisnis Anda berjalan sendiri. Permintaan sehari-hari tidak pernah melewati Studio.
+  "291": Sekali bayar
+  "292": Edisi komersial dibeli sekali bayar dengan lisensi permanen. Pilih sendiri server, model, dan alat Anda lalu bayar langsung ke penyedianya.
+  "293": Tanya &amp; jawab
+  "294": Vibe coding mempercepat penulisan kode, tetapi sistem perusahaan yang kompleks juga membutuhkan fondasi yang andal, arsitektur yang konsisten, dan tata kelola. NocoBase tidak menggantikan vibe coding—Core menyediakan komponen dasar siap pakai dan standar, sementara Studio mengoordinasikan tim agen, pemeriksaan kualitas, dan pengetahuan tim untuk mengubah kode buatan AI menjadi sistem bisnis yang andal.
+  "295": Apa bedanya dengan platform low-code?
+  "296": Platform low-code mengandalkan konfigurasi drag-and-drop manual, mentok pada batasan platform saat menghadapi kebutuhan kompleks, dan mengikat aplikasi pada platform. Dengan NocoBase, agen menulis kode sumber nyata untuk aturan kompleks, integrasi, dan UI kustom—disimpan di repositori Anda sendiri dan berjalan mandiri.
+  "297": Kami sudah memakai Claude Code, Codex, atau Cursor—mengapa perlu NocoBase?
+  "298": Alat coding menyelesaikan cara satu developer menulis kode dengan AI; NocoBase menyelesaikan cara sebuah tim mengirimkan sistem bisnis yang andal secara berkelanjutan. Studio mengorkestrasi alat-alat tersebut sebagai tim agen dengan tata kelola, sementara Core memberi mereka komponen dasar siap pakai dan standar konsisten agar arsitektur tidak pernah melenceng.
+  "299": Bisakah pengguna bisnis non-teknis ikut berpartisipasi?
+  "300": Ya. Pengguna bisnis menjelaskan kebutuhan, menjawab pertanyaan agen, dan memverifikasi hasil dengan data nyata di lingkungan uji melalui desktop atau ponsel. Agen dan Studio yang menangani branch, lingkungan, pengujian, dan rilis.
+  "301": Apakah sistem yang dibangun AI cukup andal untuk produksi?
+  "302": Izin akses, persetujuan, dan modul penting lainnya berasal dari Core, bukan dibuat dari nol. Setiap perubahan melewati tes otomatis dan review lintas model sebelum diverifikasi manusia, hanya dirilis setelah disetujui, dan bisa di-rollback kapan saja.
+  "303": Apakah data kami keluar dari infrastruktur kami?
+  "304": NocoBase berjalan di server Anda sendiri, termasuk di jaringan air-gapped. Saat agen bekerja, kode yang relevan hanya dikirim ke penyedia model pilihan Anda, dan Anda dapat memakai model yang di-hosting secara lokal kapan pun diperlukan.
+  "305": Mulai dari kebutuhan nyata pertama Anda.
+  "306": Edisi Community gratis dan open source, mencakup fitur dasar Studio dan seluruh kemampuan Core.
+  "307": Edisi Community
+  "308": Self-host dan mulai dalam hitungan menit
+  "309": Deploy NocoBase di lokal atau server Anda, hubungkan alat coding dan model pilihan Anda, lalu jalankan langsung ke produksi.
+  "310": Dokumentasi Mulai Cepat
+  "311": Pro &amp; Enterprise
+  "312": Sekali Bayar
+  "313": Dirancang untuk tim dan sistem kritis
+  "314": Menambahkan alur kerja multi-peran, persetujuan deploy, SSO enterprise, kontrol anggaran, rencana kualitas, pengujian regresi, dan ketersediaan tinggi.
+  "315": Manusia merumuskan kebutuhan dan mengambil keputusan
+  "316": Agen menulis kode dan mengeksekusi
+  "317": NocoBase menjaga sistem tetap andal dan terkendali
+  "318": Kolaborasi dan keputusan di mana saja
+  "319": Ajukan permintaan, pantau progres dan biaya, serta verifikasi hasil dari desktop maupun ponsel. Setiap pengiriman menyertakan laporan, checklist, tangkapan layar, dan lingkungan uji aktif.
+  "320": Alur kerja terstruktur, gerbang kendali manusia
+  "322": Pengujian otomatis, perbaikan siklus tertutup
+  "323": Pengujian harian, rilis, proyek, dan kustom berjalan paralel menggunakan Playwright, OWASP ZAP, Lighthouse, dan lainnya di tujuh dimensi, sekaligus membuat tugas tindak lanjut yang memperbaiki dan menguji ulang secara otomatis.
+  "326": Pilih alur kerja cepat, standar, atau kustom dengan skill tersemat yang dimuat di setiap eksekusi. Model lain melakukan review baca-saja dan pemeriksaan CI otomatis harus lolos sebelum persetujuan manusia.
+  "327": Vibe coding mempercepat penulisan kode, tetapi sistem perusahaan yang kompleks juga membutuhkan fondasi yang andal, alur kerja terstruktur, dan pengujian kualitas otomatis. NocoBase tidak menggantikan vibe coding—Core menyediakan komponen dasar siap pakai dan satu arsitektur yang konsisten, sementara Studio menjalankan setiap tugas melalui alur kerja dengan skill tersemat, review lintas model, dan gerbang kendali manusia, ditambah pengujian multidimensi paralel dengan alat teruji serta perbaikan siklus tertutup untuk mengubah kode buatan AI menjadi sistem bisnis yang andal.
+  "328": Izin akses, persetujuan, dan modul penting lainnya berasal dari Core, bukan dibuat dari nol. Setiap perubahan melewati alur kerja terstruktur dengan pemeriksaan otomatis dan review lintas model sebelum persetujuan manusia. Pengujian kualitas tingkat proyek menggunakan alat teruji untuk fitur, pemeriksaan smoke, izin akses, keamanan, performa, kualitas kode, dan UX dengan perbaikan siklus tertutup, dan setiap rilis memerlukan persetujuan dengan rollback instan.
+  "329": NocoBase Studio
+  "330": NocoBase Core
+  "331": Core adalah fondasi engineering open source di balik Studio. Lebih dari 30 komponen dasar—izin akses, alur kerja, file, integrasi AI, dan lainnya—siap pakai sehingga agen hanya membangun logika bisnis Anda di atas satu arsitektur yang konsisten.
+  "332": 30+ komponen dasar siap pakai dan andal
+  "333": Didukung oleh Core dan Studio secara bersama, perusahaan mengadopsi alur kerja baru ini sembari menjaga setiap sistem tetap andal dan terkendali.
+  "334": Core dan semua aplikasi Solution gratis dan open source, sedangkan Studio Edisi Community gratis digunakan. Mulai langsung dengan Core atau deploy Studio; edisi komersial dibeli sekali bayar dengan lisensi permanen.
+  "335": Platform low-code masih mengandalkan konfigurasi drag-and-drop manual, mentok pada aturan kompleks atau UI kustom, dan mengikat aplikasi pada platform. Dengan NocoBase, agen menulis kode sumber standar secara paralel—mengirimkan hasil jauh lebih cepat nyaris tanpa batas kemampuan. Kode Anda tersimpan di repo Git Anda sendiri, berjalan mandiri, dan dilengkapi agen bisnis bawaan untuk operasional harian.
+  "336": Ya. Alat coding menyelesaikan seberapa cepat kode ditulis; NocoBase menyelesaikan cara mengirimkan sistem bisnis yang andal secara berkelanjutan. Mulai langsung dengan Core memakai alat coding yang sudah Anda gunakan—30+ komponen dasar langsung siap pakai sehingga agen fokus pada logika bisnis tanpa arsitektur yang melenceng. Saat proyek bertambah banyak dan Anda butuh kolaborasi tim, persetujuan bisnis, serta gerbang kualitas otomatis, tambahkan Studio untuk mengoordinasikannya sebagai satu tim agen dengan tata kelola.
+  "337": Mulai langsung dengan Core memakai alat coding Anda, atau deploy Studio Edisi Community untuk kolaborasi tim—keduanya gratis untuk mulai.
+  "338": Mulai dengan Core
+  "339": Untuk developer &amp; evaluasi
+  "340": Inisialisasi aplikasi dalam hitungan menit dengan 30+ komponen dasar dan standar konsisten yang siap pakai—langsung bangun logika bisnis bersama Claude Code, Codex, atau Cursor.
+  "341": Bangun Aplikasi Pertama
+  "342": GitHub
+  "343": Mulai dengan Studio
+  "344": Community Gratis
+  "345": Untuk tim &amp; alur kerja
+  "346": Deploy Studio Edisi Community untuk mengatur alat coding menjadi tim agen 24/7 dengan alur kerja terstruktur, persetujuan pratinjau langsung, dan pengetahuan tim bersama.
+  "347": Instal Cepat Studio
+  "348": Pelajari Studio
+  "349": Lisensi Sekali Bayar
+  "350": Untuk tim berkembang &amp; aplikasi kritis
+  "351": Menambahkan alur kerja multi-peran dan kustom, persetujuan deploy, SSO enterprise, kontrol biaya, pengujian regresi otomatis dengan perbaikan siklus tertutup, promosi lintas lingkungan, dan klaster ketersediaan tinggi.
+  "352": Lihat Harga
+  "353": Tonton video

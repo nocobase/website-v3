@@ -1,7 +1,9 @@
 // 导航规格和链接换算：站内链接换成各语言的地址、文档站链接按语言补 zh-CN/、星标数从共用配置来。
 import assert from 'node:assert/strict';
 import { test } from 'vitest';
-import { collectText, languageList, makeHref, navSpec } from './nav.mjs';
+import { ALL } from './config.mjs';
+import { collectText, languageList, makeHref, navSpec, qsModalSpec } from './nav.mjs';
+import { localizeQsModal } from './site.mjs';
 
 const resolve = name => ({ index: '/', core: '/core/', 'solution-crm': '/solution-crm/' })[name] ?? null;
 
@@ -32,7 +34,7 @@ test('the active page is highlighted in the menu, the mobile menu and nowhere el
 
 test('the GitHub star count comes from the shared config and can be overridden with GITHUB_STARS', () => {
   const stars = spec => spec.header.links[0].label;
-  assert.equal(stars(navSpec('home')), '24.6K');
+  assert.equal(stars(navSpec('home')), '25K');
   assert.equal(stars(navSpec('home', { stars: '30.1K' })), '30.1K');
   assert.equal(navSpec('home', { stars: '30.1K' }).header.mobile.at(-1).small, '30.1K');
 });
@@ -64,4 +66,21 @@ test('the changelog entry is a link once there are entries, greyed out before', 
   assert.equal(find(on).active, true);
   assert.equal(foot(on).href, 'changelog.html');
   assert.ok(on.header.mobile.flatMap(i => i.items ?? [i]).some(i => i.href === 'changelog.html'));
+});
+
+test('quick-start modal fields are localized as plain text without <t-zh>/<t-en> tags', () => {
+  for (const [node, key] of collectText(qsModalSpec())) {
+    assert.match(node[key], /^<t-zh>.*<\/t-zh><t-en>.*<\/t-en>$/s, key);
+  }
+  for (const lang of ALL) {
+    const qsModal = localizeQsModal(lang);
+    for (const [key, value] of Object.entries(qsModal)) {
+      assert.equal(typeof value, 'string', `${lang}.${key}`);
+      assert.doesNotMatch(value, /<\/?t-(?:zh|en)\b/, `${lang}.${key}: ${value}`);
+      assert.doesNotMatch(value, /\{url\}/, `${lang}.${key}: ${value}`);
+    }
+  }
+  assert.equal(localizeQsModal('zh').title, '快速开始 · NocoBase Core');
+  assert.equal(localizeQsModal('en').title, 'Quick Start · NocoBase Core');
+  assert.equal(localizeQsModal('ja').title, 'クイックスタート · NocoBase Core');
 });

@@ -27,7 +27,7 @@ People decide business rules and accept results; the Lead Agent does not merge P
 
 ### Prepare the team environment and project
 
-Studio is part of the commercial edition. Administrators follow [Installation and configuration](../studio/setup/index.md) to obtain access authorization, deploy the service, connect Git and Agents, prepare a project, and invite members.
+Administrators can deploy Community Edition, connect Git and a runtime, and configure Agents. Once the first project is ready, invite the team. See [Installation and configuration](../studio/setup/index.md).
 
 The following walkthrough adds a supplier page. Before starting, check that:
 

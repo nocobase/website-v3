@@ -68,7 +68,7 @@ client:
 
 ## 数据库配置
 
-连接位于 `database.connections.<name>`，`database.default` 指定默认连接。SQLite 使用 `filename`，其他方言通常使用 `host`、`port`、`database`、`username` 和 `password`，特殊字段见[数据库支持与版本兼容](compatibility.md)。
+连接位于 `database.connections.<name>`，`database.default` 指定默认连接。SQLite 使用 `filename`，其他方言通常使用 `host`、`port`、`database`、`username` 和 `password`，特殊字段见[数据库支持与版本兼容](../developing-apps/compatibility.md)。
 
 `schemaManagement: managed` 表示框架可管理结构。`external` 用于外部数据库，限制框架的结构变更，不代表业务数据自动只读；仍需配置账号权限和授权策略。
 

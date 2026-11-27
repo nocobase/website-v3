@@ -23,7 +23,7 @@ Requests from business teams and customers become project tasks. Discussions, Ag
 
 ### Test continuously and follow up on findings
 
-Teams maintain core scenarios in [Quality](../quality/overview.md) and run tests on a schedule or manually. Agents check dimensions such as functionality, permissions, and performance. Reports retain the results and supporting evidence.
+Teams can maintain core scenarios in [Quality](../quality/overview.md) and run tests on a schedule or manually. Agents check dimensions such as functionality, permissions, and performance. Reports retain the results and supporting evidence.
 
 Findings link to follow-up tasks. Subsequent tests verify fixes. Test scope, results, and unresolved findings stay with the project so the team can track them over time.
 
@@ -69,4 +69,4 @@ Studio organizes Agents to build business applications on NocoBase Core. Core pr
 
 ## Self-hosted
 
-Studio is part of NocoBase's commercial offering. Core and solution applications such as NocoCRM are free and open source. Studio and your applications run on your infrastructure. Your organization owns the code and data, and chooses its Coding Agents and models.
+Studio is available in Community, Professional, and Enterprise editions. Core and solution applications such as NocoCRM are free and open source. Studio and your applications run on your infrastructure. Your organization owns the code and data, and chooses its Coding Agents and models.

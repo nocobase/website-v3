@@ -92,7 +92,7 @@ desc_en: Become a NocoBase partner: 15–40% channel commission and 100% of your
         <div class="card"><span class="ic"><i data-lucide="git-pull-request"></i></span><h3><t-zh>Studio 支撑规模化交付</t-zh><t-en>Scalable delivery in Studio</t-en></h3><p><t-zh>集中管理多客户、多项目，用测试与评审、独立预览和受控发布保障一致的交付质量。</t-zh><t-en>Manage multiple clients and repos in one workspace with tests and review, isolated previews, and gated releases.</t-en></p></div>
         <div class="card"><span class="ic"><i data-lucide="layout-grid"></i></span><h3><t-zh>基于现成方案高起点起步</t-zh><t-en>Start from ready-made Solutions</t-en></h3><p><t-zh>NocoCRM、NocoITAM、NocoReach 均开源可用，在其基础上按客户需求定制，远快于从零开发。</t-zh><t-en>Customize open-source NocoCRM, NocoITAM, or NocoReach to fit your client instead of building from scratch.</t-en></p></div>
         <div class="card"><span class="ic"><i data-lucide="server"></i></span><h3><t-zh>私有部署，数据主权归客户</t-zh><t-en>Self-hosted, full data sovereignty</t-en></h3><p><t-zh>支持纯内网部署与本地模型接入，轻松满足政务、金融、制造等行业的严苛合规要求。</t-zh><t-en>Deploy on-prem with any model, meeting strict compliance requirements for finance, government, and manufacturing.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="users"></i></span><h3><t-zh>成熟的全球社区与口碑</t-zh><t-en>Proven global adoption</t-en></h3><p><t-zh>GitHub 24.6K Star，NocoBase 已服务全球众多企业、机构与高校，庞大存量客户正迈向 AI 时代。</t-zh><t-en>With 24.6K GitHub stars, NocoBase powers enterprises, governments, and universities worldwide, now upgrading to the AI era.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="users"></i></span><h3><t-zh>成熟的全球社区与口碑</t-zh><t-en>Proven global adoption</t-en></h3><p><t-zh>GitHub 25K Star，NocoBase 已服务全球众多企业、机构与高校，庞大存量客户正迈向 AI 时代。</t-zh><t-en>With 25K GitHub stars, NocoBase powers enterprises, governments, and universities worldwide, now upgrading to the AI era.</t-en></p></div>
       </div>
     </div>
   </div>
@@ -177,9 +177,45 @@ desc_en: Become a NocoBase partner: 15–40% channel commission and 100% of your
 
 <section class="sec" id="apply">
   <div class="container">
-    <div class="band" style="margin-top:0">
-      <div><h2><t-zh>申请成为 NocoBase 合作伙伴</t-zh><t-en>Apply to become a NocoBase partner</t-en></h2><p><t-zh>请写邮件到 partner@nocobase.com，介绍你的团队和想做的合作，我们会尽快联系你。</t-zh><t-en>Email partner@nocobase.com about your team and how you’d like to work with us, and we’ll get back to you soon.</t-en></p></div>
-      <div class="cta"><a class="btn btn-pri" href="mailto:partner@nocobase.com"><t-zh>写邮件给我们</t-zh><t-en>Email us</t-en><i data-lucide="mail"></i></a></div>
+    <div class="band book" style="margin-top:0;align-items:start">
+      <div><h2><t-zh>申请成为 NocoBase 合作伙伴</t-zh><t-en>Apply to become a NocoBase partner</t-en></h2><p><t-zh>介绍一下你的团队和服务的客户。填写得越详细，我们越能了解你的情况。收到申请后我们会尽快联系你，也可以直接发邮件到 partner@nocobase.com。</t-zh><t-en>Tell us about your team and the clients you serve. The more detail you share, the better we’ll understand your business. We’ll reach out soon after we receive your application, or you can email us at partner@nocobase.com.</t-en></p></div>
+      <form class="bookf" data-partner-form="partnerApplication" data-ok-zh="已收到你的申请，我们会尽快与你联系。" data-ok-en="Thanks! We’ve received your application and will be in touch soon." data-mail="partner@nocobase.com" novalidate>
+        <fieldset class="fsec">
+          <legend><t-zh>公司与联系人</t-zh><t-en>Company and contact</t-en></legend>
+          <div class="two"><label><span><t-zh>公司名称</t-zh><t-en>Company name</t-en></span><input type="text" name="companyName" autocomplete="organization" maxlength="255" required></label><label class="en-only"><span><t-zh>国家或地区</t-zh><t-en>Country or region</t-en></span><select name="countryCode" data-countries required></select></label><input class="zh-only" type="hidden" name="countryCode" value="CN"><label class="zh-only"><span><t-zh>姓名</t-zh><t-en>Your name</t-en></span><input type="text" name="contactName" autocomplete="name" maxlength="255" required></label></div>
+          <div class="two"><label class="zh-only"><span><t-zh>电话</t-zh><t-en>Phone</t-en></span><input type="tel" name="contactPhone" autocomplete="tel" maxlength="64"></label><label class="en-only"><span><t-zh>姓名</t-zh><t-en>Your name</t-en></span><input type="text" name="contactName" autocomplete="name" maxlength="255" required></label><label><span><t-zh>邮箱</t-zh><t-en>Email</t-en></span><input type="email" name="contactEmail" autocomplete="email" maxlength="320" required></label></div>
+          <label><span><t-zh>公司介绍</t-zh><t-en>About your company</t-en></span><textarea name="companyIntroduction" data-answer rows="3" maxlength="5000" required data-ph-zh="公司的主营业务、服务对象和成立时间" data-ph-en="What your company does, who you serve, and when you started"></textarea></label>
+        </fieldset>
+        <details class="more">
+          <summary><span><t-zh>团队与经验</t-zh><t-en>Team and experience</t-en><em><t-zh>选填</t-zh><t-en>Optional</t-en></em></span><i data-lucide="chevron-down"></i></summary>
+          <div class="more-body">
+            <label><span><t-zh>公司网站</t-zh><t-en>Company website</t-en></span><input type="url" name="website" autocomplete="url" maxlength="2048" placeholder="https://"></label>
+            <div class="two"><label><span><t-zh>团队规模</t-zh><t-en>Team size</t-en></span><select name="teamSize" data-answer data-options="teamSize"></select></label><label><span><t-zh>NocoBase 使用经验</t-zh><t-en>Experience with NocoBase</t-en></span><select name="nocobaseExperience" data-answer data-options="nocobaseExperience"></select></label></div>
+            <label><span><t-zh>项目经验</t-zh><t-en>Project experience</t-en></span><textarea name="projectsExperience" data-answer rows="3" maxlength="5000" data-ph-zh="交付过的业务系统及其规模" data-ph-en="Business systems you’ve delivered, and how large they were"></textarea></label>
+            <label><span><t-zh>技术能力</t-zh><t-en>Technical capability</t-en></span><textarea name="technicalCapability" data-answer rows="3" maxlength="5000" data-ph-zh="团队的开发、实施和售后能力" data-ph-en="Your team’s development, implementation and support skills"></textarea></label>
+            <label><span><t-zh>低代码经验</t-zh><t-en>Low-code experience</t-en></span><textarea name="lowcodeExperience" data-answer rows="2" maxlength="5000" data-ph-zh="用过的低代码或无代码平台" data-ph-en="Low-code or no-code platforms you’ve used"></textarea></label>
+            <label><span><t-zh>AI 经验</t-zh><t-en>AI experience</t-en></span><textarea name="aiExperience" data-answer rows="2" maxlength="5000" data-ph-zh="为自己或客户做过的 AI 相关工作" data-ph-en="AI work you’ve done for yourselves or for clients"></textarea></label>
+          </div>
+        </details>
+        <details class="more">
+          <summary><span><t-zh>目标市场</t-zh><t-en>Target market</t-en><em><t-zh>选填</t-zh><t-en>Optional</t-en></em></span><i data-lucide="chevron-down"></i></summary>
+          <div class="more-body">
+            <div class="two"><label><span><t-zh>客户规模</t-zh><t-en>Client size</t-en></span><select name="targetCustomerSizes" data-answer data-options="targetCustomerSizes" multiple></select></label><label><span><t-zh>目标行业</t-zh><t-en>Target industries</t-en></span><select name="targetIndustries" data-answer data-options="targetIndustries" multiple></select></label></div>
+            <label class="en-only"><span><t-zh>服务区域</t-zh><t-en>Regions you serve</t-en></span><select name="targetRegions" data-answer data-countries multiple></select></label>
+            <label><span><t-zh>客户资源</t-zh><t-en>Client network</t-en></span><textarea name="customerResources" data-answer rows="2" maxlength="5000" data-ph-zh="可以带来的客户和渠道" data-ph-en="The clients and channels you can bring"></textarea></label>
+          </div>
+        </details>
+        <details class="more">
+          <summary><span><t-zh>合作意向</t-zh><t-en>How you’d like to work with us</t-en><em><t-zh>选填</t-zh><t-en>Optional</t-en></em></span><i data-lucide="chevron-down"></i></summary>
+          <div class="more-body">
+            <label><span><t-zh>合作期望</t-zh><t-en>Partnership goals</t-en></span><textarea name="cooperationExpectation" data-answer rows="2" maxlength="5000" data-ph-zh="分销、实施服务，或两者都做" data-ph-en="Reselling, implementation services, or both"></textarea></label>
+            <label><span><t-zh>其他补充</t-zh><t-en>Anything else</t-en></span><textarea name="additionalInfo" data-answer rows="2" maxlength="5000" data-ph-zh="希望合作伙伴团队了解的其他信息" data-ph-en="Anything else you’d like our partner team to know"></textarea></label>
+          </div>
+        </details>
+        <div class="trap" aria-hidden="true"><label>Leave this empty<input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn btn-pri" type="submit"><t-zh>提交申请</t-zh><t-en>Submit application</t-en><i data-lucide="arrow-right"></i></button>
+        <p class="form-msg" role="status" aria-live="polite" hidden></p>
+      </form>
     </div>
   </div>
 </section>

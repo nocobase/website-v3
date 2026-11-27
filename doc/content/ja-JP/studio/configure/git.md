@@ -7,6 +7,12 @@ description: "チームのリポジトリ接続、アクセス権限、状態更
 
 ![チームの Git 接続を管理する](https://static-docs.nocobase.com/studio-en-git-20261111-normal-2x.webp)
 
+## リポジトリを接続して確認する
+
+1. **Settings › Git** で接続を追加し、保存した接続に表示される組織またはグループを確認します。
+2. プロジェクトのリポジトリ設定で、その接続からリポジトリを選びます。複数のグループが同じ Git サーバーを使う場合は、各接続のリポジトリ件数を展開すると対応を確認できます。
+3. 初期化タスクか次の開発タスクを開きます。ランタイムがリポジトリを取得でき、リンク先の PR または MR が目的のプロジェクトにあることを確認します。コードプラットフォームの CI を使う場合は、パイプラインとジョブログも開きます。
+
 ## GitHub
 
 GitHub App で GitHub または GitHub Enterprise Server に接続します。作成とインストールの手順は[Git プラットフォームを接続する](../setup/git.md)を参照してください。
@@ -20,11 +26,29 @@ GitHub App で GitHub または GitHub Enterprise Server に接続します。�
 
 ## GitLab
 
-1. `api` スコープと Developer ロールでグループアクセストークンを作成します。
-2. Studio に GitLab 接続を追加し、サーバーアドレスと認証情報を入力します。
-3. 保存後にグループ、権限、有効期限を確認します。
+リポジトリが `https://git.example.com/gitlab/inventory-team/warehouse.git` にある場合は、次のように設定します。
 
-Developer 権限でブランチのプッシュ、マージリクエスト、パイプラインの参照ができます。Webhook の自動作成には Maintainer 権限が必要です。それ以外はポーリングを使ってください。
+| Studio の項目 | 入力例 |
+| --- | --- |
+| Host（ホスト） | `https://git.example.com/gitlab`。GitLab の設置先パスも含める |
+| グループ | URL に含まれるグループのパス `inventory-team`。サブグループなら `inventory-team/apps` のように親から指定する |
+| 接続名 | 「在庫チーム」など、一覧で識別できる名前 |
+
+グループトークンの作成には、そのグループの Owner 権限が必要です。GitLab.com では Premium または Ultimate プランが必要です。[GitLab のグループアクセストークン](https://docs.gitlab.com/user/group/settings/group_access_tokens/)
+
+1. GitLab で対象グループの **Settings › Access tokens** を開き、**Add new token** を選びます。トークンには任意の名前を付けます。
+
+   ![対象グループのアクセストークン画面でトークンを追加](https://static-docs.nocobase.com/studio-en-group-token-settings-20261119-7d9d3999c1.webp)
+
+2. スコープに `api` を選びます。開発ブランチへのプッシュ、MR の作成、パイプラインの参照には Developer ロールを使えます。Studio で Webhook を自動作成する場合は Maintainer を選びます。
+
+   ![Webhook を自動作成する場合は Maintainer と api を選択](https://static-docs.nocobase.com/studio-en-group-token-permissions-20261119-bd31e03fc3.webp)
+
+3. Studio で GitLab 接続を追加し、インスタンス URL、グループのパス、トークンを入力します。保存後にグループと有効期限を確認し、プロジェクトでリポジトリを関連付けます。
+
+   ![Studio に GitLab のホストとグループのフルパスを入力](https://static-docs.nocobase.com/studio-en-gitlab-20261119-49dfcbb2d9.webp)
+
+メンバーは個人設定で自分の Git アカウントも接続できます。そのアカウントにも、実行する操作に応じたリポジトリ権限が必要です。
 
 ## Gitea
 
@@ -39,3 +63,15 @@ Gitea 接続を追加し、インスタンスの URL と専用アカウントの
 コードプラットフォームから Studio に HTTPS で接続できる場合は、Webhook を有効にします。プライベートネットワークやローカルアドレスの場合は無効にします。Studio が毎分 PR とチェック結果を取得します。
 
 接続カードには、接続状態、リポジトリ数、Webhook の状態が表示されます。認証情報は期限前に更新してください。既存コードの接続は[プロジェクト設定](../project/settings.md#既存リポジトリを接続する)を参照してください。
+
+## SSH でクローン・プッシュする
+
+GitLab、Gitee、Gitea ではリポジトリへのアクセスに SSH を使えます。マージリクエストや CI の確認には引き続き各プラットフォームの API 認証情報を使います。
+
+1. **Settings › Git** で接続を追加または編集し、クローン方式に **SSH** を選びます。
+2. 既存の鍵を選ぶか、**New key** で名前を付けて作成します。公開鍵をコピーし、対象リポジトリを読み書きできるボットアカウントに登録します。
+3. 新規接続は保存時に SSH 接続がテストされます。既存の接続は **Test SSH connection** で確認して保存します。プロジェクトでリポジトリを関連付け直す必要はありません。
+
+SSH 接続がテスト待ちの場合は、公開鍵を登録したアカウントと SSH アドレスを確認します。接続テストが成功してからタスクを再試行します。
+
+![Settings › Git › SSH keys で共有鍵を作成する](https://static-docs.nocobase.com/studio-en-ssh-20261126-1bb7b5be4e.webp)

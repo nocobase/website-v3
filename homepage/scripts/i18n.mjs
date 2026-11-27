@@ -5,7 +5,7 @@
 //
 // 条目的来源：
 // - home：首页 content/pages/home.html 上写死的 <t-en>（不含模板里的界面示意和脚本画的图），以及脚本里的 M(中文, 英文)、Hero 收尾卡片、Core 图的能力和模块；
-// - site：导航和页脚（src/lib/nav.mjs 的 T(中文, 英文)），表单脚本 src/scripts/public-form.js 和 lead-form.js 的 T(中文, 英文)；
+// - site：导航和页脚（src/lib/nav.mjs 的 T(中文, 英文)），表单脚本 src/scripts/public-form.js、lead-form.js 和 partner-forms.js 的 T(中文, 英文)；
 // - 各子页面：正文里的 <t-en>（同一段英文在页面上意思不同时写 <t-en data-k="…"> 给它单独的键），表单上 data-ph-en、data-text-en、data-ok-en 的英文，以及页面标题和描述（联系页的多选选项就写在页面的 <t-en> 里）。
 // 界面示意图（.fit-in 和 <template> 里）不翻译：繁体中文显示繁体中文界面，文字表在 <组>.zh-TW.yaml 的 ui（简体中文 → 繁体中文），由人填写，用语见 content/i18n/ui-terms.md。
 //
@@ -17,7 +17,7 @@ import { parse, unescape } from '../src/lib/html.mjs';
 import { checkAll, keysFile, langFile, PAGE_GROUPS, readKeys } from '../src/lib/i18n.mjs';
 import { renderBilingual } from '../src/lib/pages.mjs';
 import { CONTENT, HOMEPAGE } from '../src/lib/paths.mjs';
-import { collectText, navSpec } from '../src/lib/nav.mjs';
+import { collectText, navSpec, qsModalSpec } from '../src/lib/nav.mjs';
 import { readYaml, writeYaml } from '../src/lib/yaml-io.mjs';
 
 const HAN = /[一-鿿¥]/;
@@ -61,9 +61,9 @@ function pageItems(group) {
 
 function siteItems() {
   const { header, footer } = navSpec('');
-  const nav = [...collectText(header), ...collectText(footer)].map(([n, k]) => n[k]).join('\n');
+  const nav = [...collectText(header), ...collectText(footer), ...collectText(qsModalSpec())].map(([n, k]) => n[k]).join('\n');
   const items = [...nav.matchAll(/<t-zh>(.*?)<\/t-zh><t-en>(.*?)<\/t-en>/g)].map(m => ({ en: m[2], zh: m[1], where: 'site' }));
-  const js = ['public-form.js', 'lead-form.js'].map(f => readFileSync(join(HOMEPAGE, 'src', 'scripts', f), 'utf8')).join('\n'), unq = x => x.replaceAll("\\'", "'");
+  const js = ['public-form.js', 'lead-form.js', 'partner-forms.js'].map(f => readFileSync(join(HOMEPAGE, 'src', 'scripts', f), 'utf8')).join('\n'), unq = x => x.replaceAll("\\'", "'");
   for (const m of js.matchAll(/\bT\(\s*'((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'\s*\)/g)) items.push({ en: unq(m[2]), zh: unq(m[1]), where: 'form' });
   return { items, meta: null };
 }

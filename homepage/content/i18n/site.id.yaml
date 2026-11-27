@@ -14,3 +14,74 @@ strings:
   "050": Terjadi kesalahan. Coba lagi, atau kirim email ke {mail}.
   "051": Perjanjian Lisensi
   "052": Ketentuan lisensi open source dan komersial
+  "053": 1–10 orang
+  "054": 11–50 orang
+  "055": 51–200 orang
+  "056": 201–500 orang
+  "057": Lebih dari 500 orang
+  "058": Sedang mengevaluasi
+  "059": Sedang mempelajari
+  "060": Digunakan secara internal
+  "061": Sudah mengerjakan proyek klien
+  "062": Ahli, mampu membangun ekstensi
+  "063": Startup
+  "064": Usaha kecil dan menengah
+  "065": Perusahaan besar
+  "066": Perorangan
+  "067": TI dan perangkat lunak
+  "068": Keuangan
+  "069": Pendidikan
+  "070": Kesehatan
+  "071": Manufaktur
+  "072": Ritel dan e-commerce
+  "073": Properti
+  "074": Pemerintahan dan sektor publik
+  "075": Media dan hiburan
+  "076": Lainnya
+  "077": Secepatnya
+  "078": Dalam 1 bulan
+  "079": Dalam 3 bulan
+  "080": Dalam 6 bulan
+  "081": Fleksibel
+  "082": Penyediaan solusi
+  "083": Implementasi sistem
+  "084": Pelatihan dan dukungan
+  "085": Konsultasi
+  "086": Di bawah ¥10.000
+  "087": ¥10.000–50.000
+  "088": ¥50.000–200.000
+  "089": Di atas ¥200.000
+  "090": Belum ditentukan
+  "091": Di bawah $3.000
+  "092": $3.000–$10.000
+  "093": $10.000–$30.000
+  "094": Di atas $30.000
+  "095": Cari
+  "096": Pilih
+  "097": "{n} dipilih"
+  "098": Pilih minimal satu
+  "099": Pilih negara atau wilayah terlebih dahulu
+  "100": Beberapa jawaban tidak dapat diterima. Periksa kembali lalu coba lagi, atau kirim email ke {mail}.
+  "101": Terlalu banyak pengiriman. Coba lagi dalam beberapa menit.
+  "102": Cara baru membangun perangkat lunak bisnis dengan AI
+  "103": Aplikasi
+  "104": CRM Penjualan · Open source, 6 Agen Penjualan
+  "105": Manajemen Aset TI · Open source, 3 Agen TI
+  "106": Pertumbuhan · Open source, Agen Konten
+  "107": Semua Aplikasi Open Source
+  "108": Pasang dan pakai langsung, atau kustomisasi di Studio
+  "110": Cara baru membangun perangkat lunak bisnis dengan AI.
+  "111": Aplikasi Open Source
+  "112": Studio
+  "113": Core
+  "114": NocoBase Studio
+  "115": NocoBase Core
+  "116": Pasang dan pakai langsung, atau kustomisasi dengan alat coding atau Studio
+  "117": Mulai Cepat · NocoBase Core
+  "118": Salin dan kirim prompt ini ke Claude Code, Codex, Cursor, atau agen coding apa pun di dalam direktori kosong.
+  "119": Tutup
+  "120": Baca {url} dan buat aplikasi NocoBase 3 lokal di direktori kosong ini menggunakan templat bawaan dan SQLite. Jalankan aplikasinya lalu bagikan URL lokal dan kredensial login awalnya.
+  "121": Salin prompt
+  "122": Tersalin
+  "123": Gagal menyalin
+  "124": Panduan mulai cepat lengkap

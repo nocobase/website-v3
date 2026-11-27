@@ -52,7 +52,7 @@ Codex 在运行环境中开发，基于 Core 的数据和权限能力扩展供�
 
 代码仓库的 CI 运行检查和测试。这次测试发现：新供应商的等级为空，没有按约定默认为 B 级。调度 Agent 将问题交回 Codex，修复后重新检查。
 
-检查通过后，Claude 评审评分逻辑、审批规则和测试覆盖。开发、修复与评审的结果都保存在任务动态中。相关机制见 [检查与评审](../project/checks-and-review.md)。
+检查通过后，Claude 评审评分逻辑、审批规则和测试覆盖。开发、修复与评审的结果都保存在任务动态中。相关机制见 [PR 检查与代码评审](../project/checks-and-review.md)。
 
 ![Codex 修复新供应商的默认等级问题，Claude 完成独立评审](https://static-docs.nocobase.com/studio-zh-review-thread-20261111-normal-2x.webp)
 
@@ -66,7 +66,7 @@ Codex 在运行环境中开发，基于 Core 的数据和权限能力扩展供�
 
 ![任务中的 PR 预览提供构建状态、访问入口和登录信息](https://static-docs.nocobase.com/studio-zh-req-preview-20261111-normal-2x.webp)
 
-结果符合要求，周航点击「合并」，任务变为「已完成」。若不符合要求，可选择「退回修改」并说明问题，由调度 Agent 安排后续修复。操作说明见 [验收](../use/accept.md)。
+结果符合要求，周航点击「合并」，任务变为「已完成」。若不符合要求，可选择「退回修改」并说明问题，由调度 Agent 安排后续修复。操作说明见 [任务验收](../use/accept.md)。
 
 ## 发布版本与记录上线
 

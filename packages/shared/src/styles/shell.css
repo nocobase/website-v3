@@ -56,8 +56,6 @@ footer { margin-top: 160px; border-top: 1px solid var(--rule); padding-block: 56
 .fbot span:first-child { margin-right: auto; }
 @media (max-width: 900px) { .fgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fgrid > div:first-child { grid-column: 1 / -1; } footer { margin-top: 104px; } }
 .nav .right button.plain { border: 0; background: none; cursor: pointer; }
-.mnav .lang-switch-m { display: flex; align-items: center; gap: 8px; width: 100%; padding: 12px 0 4px; border: 0; background: none; font-size: 15px; color: var(--brand); font-weight: 500; cursor: pointer; text-align: left; }
-.mnav .lang-switch-m svg { width: 16px; height: 16px; }
 .dd a.on, .mnav a.on { color: var(--brand); }
 .mi > a.on { color: var(--ink); background: var(--paper-2); }
 /* 导航里未上线的解决方案 */
@@ -91,10 +89,17 @@ footer { margin-top: 160px; border-top: 1px solid var(--rule); padding-block: 56
 .nav .lang .dd a svg.lucide { grid-row: auto; width: 14px; height: 14px; margin: 0; color: var(--brand); visibility: hidden; }
 html[lang="zh-CN"] .nav .lang a[data-lang="zh"], html[lang="en"] .nav .lang a[data-lang="en"] { color: var(--ink); font-weight: 600; }
 html[lang="zh-CN"] .nav .lang a[data-lang="zh"] svg.lucide, html[lang="en"] .nav .lang a[data-lang="en"] svg.lucide { visibility: visible; }
-/* 12 种语言的页面：当前语言加粗并打勾；手机菜单里是下拉框 */
+/* 12 种语言的页面：当前语言加粗并打勾 */
 .nav .lang .dd a.cur { color: var(--ink); font-weight: 600; }
 .nav .lang .dd a.cur svg.lucide { visibility: visible; }
-.mnav .lang-switch-m select { flex: 1; min-width: 0; appearance: none; -webkit-appearance: none; border: 0; background: none; padding: 0; font: inherit; color: inherit; cursor: pointer; }
-.mnav .lang-switch-m select:focus-visible { outline: none; }
-.mnav .lang-switch-m:focus-within { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 4px; }
-@media (max-width: 1000px) { .nav .lang { display: none; } }
+/* 窄屏：语言切换是菜单按钮旁的地球图标，点一下展开（shell.js 加 open 类），不跟随悬停；列表贴着屏幕右边 */
+@media (max-width: 1000px) {
+  .nav .lang { position: static; }
+  .nav .right .lang > button.plain { display: grid; place-items: center; width: 36px; padding: 0; }
+  .nav .lang > button.plain > :not(.lucide-globe) { display: none; }
+  .nav .lang > button.plain svg.lucide-globe { opacity: 1; }
+  .nav .lang .dd { top: calc(100% + 4px); right: 16px; width: min(340px, calc(100vw - 32px)); min-width: 0; }
+  .nav .lang:not(.open) .dd { opacity: 0; visibility: hidden; transform: translateY(-4px); }
+  .nav .lang.open .dd { opacity: 1; visibility: visible; transform: none; }
+  .nav .lang.open > button.plain { background: var(--paper-2); color: var(--ink); }
+}

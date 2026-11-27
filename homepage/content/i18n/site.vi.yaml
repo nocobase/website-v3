@@ -14,3 +14,74 @@ strings:
   "050": Gửi không thành công. Vui lòng thử lại hoặc gửi email đến {mail}.
   "051": Thỏa thuận cấp phép
   "052": Điều khoản giấy phép mã nguồn mở và thương mại
+  "053": 1–10 người
+  "054": 11–50 người
+  "055": 51–200 người
+  "056": 201–500 người
+  "057": Trên 500 người
+  "058": Đang đánh giá
+  "059": Đang tìm hiểu
+  "060": Đang dùng nội bộ
+  "061": Đã bàn giao dự án cho khách hàng
+  "062": Chuyên gia, có thể phát triển mở rộng
+  "063": Startup
+  "064": Doanh nghiệp vừa và nhỏ
+  "065": Doanh nghiệp lớn
+  "066": Cá nhân
+  "067": CNTT và phần mềm
+  "068": Tài chính
+  "069": Giáo dục
+  "070": Y tế
+  "071": Sản xuất
+  "072": Bán lẻ và thương mại điện tử
+  "073": Bất động sản
+  "074": Chính phủ và khu vực công
+  "075": Truyền thông và giải trí
+  "076": Khác
+  "077": Càng sớm càng tốt
+  "078": Trong 1 tháng
+  "079": Trong 3 tháng
+  "080": Trong 6 tháng
+  "081": Linh hoạt
+  "082": Bàn giao giải pháp
+  "083": Triển khai hệ thống
+  "084": Đào tạo và hỗ trợ
+  "085": Tư vấn
+  "086": Dưới ¥10.000
+  "087": ¥10.000–50.000
+  "088": ¥50.000–200.000
+  "089": Trên ¥200.000
+  "090": Chưa xác định
+  "091": Dưới 3.000 USD
+  "092": 3.000–10.000 USD
+  "093": 10.000–30.000 USD
+  "094": Trên 30.000 USD
+  "095": Tìm kiếm
+  "096": Chọn
+  "097": Đã chọn {n}
+  "098": Chọn ít nhất một mục
+  "099": Vui lòng chọn quốc gia hoặc khu vực trước
+  "100": Một số nội dung chưa hợp lệ. Vui lòng kiểm tra rồi gửi lại, hoặc gửi email đến {mail}.
+  "101": Bạn gửi quá nhiều lần. Vui lòng thử lại sau vài phút.
+  "102": Cách mới để xây dựng phần mềm doanh nghiệp bằng AI
+  "103": Ứng dụng
+  "104": CRM bán hàng · Mã nguồn mở, 6 agent bán hàng
+  "105": Quản lý tài sản CNTT · Mã nguồn mở, 3 agent CNTT
+  "106": Tăng trưởng · Mã nguồn mở, agent nội dung
+  "107": Tất cả ứng dụng mã nguồn mở
+  "108": Cài đặt và dùng ngay, hoặc tùy biến trong Studio
+  "110": Cách mới để xây dựng phần mềm doanh nghiệp bằng AI.
+  "111": Ứng dụng mã nguồn mở
+  "112": Studio
+  "113": Core
+  "114": NocoBase Studio
+  "115": NocoBase Core
+  "116": Cài đặt và dùng ngay, hoặc tùy biến bằng công cụ lập trình hay Studio
+  "117": Bắt đầu nhanh · NocoBase Core
+  "118": Sao chép và gửi prompt này cho Claude Code, Codex, Cursor hoặc bất kỳ coding agent nào trong một thư mục trống.
+  "119": Đóng
+  "120": Hãy đọc {url} và tạo một ứng dụng NocoBase 3 cục bộ trong thư mục trống này bằng mẫu mặc định và SQLite. Khởi chạy ứng dụng rồi chia sẻ URL cục bộ cùng thông tin đăng nhập ban đầu.
+  "121": Sao chép prompt
+  "122": Đã sao chép
+  "123": Sao chép thất bại
+  "124": Xem hướng dẫn bắt đầu nhanh đầy đủ

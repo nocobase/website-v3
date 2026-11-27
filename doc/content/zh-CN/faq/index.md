@@ -4,6 +4,8 @@ title: "常见问题"
 
 ## 产品与选型
 
+- [NocoBase 和 Vibe Coding 有什么区别？](vibe-coding.md)
+- [NocoBase 和低代码平台有什么区别？](low-code.md)
 - [NocoBase 2 与 NocoBase 3](from-v2.md)
 - [NocoBase 3 只是 Skills 吗？用户、组织和权限需要自己开发吗？](core-capabilities.md)
 - [NocoBase 3 使用什么前后端技术栈，支持哪些数据库？](technology-and-databases.md)

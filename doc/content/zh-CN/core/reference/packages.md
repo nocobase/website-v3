@@ -56,7 +56,7 @@ description: 按职责查找 NocoBase Core 的运行时、基础库、数据库�
 | [`@nocobase/db-mssql`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/db-mssql) | Microsoft SQL Server |
 | [`@nocobase/db-oracle`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/db-oracle) | Oracle Database |
 
-商业方言包括 `@nocobase/db-dameng`、`@nocobase/db-kingbase` 和 `@nocobase/db-oceanbase`。连接方式、数据库模式与版本核对见[数据库支持与版本兼容](compatibility.md)。
+商业方言包括 `@nocobase/db-dameng`、`@nocobase/db-kingbase` 和 `@nocobase/db-oceanbase`。连接方式、数据库模式与版本核对见[数据库支持与版本兼容](../developing-apps/compatibility.md)。
 
 ## Agent 与远程命令配套包
 

@@ -26,4 +26,4 @@ Studio 通过 Webhook 和定时查询识别新版本。修改版本线会重新�
 
 制品可以是应用压缩包，也可以是镜像。NocoBase 应用使用 `pnpm build --tar` 生成部署压缩包；镜像由 CI 或 Coding Agent 构建并推送到镜像仓库。
 
-版本页可查看制品、下载压缩包或进入部署操作。构建和上传方式见[配置仓库检查与 CI](../configure/checks.md)。交付到测试环境见[托管环境](../admin/environments.md)，生产见[生产交付](../project/release.md)。
+版本页可查看制品、下载压缩包或进入部署操作。交付到测试环境见[托管环境](../admin/environments.md)，交付到生产见[生产交付](../project/release.md)。

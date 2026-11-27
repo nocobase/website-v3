@@ -5,13 +5,9 @@ description: 按内置的质量标准测试每个项目，自动生成报告，�
 
 质量管理是 Studio 企业版（EE）的功能。它按一套明确的质量标准测试项目：由 Agent 调用成熟的测试工具实测，自动生成测试报告，再把发现的问题登记为跟进任务，修复后由后续测试确认。企业版镜像及授权请[联系我们](https://www.nocobase.com/zh-CN/contact/)获取。
 
-打开项目的「质量」页签，查看本项目的测试任务、核心场景、跟进任务和指标。有测试权限时，可以直接点「运行测试」。要切换项目，可从侧栏「质量」进入。选择 7、30 或 90 天，查看测试次数、新发现与已关闭的问题，以及通过率和测试耗时的变化。
-
-![按所选时间范围查看测试次数、问题和通过率趋势](https://static-docs.nocobase.com/studio-guide-zh-quality-20261127-7f24bb43813a.webp)
+![质量测试全景](https://static-docs.nocobase.com/studio-guide-flow-zh-CN-20261127-a7fb47c6afe4.svg)
 
 ## 核心能力
-
-![质量测试全景](https://static-docs.nocobase.com/studio-guide-flow-zh-CN-20261127-a7fb47c6afe4.svg)
 
 ### 内置质量标准，项目可以自定义
 
@@ -65,7 +61,11 @@ description: 按内置的质量标准测试每个项目，自动生成报告，�
 
 ## 开始使用
 
+打开项目的「质量」页签，查看测试结果和待跟进的问题。从侧栏「质量」可切换项目。
+
+![选择 7、30 或 90 天，查看测试次数、问题变化和通过率趋势](https://static-docs.nocobase.com/studio-guide-zh-quality-20261127-7f24bb43813a.webp)
+
 1. [质量配置](settings.md)：设置触发规则和检查维度。新项目默认不自动触发。
-2. [运行测试](runs.md)：选择范围，发起测试并跟进进度。
+2. 有测试权限时，点「运行测试」，[选择范围并发起测试](runs.md)。
 3. [查看测试报告](reports.md)：核对结果与证据，验收交付，处理跟进任务。
 4. [质量标准](standards.md)：查看各维度的指标和达标标准。

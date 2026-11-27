@@ -66,6 +66,7 @@ https://docs.nocobase.com/ja-JP/studio/setup/ に従って NocoBase Studio を�
 | --- | --- |
 | モデルの担当、実行マシン、共有スキル | エージェント管理：[エージェント](../configure/agents.md)、[ランタイム](../configure/runtimes.md)、[スキル](../project/skills.md) |
 | チェックの取得元と CI パイプライン | [リポジトリのチェックと CI を設定する](../configure/checks.md) |
+| リポジトリのプレビュービルド | [PR プレビューを設定する](../configure/pr-previews.md) |
 | プロジェクト情報とメンバー | プロジェクト管理：[プロジェクト設定](../project/settings.md) |
 | Git の接続とその他のコードプラットフォーム | システム管理：[コードプラットフォーム](../configure/git.md) |
 | データベース、アクセス URL、デプロイのパラメーター | リファレンス：[設定](../reference/config.md) |

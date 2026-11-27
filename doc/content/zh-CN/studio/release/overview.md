@@ -26,7 +26,7 @@ description: 跟踪 PR 预览、测试交付、版本和生产记录。
 
 ## 继续交付
 
-- 配置合并前验证：[PR 预览](previews.md)。
+- 合并前验证改动：[PR 预览](previews.md)。
 - 管理测试应用：[托管环境](../admin/environments.md)。
 - 创建版本和准备制品：[版本与发布](versions.md)。
 - 部署并登记生产版本：[生产交付](../project/release.md)。

@@ -21,4 +21,4 @@ Open **Project settings › Code repositories** and edit **Checks** on the repos
 
 ## Next steps
 
-[Invite members](invite.md) to the project. See [Configure repository checks and CI](../configure/checks.md) whenever you need external CI, other triggers, or key maintenance.
+Next, [invite members](invite.md) to the project. For other repository settings, see [Configure repository checks and CI](../configure/checks.md) and [Configure PR previews](../configure/pr-previews.md).

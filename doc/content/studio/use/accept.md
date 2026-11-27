@@ -25,9 +25,7 @@ Open attached screenshots to inspect them. Ask for missing evidence before makin
 
 **View changes** opens the PR on the code host. **Code & previews** brings together linked PRs, checks, and preview access.
 
-Once a PR preview is published, open it and try each acceptance scenario. See [PR previews](../release/previews.md) for build options.
-
-Idle previews may sleep and restart when opened. They are removed after the PR merges or closes.
+Once published, [open the PR preview](../release/previews.md), check its commit, and try each acceptance scenario.
 
 ## Accept
 

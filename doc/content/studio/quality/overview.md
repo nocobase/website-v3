@@ -5,13 +5,9 @@ description: Test each project against built-in quality standards, generate repo
 
 Quality management is available in Studio Enterprise Edition (EE). It tests a project against an explicit set of quality standards: Agents run established testing tools, Studio generates the test reports, and findings become follow-up tasks that later tests verify. [Contact us for Enterprise Edition](https://www.nocobase.com/contact/).
 
-Open a project’s **Quality** tab to see its testing tasks, core scenarios, follow-ups, and metrics. Select **Run test** to start a test if you have permission. To switch between projects, open **Quality** in the sidebar. Choose 7, 30, or 90 days to see test counts, new and closed problems, pass rates, and test duration over the period.
-
-![Test counts, findings, and pass rate over the selected period](https://static-docs.nocobase.com/studio-guide-en-quality-20261127-974c6ade0ca0.webp)
+![Quality testing workflow](https://static-docs.nocobase.com/studio-guide-flow-en-20261127-9b41b1faf872.svg)
 
 ## Key capabilities
-
-![Quality testing workflow](https://static-docs.nocobase.com/studio-guide-flow-en-20261127-9b41b1faf872.svg)
 
 ### Built-in quality standards that each project can customize
 
@@ -65,7 +61,11 @@ Core scenarios organize the project's features, module by module, into business 
 
 ## Get started
 
+Open the project’s **Quality** tab to see test results and outstanding findings. Use **Quality** in the sidebar to switch projects.
+
+![Choose 7, 30, or 90 days to see test counts, changes in findings, and pass rate trends](https://static-docs.nocobase.com/studio-guide-en-quality-20261127-974c6ade0ca0.webp)
+
 1. [Quality settings](settings.md): set triggers and dimensions. New projects have no automatic triggers.
-2. [Run tests](runs.md): choose a scope, start a test, and follow its progress.
+2. If you have testing permission, select **Run test** to [choose the scope and start a test](runs.md).
 3. [Read test reports](reports.md): check results and evidence, accept the delivery, and handle follow-ups.
 4. [Quality standards](standards.md): look up each dimension's metrics and pass criteria.

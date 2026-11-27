@@ -67,6 +67,10 @@
     },
     {
       "type": "page",
+      "path": "application-support/audit-logs"
+    },
+    {
+      "type": "page",
       "path": "application-support/foundation"
     }
   ]

@@ -1,6 +1,6 @@
 ---
 title: 先用 Core，再接入 Studio
-metaDescription: "了解 NocoBase Core 与 Studio 的两阶段接力方式：探索期用本地编码工具和 Core 快速做出 MVP，交付试用、反馈涌来后零迁移接入 Studio 并行打磨并投产。"
+metaDescription: "了解 NocoBase Core 与 Studio 的两阶段接力方式：探索期用本地 Coding Agent 和 Core 快速做出 MVP，交付试用、反馈涌来后零迁移接入 Studio 并行打磨并投产。"
 ---
 
 用 NocoBase 3 开发一个真实业务系统，不必一上来就搭建完整的团队协作和审批流程，也不用担心先轻后重会带来迁移成本。
@@ -9,9 +9,9 @@ metaDescription: "了解 NocoBase Core 与 Studio 的两阶段接力方式：探
 
 ## 两阶段推进全貌
 
-<figure class="two-stage-flow" aria-label="阶段一先理清业务并用本地编码工具与 Core 快速出 MVP，预览试用后零迁移接入 Studio 进入阶段二并行打磨与持续演进">
+<figure class="two-stage-flow" aria-label="阶段一先理清业务并用本地 Coding Agent 与 Core 快速出 MVP，预览试用后零迁移接入 Studio 进入阶段二并行打磨与持续演进">
 <div class="ts-stage">
-<p class="ts-head"><b>阶段一 · 快速成型</b><span>本地编码工具 + Core</span></p>
+<p class="ts-head"><b>阶段一 · 快速成型</b><span>本地 Coding Agent + Core</span></p>
 <div class="ts-steps">
 <div class="ts-card"><div class="ts-top"><span class="ts-pill human">业务与产品</span></div><b>理清业务边界</b><p>摸清痛点、核心数据、业务规则、角色权限与首版范围，避免 AI 在模糊需求上反复返工。</p></div>
 <div class="ts-card"><div class="ts-top"><span class="ts-pill brand">开发 + Core</span></div><b>本地快速出 MVP</b><p>直接复用权限、认证、流程等底座能力，用 Claude Code、Codex 等专注写业务，边出界面边对齐。</p></div>
@@ -87,11 +87,11 @@ MVP 跑通后，可以先部署到测试或预览环境（见[选择部署方式
 
 ## 为什么先用 Core，再接入 Studio
 
-| 维度 | 阶段一：本地编码工具 + Core | 阶段二：NocoBase Studio |
+| 维度 | 阶段一：本地 Coding Agent + Core | 阶段二：NocoBase Studio |
 | --- | --- | --- |
 | 核心目标 | 探索需求边界，尽快做出可运行的 MVP | 承接大量并行反馈，控质投产并持续演进 |
 | 工作节奏 | 本地边聊边改，分钟级高频对齐 | 按任务拆分、多分支并行推进、按流程验收 |
-| 主要参与者 | 业务/产品 + 开发者（本地编码工具） | 业务人员 + 开发者 + 24 小时 Agent 团队 |
+| 主要参与者 | 业务/产品 + 开发者（本地 Coding Agent） | 业务人员 + 开发者 + 24 小时 Agent 团队 |
 | 核心优势 | 起步零负担、方向调整最快，同时底座保证架构规范 | 并行吞吐高、评审与检查兜底、经验沉淀在团队里 |
 
 ## 真实节奏参考
@@ -100,7 +100,7 @@ MVP 跑通后，可以先部署到测试或预览环境（见[选择部署方式
 > 某大型制造企业构建一套包含 400+ 配置参数、各国标准与商务条款的跨国报价系统时，正是按这一节奏落地的：
 >
 > - **前 3 天**：产品经理深入一线走访销售与方案人员，梳理核心参数、报价规则与首版范围。
-> - **接下来 1 周**：开发在本地用编码工具 + NocoBase Core 搭出可运行的 MVP，一边演示一边与产品高频对齐定型。
+> - **接下来 1 周**：开发在本地用 Coding Agent + NocoBase Core 搭出可运行的 MVP，一边演示一边与产品高频对齐定型。
 > - **MVP 完成后**：部署预览环境给一线试用，意见迅速涌来；将仓库零迁移接入 Studio。
 > - **再经过 1 周**：Studio 调度 Agent 团队并行消化数百条一线反馈，走完检查、跨模型评审与验收，复杂报价首版正式投产。
 > - **后续约 2 个月**：沿同一套 Studio 节奏持续并行推进，逐步长出商机、方案、报价、订单、看板、资料库与 AI 助手等 10+ 业务模块。

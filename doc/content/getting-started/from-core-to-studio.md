@@ -1,17 +1,17 @@
 ---
 title: Start with Core, scale with Studio
-metaDescription: "Learn the two-stage way to build with NocoBase 3: build an MVP quickly with local coding tools and Core, then connect the same repository to Studio with zero migration to polish in parallel and ship reliably."
+metaDescription: "Learn the two-stage way to build with NocoBase 3: build an MVP quickly with a local Coding Agent and Core, then connect the same repository to Studio with zero migration to polish in parallel and ship reliably."
 ---
 
 Building a real business system with NocoBase 3 does not require setting up heavy team processes on day one, nor does starting light create migration work later.
 
-The recommended path is a **two-stage progression**: during early exploration, use local coding tools and NocoBase Core to align on requirements and build a working MVP quickly; once business colleagues start trying it out and feedback pours in, connect the exact same repository to NocoBase Studio with zero migration cost so an agent team can handle parallel changes with process and review guardrails.
+The recommended path is a **two-stage progression**: during early exploration, use a local Coding Agent and NocoBase Core to align on requirements and build a minimum viable product (MVP) quickly; once business colleagues start trying it out and feedback pours in, connect the exact same repository to NocoBase Studio with zero migration cost so an agent team can handle parallel changes with process and review guardrails.
 
 ## Two-stage progression at a glance
 
 <figure class="two-stage-flow" aria-label="Stage 1 clarifies business scope and builds an MVP locally with Core; after preview testing, the same repository connects to Studio with zero migration for Stage 2 parallel delivery and ongoing evolution">
 <div class="ts-stage">
-<p class="ts-head"><b>Stage 1 · Fast MVP</b><span>Local coding tools + Core</span></p>
+<p class="ts-head"><b>Stage 1 · Fast MVP</b><span>Local Coding Agent + Core</span></p>
 <div class="ts-steps">
 <div class="ts-card"><div class="ts-top"><span class="ts-pill human">Product &amp; business</span></div><b>Clarify business scope</b><p>Map pain points, core entities, business rules, roles, and first-release scope so AI does not rework vague requirements.</p></div>
 <div class="ts-card"><div class="ts-top"><span class="ts-pill brand">Developer + Core</span></div><b>Build an MVP locally</b><p>Reuse built-in permissions, auth, and workflows while using Claude Code or Codex to focus on business logic and iterate live.</p></div>
@@ -48,7 +48,7 @@ A developer initializes an application from the NocoBase Core default template o
 
 - **Reuse the foundation, focus on business logic**: Over 30 capabilities—users, permissions, authentication, databases, workflows, and approvals—are ready out of the box, leaving agents to implement your business logic.
 - **Align live and converge quickly**: Discuss and refine directly against running pages and APIs with product or business stakeholders, without waiting on tickets or status relays.
-- **Consistent architecture from day one**: Although iteration feels as fast as prototyping, Core enforces a standard directory layout, coding conventions, and versioned skills shipped with the packages. The result is a maintainable application ready for production, not a throwaway demo.
+- **Consistent architecture from day one**: Although iteration feels as fast as prototyping, Core enforces a standard directory layout, coding conventions, and versioned Skills shipped with the packages. The result is a maintainable application ready for production, not a throwaway demo.
 
 ## When to bring the project into Studio
 
@@ -65,7 +65,7 @@ Any of the following signs means the project has moved from solo exploration int
 
 ### Connect the existing repository with zero migration
 
-Moving from Core to Studio requires no rewrite and no structural migration. Studio operates on the exact same Core-based Git repository, using the same project layout, skills, and runtime model.
+Moving from Core to Studio requires no rewrite and no structural migration. Studio operates on the exact same Core-based Git repository, using the same project layout, Skills, and runtime model.
 
 Once Studio is running (try it locally with [Install and use Studio](collaborate-with-studio.md), or deploy it for your team via the [Installation overview](../studio/setup/index.md)), create a project linked to your existing repository without re-initializing it, and continue right where you left off (see [Bring the project into Studio](../guides/bring-into-studio.md)).
 
@@ -87,11 +87,11 @@ As the system runs, confirmed business rules and lessons learned accumulate in S
 
 ## Why start with Core before Studio
 
-| Dimension | Stage 1: Local coding tools + Core | Stage 2: NocoBase Studio |
+| Dimension | Stage 1: Local Coding Agent + Core | Stage 2: NocoBase Studio |
 | --- | --- | --- |
 | Primary goal | Explore requirements and ship a working MVP fast | Process parallel feedback, guard quality, and ship continuously |
 | Working cadence | Live local chat and edits, minute-by-minute alignment | Structured tasks, parallel branches, gated reviews and acceptance |
-| Key participants | Product/business + developer (local coding tool) | Business users + developers + 24/7 agent team |
+| Key participants | Product/business + developer (local Coding Agent) | Business users + developers + 24/7 agent team |
 | Core strength | Zero setup overhead and fastest direction changes on a clean architecture | High parallel throughput, quality guardrails, and shared team knowledge |
 
 ## A real-world timeline reference
@@ -100,7 +100,7 @@ As the system runs, confirmed business rules and lessons learned accumulate in S
 > A large manufacturing enterprise followed this exact two-stage pattern to build an international quoting system with 400+ configuration parameters, regional standards, and commercial terms:
 >
 > - **First 3 days**: Product managers interviewed regional sales and solution teams to clarify parameters, pricing logic, and first-release scope.
-> - **Next 1 week**: Developers built a working MVP locally using coding tools and NocoBase Core, aligning live with product managers until the core flows stabilized.
+> - **Next 1 week**: Developers built a working MVP locally using a Coding Agent and NocoBase Core, aligning live with product managers until the core flows stabilized.
 > - **MVP ready**: The team deployed a preview for frontline users; as feedback poured in, they connected the repository to Studio with zero migration.
 > - **1 more week**: Studio coordinated an agent team to resolve hundreds of frontline feedback items in parallel through automated checks, cross-model review, and acceptance—shipping version 1 to production.
 > - **Next ~2 months**: Keeping the same Studio rhythm, the team steadily expanded into 10+ modules covering leads, proposals, quotes, orders, dashboards, a document hub, and AI assistants.

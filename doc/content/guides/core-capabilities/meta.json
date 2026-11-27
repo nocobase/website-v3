@@ -92,20 +92,6 @@
           "path": "external-integrations"
         }
       ]
-    },
-    {
-      "type": "group",
-      "title": "Advanced scenarios",
-      "pages": [
-        {
-          "type": "planned",
-          "title": "Complex data scopes and permission configuration"
-        },
-        {
-          "type": "planned",
-          "title": "Complex approvals and multi-workflow coordination"
-        }
-      ]
     }
   ]
 }

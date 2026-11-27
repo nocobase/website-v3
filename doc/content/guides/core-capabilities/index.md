@@ -9,10 +9,9 @@ For developers and teams applying NocoBase Core capabilities to real business re
 
 Each topic guide stands on its own, so you can pick the capability you need and practice with the reference app or your own project:
 
-- **Complete CRM reference app**: The first six groups use [nocobase/doc-demo-crm](https://github.com/nocobase/doc-demo-crm) (English UI and sample data) as the main reference implementation. Its `main` branch contains the complete working CRM features—run it to inspect any implementation or apply the rules and prompts directly to your own app.
+- **Complete CRM reference app**: These tutorials use [nocobase/doc-demo-crm](https://github.com/nocobase/doc-demo-crm) (English UI and sample data) as the main reference implementation. Its `main` branch contains the complete working CRM features—run it to inspect any implementation or apply the rules and prompts directly to your own app.
 - **Installation and run instructions**: Follow the example project’s [README](https://github.com/nocobase/doc-demo-crm/blob/main/README.MD) to set up and start the app.
 - **Commercial features and external services**: Requirements such as commercial approvals, task center, or an authorized mailbox apply only to the topics that use them and do not affect other topics.
-- **Advanced scenarios**: Explore advanced usage and more flexible ways to build cross-department permissions, multi-branch approvals, and multi-workflow coordination.
 
 ## Courses
 
@@ -21,7 +20,7 @@ Each topic guide stands on its own, so you can pick the capability you need and 
 | Topic | Scenarios and related features |
 | --- | --- |
 | [Data modeling and schema changes](data-modeling.md) | Model CRM opportunities, products, and quotes with an ER diagram and data dictionary, add tables incrementally with migration scripts, and verify relations and transactional consistency. |
-| [Build a workspace and business pages](pages-and-ui.md) | Follow shadcn conventions to build the CRM sales workspace, filtered customer list, and detail tabs with UI Library. |
+| [Build business pages](pages-and-ui.md) | Follow shadcn conventions to build the CRM sales workspace, filtered customer list, and detail tabs with UI Library. |
 | [Role permissions and data scopes](roles-and-permissions.md) | Configure sales and manager action permissions, owner-based CRM customer scopes, and read-only sharing, then verify UI and API boundaries. |
 
 ### Workflows and automation
@@ -29,14 +28,14 @@ Each topic guide stands on its own, so you can pick the capability you need and 
 | Topic | Scenarios and related features |
 | --- | --- |
 | [Approval workflows and to-do center](approval-workflows.md) | Configure discount-threshold approval flows for CRM quotations and handle approvals, returns, rejections, and locking in the task center. |
-| [Scheduled tasks and due reminders](scheduled-reminders.md) | Run scheduled tasks (Scheduler) to scan CRM customer follow-up plans and quotation response deadlines and notify the current owner. |
+| [Scheduled tasks](scheduled-reminders.md) | Generate a CRM sales activity report at 1 a.m. in the team’s time zone and verify the reporting date across midnight. |
 
 ### Files and documents
 
 | Topic | Scenarios and related features |
 | --- | --- |
-| [Business attachments and file management](file-management.md) | Add requirement file upload, preview, and download to CRM customer details with customer-scoped access checks and unlinked temporary file cleanup. |
-| [Template printing and document generation](template-print.md) | Generate immutable DOCX quotations from confirmed CRM quotes using a fixed template and verify content snapshots and download permissions. |
+| [Configure file storage and use attachments](file-management.md) | Choose a local directory or private S3 bucket, then upload, preview, and download attachments with customer-scoped access. |
+| [Generate business documents from a template](template-print.md) | Download a draft quotation as an English DOCX, change a quantity and check the new total. For confirmed quotes, issue and download the saved document. |
 
 ### Notifications and email
 
@@ -58,10 +57,3 @@ Each topic guide stands on its own, so you can pick the capability you need and 
 | --- | --- |
 | [Bulk data import and background processing](data-import.md) | Combine background jobs and transactional validation to bulk-import CRM customers and contacts with conflict handling, error reports, and rollback. |
 | [External APIs and system integrations](external-integrations.md) | Use API keys and standardized endpoints to ingest external leads and sync CRM quotes or won deals with ERP and finance systems with idempotency and error handling. |
-
-### Advanced scenarios
-
-| Topic | Scenarios and related features |
-| --- | --- |
-| Complex data scopes and permission configuration (Planned) | Combine default access, restriction rules, and runtime permission screens to handle cross-department multi-condition scopes and overlapping grant resolution. |
-| Complex approvals and multi-workflow coordination (Planned) | Design conditional branches, joint approvals, return and resubmission, timeouts, delegation, and multi-workflow coordination in purchasing and expense scenarios. |

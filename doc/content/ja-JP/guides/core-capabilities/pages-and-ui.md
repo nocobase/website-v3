@@ -1,4 +1,4 @@
 ---
-title: "ワークスペースと業務画面の構築"
+title: "業務画面の構築"
 status: placeholder
 ---

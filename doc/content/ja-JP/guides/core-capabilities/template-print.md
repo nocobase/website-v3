@@ -1,4 +1,4 @@
 ---
-title: "テンプレート印刷と帳票生成"
+title: "テンプレートから帳票ファイルを生成する"
 status: placeholder
 ---

@@ -37,7 +37,7 @@ metaDescription: 在 CRM 客户详情接入遵守角色权限的销售助手，�
 将第一节的权限与安全边界连同下面的提示词交给开发 Agent：
 
 ```prompt
-在 CRM 客户详情里增加一个“销售助手”标签页，并把 AI 模型管理接到系统设置中：
+在 CRM 客户详情里增加一个“销售助手”标签页，使用管理员已启用的对话模型生成跟进草稿。
 - 生成跟进草稿时，只读取当前用户有权访问的该客户资料、联系人、跟进记录、商机和报价，以及当前用户有权检索的产品知识库。
 - 输出客户摘要、建议下一步、引用的知识文档及版本号、缺少依据的说明，以及一份可编辑的跟进草稿。
 - 不能自动发邮件、改报价或直接写跟进记录；由销售核对修改后手动保存，只读共享用户不能保存。
@@ -79,12 +79,12 @@ const draft = FollowUpDraftResult.parse(await session.get());
 
 应用存储模型密钥需要配置 `secrets.keys`（在私有 `config.yml` 中设置主密钥，切勿提交到仓库）。管理员登录应用后：
 
-1. 打开 **系统设置 → AI → AI models**，点击 **+ Add service**。
+1. 打开 **系统设置 → AI → 模型服务**，点击 **Add service**。
 2. 选择模型服务商（例如 **DeepSeek**、**OpenAI** 或 **OpenAI-compatible**），填写名称、Base URL，并在 **API key** 字段输入自己的真实密钥。密钥为只写加密保存，切勿写入提示词或截图。
-3. 点击 **Fetch models** 或手动添加 `chat` 类型模型，执行 **Test connection** 确认连通。
+3. 点击 **Fetch models** 获取模型，或输入模型 ID 并点击 **Add model**。勾选要使用的模型，确认类型为 **Chat**，再点击 **Test connection**。
 4. 打开 **Enabled** 开关并保存。
 
-![在系统设置中配置真实模型服务与加密保存 API 密钥](/assets/guides/crm-assistant-models.png)
+![在 Model services 中添加 DeepSeek 服务，并选择对话模型 deepseek-chat](/assets/guides/crm-assistant-models.png)
 
 如果尚未启用任何 `chat` 模型，客户详情的 **Sales assistant** 标签页会直接提示联系管理员配置模型，不会触发空调用。
 
@@ -120,6 +120,6 @@ const draft = FollowUpDraftResult.parse(await session.get());
 
 ## 小结与下一步
 
-**完成的标志**：已在 **AI models** 启用可用对话模型；销售在客户详情能生成带准确文档版本引用和缺口提醒的跟进草稿，生成本身不写入业务数据，经人工编辑保存后正确出现在跟进记录中，且无关销售、只读共享与移交后的权限边界均实时生效。
+**完成的标志**：已在 **Model services** 启用可用对话模型；销售在客户详情能生成带准确文档版本引用和缺口提醒的跟进草稿，生成本身不写入业务数据，经人工编辑保存后正确出现在跟进记录中，且无关销售、只读共享与移交后的权限边界均实时生效。
 
 回到[专题实战](index.md)查看其余 Core 能力专题，或前往 [Agents 插件文档](../../core/using-plugins/agents-and-knowledge/agents.md)深入了解实时聊天面板、业务 Skills 与机器编程助手的接入方式。

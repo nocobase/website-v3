@@ -37,12 +37,12 @@ Share the scope table and sync rules above with this prompt to your coding Agent
 
 ```prompt
 Add external API and integration support to the CRM:
-1. Add a personal "API keys" page in System settings where users can issue expiring scoped keys using the "CRM leads & customers" and "ERP & finance sync" scopes or quick presets, show the plaintext secret once, and rotate or revoke keys immediately.
+1. Let salespeople create expiring personal API keys from a lead intake template. Sales managers also need an ERP and finance sync template. Each key should work only within its owner’s permissions.
 2. Add external lead intake and customer lookup APIs that accept scoped API keys, reuse the customer matching rules and skip/update/reject conflict modes, enforce Idempotency-Key protection, and assign new leads to the key owner.
 3. Add an "External integrations" page in System settings to configure the ERP & finance sync target (defaulting to a local mock receiver with an HTTP 503 failure toggle), track outbound delivery logs, external order references, and attempts for confirmed quotations and won opportunities, and support manual retry with the same idempotency key; also show a sync action on confirmed quotation details.
 ```
 
-### Configure key scopes and the management page
+### Configure CRM permissions and issue a personal key
 
 `@nocobase/app-plugin-api-keys` provides key authentication and the self-service `/api/apiKeys` endpoints. The application connects two pieces:
 
@@ -55,13 +55,13 @@ for (const path of ['/leads', '/customers', '/deliveries', '/deliveries/*', '/sy
 }
 ```
 
-Sign in and open **System settings → API keys** to issue scoped keys:
+As Alex, open the account menu at the top right, go to **Personal settings → Integrations → API keys**, and select **New key**. Administrators use the separate **System settings → API keys** page to manage system keys and review member keys.
 
-1. Click the **Lead intake** preset (`CRM leads & customers: Write`, `90 days`), name the key **Website lead capture**, and click **Create API key**.
-2. Copy the one-time secret shown in the alert banner immediately—after leaving the page, only the key prefix remains visible.
-3. As an administrator or sales manager, also issue an **ERP & finance order sync** key using the **ERP & finance sync** preset. Sales accounts without `crm.integrations` permissions see that scope disabled automatically.
+1. Enter **Website lead capture** as the name and keep **Custom** selected. Under **What it can do**, choose **Lead intake** and check the selected customer and contact operations and the 90-day expiry.
+2. Select **Create key**, copy the secret to a secure place while it is visible, and select **I have saved it**. Use this key for the lead intake request below.
+3. For order sync, sign in as an administrator or sales manager with sync access. Issue a separate key from that account’s personal settings using the **ERP & finance sync** template.
 
-![API keys page in System settings showing scope presets, permission levels, and active keys](/assets/guides/crm-api-keys.png)
+![Alex selects the Lead intake template and a 90-day expiry for Website lead capture in personal settings](/assets/guides/crm-api-keys.png)
 
 ### Submit external leads with an API key
 
@@ -109,7 +109,7 @@ Calling an external ERP inline inside a quotation save request risks blocking CR
 
 ### Trigger synchronization and inspect delivery logs
 
-1. Open **System settings → External integrations** and verify **ERP & Finance sync target** points to `mock://erp-finance/orders` with **Sync enabled** turned on. Replace the endpoint URL and optional `X-Integration-Secret` when connecting a real ERP/finance webhook.
+1. Open **System settings → Data and files → External integrations** and verify **ERP & Finance sync target** points to `mock://erp-finance/orders` with **Sync enabled** turned on. Replace the endpoint URL and optional `X-Integration-Secret` when connecting a real ERP/finance webhook.
 2. Under **Beacon BioLabs**, create a `won` opportunity (such as **Beacon enterprise rollout**) or open a confirmed quotation (see [Approval workflows and to-do center](approval-workflows.md)).
 3. Click **Sync to ERP** on a confirmed quotation detail page, or trigger won-deal sync using a key with `crm.integrations: write`:
 
@@ -118,7 +118,7 @@ curl -i -X POST "$APP_URL/api/crmIntegrations/sync/opportunities/<opportunityId>
   -H "x-api-key: $ERP_API_KEY"
 ```
 
-4. Return to **System settings → External integrations**. Under **Outbound sync deliveries**, the entry moves to **Succeeded** with `Attempts: 1 (200)` and an `ERP-SO-...` reference.
+4. Return to **System settings → Data and files → External integrations**. Under **Outbound sync deliveries**, the entry moves to **Succeeded** with `Attempts: 1 (200)` and an `ERP-SO-...` reference.
 
 ![External integrations settings showing the ERP sync target and outbound delivery log with retry action](/assets/guides/crm-external-integrations.png)
 

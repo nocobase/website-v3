@@ -47,7 +47,7 @@ test.each(['en', 'zh-CN', 'ja-JP'])('scopes tutorial navigation to the current s
   expect(tree.filter(node => node.type !== 'folder').map(node => node.key)).toEqual(['guides/index']);
 
   const coreNav = tutorialNavigation(tree, 'guides/core-capabilities/index');
-  expect(coreNav.nodes.filter(node => node.type === 'group')).toHaveLength(7);
+  expect(coreNav.nodes.filter(node => node.type === 'group')).toHaveLength(6);
 
   const archive = site.sections(lang).find(section => section.id === 'legacy');
   expect(archive.showInNav).toBe(false);

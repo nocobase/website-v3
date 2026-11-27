@@ -3,11 +3,9 @@ title: "Role permissions and data scopes"
 metaDescription: Assign sales and manager roles, customer ownership, and read-only sharing, then verify related records, workspace summaries, and direct API access.
 ---
 
-Configure distinct action permissions and customer record scopes for salespeople and sales managers in the CRM app. Before starting:
+When a sales team shares one CRM app, salespeople should not edit each other's customers or change product catalog prices, while managers need to oversee all customers and assign ownership. Teams also need a way to share a customer read-only for collaboration or hand it over to another owner. You’ll configure Sales and Sales manager roles in the CRM app with distinct page access, operations, and customer record scopes, then verify read-only sharing, ownership handover, and direct API enforcement.
 
-- Prepare separate accounts for an administrator, two salespeople, and a manager. Sales and manager accounts must not have administrator or other broad grants.
-- Have a manager assign owners to existing unassigned customers. Do not open unassigned customers to all signed-in users.
-- Back up the database. Migrations that add permission and record-scope fields cannot be rolled back automatically; undoing them requires restoring a matching database backup.
+You can follow along in your own NocoBase Core project, or run the [complete CRM example](https://github.com/nocobase/doc-demo-crm/blob/main/README.MD) to explore the configured roles and sharing behavior.
 
 **Modules covered**
 
@@ -16,7 +14,7 @@ Configure distinct action permissions and customer record scopes for salespeople
 - [Users](../../core/using-plugins/authentication/users.md)
 - [Authentication](../../core/using-plugins/authentication/sign-in.md)
 
-## Define roles, action permissions, and record scope
+## Define responsibilities for salespeople and managers
 
 Decide separately what a user can do and which records they can act on. Opening the customer page does not imply permission to edit every customer. Receiving access to a shared customer does not imply permission to change it.
 
@@ -38,14 +36,26 @@ Roles assign responsibilities to users, action permissions determine what they c
 
 [Default access](../../core/using-plugins/authorization/default-access.md) adds a common record scope, such as public customers, for users who already have the action permission. It does not mean “only my customers.” This guide limits access by role and ownership, then adds sharing with a selected salesperson.
 
-## Configure users and roles
+## Configure pages, business objects, and record scopes in System settings
 
-Assign roles through [user management](../../core/using-plugins/authentication/users.md). [Authentication](../../core/using-plugins/authentication/sign-in.md) identifies the current user; permission rules determine what they can read or change. Both pages and server APIs must check access. The complete example's [permission definitions](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/crm-permissions.ts) and [access routes](https://github.com/nocobase/doc-demo-crm/blob/main/server/routes/crm-access.ts) implement these rules.
+As an administrator, open **System settings → Roles and permissions → Roles**. Edit the preset **Sales** or **Sales manager** role. Review the three tabs below. After making changes, select **Review and save**, check the changes, then select **Confirm and save**.
 
-Send this request to the Agent in the application root:
+| Tab                 | What to configure                                                                                                                                                                                                                                                                   |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Page access**     | Grant Sales workspace, Customers, Products, and My tasks independently. Selecting a page enables the operations it uses. Review the Operations tab and clear actions the role does not need.                                                                                        |
+| **Operations**      | Expand Customers, Contacts, Follow-ups, Opportunities, Quotes, Products, and Bulk customer import separately. Sales uses **Customers I own** for customer-related objects, reads the full product catalogue, and sees **My submissions** for imports. Managers can use all records. |
+| **System settings** | Grant integration or workflow administration separately. A manager who handles an assigned quotation approval needs a separate grant to configure the approval workflow.                                                                                                            |
+
+![The Sales role in the Operations tab. Customer, contact, and opportunity views are scoped to owned customers. Assign owner and Manage customer sharing are unchecked.](/assets/guides/crm-sales-role-operations.png)
+
+Under **Quotes**, editing, submitting, withdrawing, approving, rejecting, returning, and issuing a document are separate actions. Sales can submit their own quotations. Managers can decide a quotation only when assigned its task. Creating a quotation requires selecting a product. Keep product View enabled and check the product scope on the quote action. Configure attachment, reminder, and sales assistant actions under **Customers**. Mail and knowledge keep their own access controls.
+
+The example’s [business permission definitions](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/crm-permissions.ts) declare the available actions. Its [role editor configuration](https://github.com/nocobase/doc-demo-crm/blob/main/client/pages/settings/permission-workspace.ts) connects them to pages and objects.
+
+If you are building from a basic CRM, ask the Agent to set up the roles:
 
 ```prompt
-Add salesperson and sales manager roles to the CRM.
+Configure Sales and Sales manager in the role editor. Let me grant the sales workspace, customer, product, and task pages independently, and control contacts, follow-ups, opportunities, and quotes separately.
 
 - Salespeople maintain only their own customers. New customers belong to their creator.
 - Managers maintain all customers, assign owners, and grant or revoke read-only sharing with selected salespeople.
@@ -54,72 +64,46 @@ Add salesperson and sales manager roles to the CRM.
 - Administrators assign roles to selected users. Do not automatically grant CRM access to everyone who signs in.
 ```
 
-After implementation, sign in as an administrator and assign roles to the test users through user management in **System settings**. Assignments should be visible and editable from user details. Inspect existing roles to ensure no other grant broadens access. Do not assign the sales role to all signed-in users.
+<a id="configure-users-and-roles"></a>
+
+## Assign roles to users
+
+As an administrator, open **System settings → Accounts and permissions → Users**. Edit Alex and Taylor and assign **Sales** to each, then assign **Sales manager** to Morgan. Check **Assigned roles** in the list and review any other roles that could broaden these users’ access.
 
 The verification steps below call the salespeople Alex and Taylor, and the manager Morgan. You can use different names, but use three separate users and independent browser sessions. Set their passwords in your own test environment; keep them out of source files and screenshots.
 
-## Verify salesperson and manager action permissions
+## Verify role permissions and customer sharing
 
-Sign in separately as Alex and Morgan. Use a practice product so price changes do not affect existing quote data.
+### Try customer ownership and read-only sharing in the UI
 
-| Action | Expected result |
-| --- | --- |
-| Alex opens the product catalog | Can read products, but cannot create products or change prices |
-| Morgan creates a practice product and changes its price | Changes can be saved; Alex sees the updated price after refreshing |
-| An administrator temporarily removes Taylor's CRM role; Taylor signs in again and opens a customer page directly | Customer business access is denied; restore the sales role and sign in again before continuing |
-
-If a check fails, inspect role assignments in user details, then the actions granted to the role. Do not grant administrator access to make the test pass. Menu and button visibility alone cannot prove permissions work; the final API checks must also reject unauthorized actions.
-
-## Configure and verify customer record scope
-
-Prepare a customer record with contacts, follow-ups, and a quote (for example **Northstar Labs → Northstar sales workspace → Annual rollout proposal**—see [Data modeling and schema changes](data-modeling.md#connect-business-operations-and-transactional-saves) and [Build a workspace and business pages](pages-and-ui.md#continue-the-customer-follow-up-and-review-the-quote), or use the seeded sample data).
-
-Use independent browser sessions for Morgan, Alex, and Taylor. Complete each action and its check before moving to the next row. Start with no additional sharing grants for Northstar Labs. If other customers exist, have the manager assign their owners explicitly and judge list results against those assignments.
+Use independent browser sessions for Morgan, Alex, and Taylor, and pick a customer record with contacts, follow-ups, and a quote (for example **Northstar Labs → Northstar sales workspace → Annual rollout proposal**—see [Data modeling and schema changes](data-modeling.md#connect-business-operations-and-transactional-saves) and [Build business pages](pages-and-ui.md#continue-the-customer-follow-up-and-review-the-quote), or use the seeded sample data). Make sure Northstar Labs starts with no extra sharing grants, then walk through these four steps in order:
 
 | Action | Check immediately |
 | --- | --- |
-| Morgan opens Northstar Labs **Overview** and assigns Alex as owner; create or select **Harbor Design** and assign it to Taylor | Alex can open Northstar Labs, its opportunity, and its quote, but not Harbor Design; Taylor has the opposite scope |
-| Alex creates **Cedar Studio** | Alex automatically owns it; Taylor cannot read it, while Morgan can |
+| Morgan opens Northstar Labs **Overview** and assigns Alex as owner | Alex can open and edit the customer, its opportunity, and its quote; Taylor does not see it in lists, search, or workspace counts |
+| Morgan selects Taylor in Northstar Labs **Read-only sharing** and saves (keeping Alex as owner) | Taylor can view the customer, existing follow-ups, and quote, with no working edit or create controls |
+| Morgan revokes Taylor's sharing grant for Northstar Labs | Refreshing denies Taylor access to the customer and quote, and searches and workspace counts no longer include its records; Alex can still maintain them |
+| After confirming revocation, Morgan transfers Northstar Labs to Taylor (without sharing it with Alex) | Taylor can maintain the customer and related records with existing contacts, follow-ups, and quote intact; Alex loses access on refresh |
 
-As Alex, open Northstar Labs, change a customer detail, and save it. Morgan should see the change. Open Harbor Design's URL directly as Alex; reading must be denied. Check that workspace counts, searches, and recent follow-ups also respect customer ownership.
-
-## Check read-only sharing, revocation, and handover
-
-Keep Alex as the owner of Northstar Labs. Confirm that Taylor cannot read it, then complete these steps in order:
-
-| Action | Check immediately |
-| --- | --- |
-| Morgan selects Taylor in Northstar Labs **Read-only sharing** and saves, keeping Alex as owner | Taylor can read the customer, existing follow-ups, and Annual rollout proposal, with no working edit or create controls; Harbor Design remains editable |
-| Morgan revokes Taylor's sharing grant for Northstar Labs | Refreshing Taylor's open customer and quote pages denies access; searches, workspace counts, and recent rows no longer include its business records. Alex can still maintain them |
-| After the revocation checks pass, Morgan transfers Northstar Labs from Alex to Taylor, without sharing it with Alex | Taylor can maintain the customer and related records; Alex loses access on refresh. Taylor sees the existing contacts, follow-ups, and quote, still totaling `1150.00` |
-
-[Sharing rules](../../core/using-plugins/authorization/sharing-rules.md) let Taylor read Northstar Labs and its related records without editing them. Taylor still needs a role that permits viewing customers.
-
-Check revocation before transferring ownership. Once Taylor owns the customer, ownership grants access even without sharing. After transfer, Alex loses access while original follow-up authors and quote contents remain unchanged.
+[Sharing rules](../../core/using-plugins/authorization/sharing-rules.md) extend record scope without granting action permissions; Taylor's role still needs View for each related object (for example, disabling quote View blocks opening the quote or downloading its document even while the customer stays shared). Check revocation before transferring ownership because once Taylor owns the customer, ownership grants access even without sharing.
 
 ![A sales manager assigns the customer owner and grants read-only sharing to a selected salesperson.](/assets/guides/customer-sharing.png)
 
 ![During the sharing stage, Taylor can view Alex's customer with no edit or create controls.](/assets/guides/shared-customer-read-only.png)
 
-## Have the Agent check API permissions
+### Have the Agent verify remaining permission and API boundaries
 
-Ask the Agent to test with separate accounts and data, without using administrator access for salespeople. Check direct API requests as well as page actions:
+Hiding buttons in the UI is not enough to prove permissions work. Instead of manually switching accounts in the browser for every edge case, ask the Agent to test product catalog restrictions, unauthorized requests, and direct API boundaries with separate non-admin accounts:
 
-| Check | Expected result |
-| --- | --- |
-| A salesperson tries to create a product or change its price | Request rejected; a manager can perform the same action |
-| A user without a CRM role or an anonymous visitor requests customer data | Request rejected |
-| Alex tries to read or edit an unshared customer owned by Taylor | Request rejected; data unchanged |
-| A read-only user tries to modify a shared customer | Request rejected; data unchanged |
-| Revoke Taylor's sharing, then request the original customer and quote | Access denied |
-| Alex saves a customer and quote, transfers ownership to Taylor, then resends the original save requests | Permissions checked again; requests rejected instead of returning earlier successful responses |
-| Read workspace summaries and related records | Same scope as the customer |
-| Assign roles and upgrade the database | No accidental broad grants; existing fields and quote amounts retained |
+```prompt
+Test the permission boundaries with separate salesperson, sales manager, and no-CRM-role accounts (do not use an admin account for salespeople), including direct API calls:
+- Salespeople cannot create products or change prices, while managers can; users without a CRM role and anonymous visitors cannot access customer data.
+- Salespeople cannot read or edit an unshared customer owned by someone else, and read-only shared users cannot edit a shared customer.
+- After revoking sharing or transferring ownership, both new reads and replayed earlier save requests from the previous user are rejected; workspace counts and related records always match customer scope.
+```
 
-When resending a request, the Agent should preserve the original identity and complete request, including its identifier, and confirm that it cannot bypass the changed permissions.
+When replaying a save request, preserve the original identity and complete request (including its request identifier) to confirm that changed permissions are re-checked rather than returning an earlier successful response. If any check fails, inspect role assignments in user details first, then the role's action permissions and record scopes—do not grant administrator access to make a check pass.
 
-## Summary and next steps
-
-**Done when**: Page and API permissions have been checked with separate salesperson, manager, and read-only sharing accounts. Revoking sharing or transferring a customer applies the new access rules immediately, old requests cannot bypass them, and existing contacts, follow-ups, and quote amounts remain intact.
+**Done when**: You have walked through customer ownership, read-only sharing, revocation, and handover in the UI, and the Agent has verified product catalog restrictions, unauthorized access, and direct API boundaries with separate accounts.
 
 To add a review workflow for business records, see [Approval workflows and to-do center](approval-workflows.md).

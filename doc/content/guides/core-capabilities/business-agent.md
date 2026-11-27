@@ -37,7 +37,7 @@ The [Agents plugin](../../core/using-plugins/agents-and-knowledge/agents.md) man
 Send the permission boundaries above together with this request to your development Agent:
 
 ```prompt
-Add a Sales assistant tab to CRM customer details and expose AI model management in System settings:
+Add a Sales assistant tab to CRM customer details. Use a chat model enabled by the administrator to generate follow-up drafts.
 - When generating a follow-up draft, read only the selected customer's details, contacts, follow-ups, opportunities, and quotes that the signed-in user can access, along with authorized Product knowledge articles.
 - Return a customer summary, suggested next step, cited knowledge articles with version numbers, explicit missing-evidence gaps, and an editable follow-up draft.
 - Never send email, modify quotes, or save follow-ups automatically. Let the salesperson edit and save manually, and block saving for read-only shared users.
@@ -79,12 +79,12 @@ const draft = FollowUpDraftResult.parse(await session.get());
 
 Storing model keys requires `secrets.keys` in your private `config.yml` (never commit real keys). Sign in as an administrator:
 
-1. Open **System settings → AI → AI models** and click **+ Add service**.
+1. Open **System settings → AI → Model services** and select **Add service**.
 2. Choose a provider (such as **DeepSeek**, **OpenAI**, or **OpenAI-compatible**), enter a service name and Base URL, and paste your real key into the write-only **API key** field. Never put API keys in prompts or screenshots.
-3. Click **Fetch models** or add a `chat` model manually, then run **Test connection**.
+3. Select **Fetch models**, or enter a model ID and select **Add model**. Check the model you want to use, confirm its type is **Chat**, and select **Test connection**.
 4. Turn on **Enabled** and save.
 
-![Configuring a model service and write-only API key in System settings](/assets/guides/crm-assistant-models.png)
+![Adding a DeepSeek service in Model services with deepseek-chat selected as a chat model](/assets/guides/crm-assistant-models.png)
 
 Until at least one `chat` model is enabled, the **Sales assistant** tab shows setup guidance instead of issuing failed requests.
 
@@ -120,6 +120,6 @@ Automated verification covers two layers: the example's [server integration test
 
 ## Summary and next steps
 
-**Done when**: An enabled chat model is configured under **AI models**, salespeople can generate follow-up drafts with accurate document version citations and missing-evidence callouts, generation writes no CRM data on its own, edited drafts save cleanly to **Follow-up records**, and unauthorized, read-only shared, and revoked-access boundaries hold in real time.
+**Done when**: An enabled chat model is configured under **Model services**, salespeople can generate follow-up drafts with accurate document version citations and missing-evidence callouts, generation writes no CRM data on its own, edited drafts save cleanly to **Follow-up records**, and unauthorized, read-only shared, and revoked-access boundaries hold in real time.
 
 Return to [Topic tutorials](index.md) to explore other Core capabilities, or read the [Agents plugin guide](../../core/using-plugins/agents-and-knowledge/agents.md) to add live chat panels, business Skills, or machine coding agents.

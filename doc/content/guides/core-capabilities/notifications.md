@@ -26,7 +26,7 @@ Automatic confirmation at a discount of 10% or less also sends a result. Keep me
 
 ## Prepare in-app notifications
 
-This guide uses [in-app notifications](../../core/using-plugins/notifications/in-app.md), without external accounts or credentials. Have the Agent configure `inbox` as an `in-app` channel and provide an inbox, following the installed version's guidance. The [notification service](../../core/using-plugins/notifications/notification.md) handles delivery, results, and retries.
+Enable [in-app notifications](../../core/using-plugins/notifications/in-app.md) and configure `inbox` as an `in-app` channel. Select the inbox button in the header, then **Open inbox** to see the full list. The [notification service](../../core/using-plugins/notifications/notification.md) handles delivery, records the outcome, and retries failed attempts.
 
 Other channels need separate configuration. See [email and group bots](../../core/using-plugins/notifications/providers.md) and [Web Push](../../core/using-plugins/notifications/web-push.md). This example has not verified them. Keep credentials out of prompts and screenshots.
 
@@ -54,7 +54,7 @@ Create these exercise records to verify inbox delivery:
 
 ![Alex's inbox with assignment and quotation result messages](/assets/guides/crm-notification-inbox.png)
 
-Open **System settings → Notifications** to inspect actual templates, events and delivery records. Preview renders fixed sample content without sending. Business messages stay in English even when the interface language changes.
+As an administrator, open **System settings → Messages → Notifications**. Under **Notification kinds**, select **Customer assigned to you** to preview sample content. Open **Delivery log** to see actual attempts. To trace a specific assignment or quotation, open **CRM notification history** in the same settings category and select **View delivery** on the event.
 
 ## Check delivery and business links
 
@@ -67,7 +67,7 @@ Saving the business operation also records the pending notification. A temporary
 
 In the complete example, [owner changes](https://github.com/nocobase/doc-demo-crm/blob/main/server/routes/crm-access.ts) and [quote decisions](https://github.com/nocobase/doc-demo-crm/blob/main/server/lifecycles/quote-approval.ts) save pending records, and the [CRM notification service](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/crm-notifications.ts) submits them without resending submitted records.
 
-![Actual notification delivery records](/assets/guides/crm-notification-logs.png)
+![The delivery log shows inbox results and attempt counts for an assignment, a confirmed quotation, and a follow-up reminder](/assets/guides/crm-notification-logs.png)
 
 Use separate accounts to check:
 
@@ -78,10 +78,10 @@ Use separate accounts to check:
 
 The Agent should automatically check duplicate requests, unauthorized access, failed saves, and temporary notification failures. Retrying after service acceptance but before the business record updates should still deliver only once. Review its report for actual results and any incomplete checks.
 
-The management page only displays delivery results. For a terminal delivery failure, fix its cause and use the notification service’s authorized retry action. External channels and deployments with multiple app instances need checks in those environments.
+If a delivery fails, fix its cause. A user with management access can then open the failed entry in **Delivery log**, select **Retry**, and enter a reason. Check external channels and multi-instance deployments in their respective environments.
 
 ## Summary and next steps
 
 **Done when**: Assignment and quotation-result notifications reach the intended inbox, and business events can be matched to delivery records. Repeated requests do not add messages, old notifications cannot bypass current customer access, marking a message read does not close its approval task, and recovery after a temporary failure has been checked.
 
-To scan due follow-ups on a schedule and notify owners automatically, see [Scheduled tasks and due reminders](scheduled-reminders.md).
+To run a CRM task at a fixed time each day, see [Scheduled tasks](scheduled-reminders.md).

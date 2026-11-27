@@ -92,20 +92,6 @@
           "path": "external-integrations"
         }
       ]
-    },
-    {
-      "type": "group",
-      "title": "复杂场景进阶",
-      "pages": [
-        {
-          "type": "planned",
-          "title": "复杂数据范围与授权配置"
-        },
-        {
-          "type": "planned",
-          "title": "复杂审批与多流程协调"
-        }
-      ]
     }
   ]
 }

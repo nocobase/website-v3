@@ -130,4 +130,4 @@ Ten licenses on the new quote and twelve on the old quote happen to produce the 
 
 Your application now has a multi-table model for opportunities, products, quotes, and quote lines, and you have walked through the core NocoBase workflow for evolving schemas safely: confirm the ER diagram and data dictionary first, apply incremental migration scripts, and verify relations and consistency through transactional writes and tests.
 
-Next, continue with [Build a workspace and business pages](pages-and-ui.md) to turn these business records into a daily sales workspace with filtered lists and customer detail tabs.
+Next, continue with [Build business pages](pages-and-ui.md) to turn these business records into a daily sales workspace with filtered lists and customer detail tabs.

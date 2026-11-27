@@ -92,20 +92,6 @@
           "path": "external-integrations"
         }
       ]
-    },
-    {
-      "type": "group",
-      "title": "高度な応用シナリオ",
-      "pages": [
-        {
-          "type": "planned",
-          "title": "複雑なデータ範囲と権限設定"
-        },
-        {
-          "type": "planned",
-          "title": "複雑な承認と複数フローの連携"
-        }
-      ]
     }
   ]
 }

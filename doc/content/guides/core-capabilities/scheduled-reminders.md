@@ -1,96 +1,69 @@
 ---
-title: "Scheduled tasks and due reminders"
-metaDescription: Schedule CRM customer follow-up plans and confirmed quotation response deadlines, then notify current owners through in-app notifications when due.
+title: "Scheduled tasks"
+metaDescription: "Generate a CRM sales activity report at 1 a.m. in the team’s time zone and verify the reporting date with follow-ups recorded on either side of midnight."
 ---
 
-Schedule customer follow-ups and response deadlines for confirmed quotations in the CRM app, then run a scheduled task to notify the current owner when they become due.
+A sales manager opening the CRM in the morning wants to know how many customers, opportunities and follow-ups the team added yesterday. Use a scheduled task to generate a daily team report. **Sales activity reports** shows the latest 30 dates with a report.
 
-When trying the complete example, prepare separate administrator, salespeople Alex and Taylor, and manager Morgan accounts (see [account and role setup](roles-and-permissions.md#configure-users-and-roles)) and a working in-app notification channel (see [Business events and in-app notifications](notifications.md)).
+In the [CRM example](https://github.com/nocobase/doc-demo-crm/tree/main), sales managers can view team reports. Administrators can also check the schedule’s run history.
 
 **Modules covered**
 
-- [Scheduler](../../core/using-plugins/automation/scheduler.md)
-- [Notifications](../../core/using-plugins/notifications/notification.md)
-- [In-app messages](../../core/using-plugins/notifications/in-app.md)
+- [Scheduled tasks](../../core/using-plugins/automation/scheduler.md)
 
-## Define follow-up times, quotation deadlines and reminder rules
+## Daily report rules
 
-A plan has a title, due time and type. Enter time in the browser's local timezone; the application stores UTC. A quotation response deadline is an internal follow-up plan. It neither changes an issued document nor expires a quotation.
+Agree on what “yesterday” means for the sales team. This team works in Shanghai (`Asia/Shanghai`). The run at 1 a.m. on November 26 produces the **November 25** report. It counts records created from midnight at the start of November 25 up to midnight at the start of November 26. A record created exactly at the second midnight belongs to November 26.
 
-| State when checked | Result |
-| --- | --- |
-| Due, not yet notified, with an active customer and owner | Notify the current owner once |
-| Not due, completed, cancelled or already notified | Do not notify |
-| Customer inactive, owner missing or disabled | Defer and check again after recovery |
-| Quotation's opportunity won or lost | Do not send a quotation reminder |
+Count each activity by its own creation time. Logging a follow-up yesterday for a long-standing customer adds one follow-up to yesterday’s report. The customer itself still counts toward the day it was created.
 
-Shared readers can view plans but cannot create, complete or cancel them. Cancel and create another plan to change the time. Reading a message does not complete follow-up, and completing or cancelling a plan does not recall an already queued notification.
+## Set the run time and time zone
 
-## Connect scheduling to existing notifications
-
-[Core Scheduler](../../core/using-plugins/automation/scheduler.md) supplies definitions, occurrence history and pause/resume operations. [Notification](../../core/using-plugins/notifications/notification.md) handles delivery through the in-app notification channel (see [Business events and in-app notifications](notifications.md)). No external mailbox is required.
-
-### Develop with an Agent
-
-Give your development Agent the first section's rule table and access restrictions together with this prompt:
+In your CRM project, give your development agent a request like this:
 
 ```prompt
-Add customer follow-up plans and response deadlines for confirmed quotations. Implement the reminder rules and access restrictions above, using my local timezone for input. Reminders must not change issued files or quotation validity.
-
-Check every minute and notify the current owner once, without duplicates after retries or restarts. Let me schedule, receive, complete and cancel reminders, and inspect, pause and resume the task in system settings. Reuse existing in-app notifications and preserve existing data.
+Please put together a sales report every day. When I open the CRM in the morning, I’d like to see how many customers and opportunities the team added yesterday and how many follow-ups they logged. I’d also like to look up earlier reports by date.
 ```
 
-### Understand the implementation
-
-In the complete example, the [reminder provider](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/crm-reminders.ts) uses `registerTarget` to register `crm.reminder-scan`, whose execution calls the business method `scan()`. It then binds that target to a minute schedule:
+The [report provider](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/daily-reports.ts) registers the counting operation as the schedule target and sets the rule:
 
 ```ts
-scheduler.defineSchedule({
-  key: 'crm.reminders',
-  title: 'Customer follow-up reminders',
-  description: 'Check due plans and queue notifications; delivery has separate logs.',
-  schedule: { cron: '* * * * *', timezone: 'UTC' },
-  target: { type: 'crm.reminder-scan', config: {} },
-});
+schedule: { cron: '0 1 * * *', timezone: reportTimezone },
 ```
 
-Core Scheduler supplies triggers, occurrence history and pause/resume; see [Jobs](../../core/framework/background/jobs.md) for execution. CRM's `scan()` checks due times, customers and current owners, saving reminder state and an event in one transaction. The [CRM notification logic](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/crm-notifications.ts) handles retries and passes delivery to Core Notification. Schedule success and notification delivery are separate outcomes.
+Here, `reportTimezone` is `Asia/Shanghai`. The scheduler interprets “01:00 every day” in that zone even if the server runs in UTC. Omitting `timezone` defaults the schedule to UTC, so the same rule would fire at 9 a.m. in Shanghai.
 
-### Try it
+The report uses the same zone to determine the previous calendar day. It converts both local midnights to UTC before querying the records. At 1 a.m. on November 26 in Shanghai it is still 17:00 UTC on November 25. Subtracting a day from the UTC date would report November 24. To adapt the example for another team, change `reportTimezone` so the trigger and report use the same zone.
 
-1. Alex opens an owned customer → **Reminders**, enters **Call Casey about the implementation proposal**, selects **Customer follow-up** and chooses a time a few minutes ahead.
-2. To test quotation reminders, select **Quotation response deadline** and an existing confirmed quotation. If none is available, confirm one first using [Approval workflows and to-do center](approval-workflows.md).
-3. Save, wait until the plan is due and the next minute check runs, then open the reminder in **Inbox** and handle the customer plan.
+## View run history
 
-![Customer reminder plans and notification state](/assets/guides/crm-reminders.png)
+As an administrator, open **System settings → Schedules** and select **Daily sales activity**. Check the cron expression and time zone under **Rule** and the upcoming time under **Next runs**. The browser in the screenshot uses Shanghai time. If your browser displays UTC, 1 a.m. in Shanghai corresponds to 17:00 on the preceding day.
 
-## Inspect executions and reminder outcomes
+After the task runs, open its execution record and look for `reportDate`, `customers`, `opportunities` and `followUps` in the result. Open **Sales activity reports** in the sidebar and match the three counts to the row with that date. Refresh the page if it was already open when the task ran.
 
-Administrators open **System settings → Scheduled reminders** to see timezone, next execution and enabled state. Select **Customer follow-up reminders** for occurrence history. Sales and sales managers receive no scheduler management grant by default.
+![Daily sales activity schedule showing the rule, time zone, upcoming runs and run history](/assets/guides/crm-sales-activity-schedule.png)
 
-![Actual execution times, statuses and counts](/assets/guides/crm-reminder-schedules.png)
+## Check records around midnight
 
-Checked counts due plans read in that execution; queued counts newly saved reminder events; skipped counts plans that did not qualify. **Succeeded** means the check completed. **Notification queued** on a plan means its event was saved. Inspect **Notifications** for actual delivery.
+In isolated test data, record these two follow-ups for the same customer. Both have the same UTC date, but the team sees them on different days.
 
-Pausing does not cancel an execution already running. After resuming, the next check handles overdue pending plans. After following up, click **Complete** and refresh to confirm **Completed** persists. Marking the inbox message read is a separate action.
+| Created in Shanghai | UTC equivalent | Report date |
+| --- | --- | --- |
+| November 25 at 23:55 | November 25 at 15:55 | November 25 |
+| November 26 at 00:05 | November 25 at 16:05 | November 26 |
 
-## Verify due checks, duplicate execution and recovery
+Run the [midnight boundary test](https://github.com/nocobase/doc-demo-crm/blob/main/tests/server/daily-reports.test.ts) from the example project root to check these records immediately:
 
-Check these items in the UI:
+```sh
+pnpm exec vitest run tests/server/daily-reports.test.ts
+```
 
-| Action | Expected result |
-| --- | --- |
-| Complete or cancel before the due time | No later reminder |
-| Transfer the customer before the due time | The new owner receives the reminder |
-| Pause, let the plan become overdue, then resume | The next check catches it without duplicates |
-| Mark the notification read and reopen the plan | The plan still requires completion |
+The test also creates one customer exactly at midnight on November 25 and an opportunity exactly at midnight on November 26. The November 25 report should show **1 new customer, 0 new opportunities and 1 follow-up**. Running it again in the test still leaves one row for November 25. The November 26 report picks up the opportunity and the 00:05 follow-up.
 
-The Agent should automatically check time boundaries, repeated scans, delivery recovery, disabled accounts, closed opportunities, and migration rollback in isolated databases, and report the actual results. You do not need to change your data or disrupt the notification service.
-
-These checks use one application process. Multiple instances require shared Jobs and concurrency locks plus their own runtime verification. No checks execute while every application process is stopped; the next check after restart revisits pending plans.
+![Sales activity reports showing one new customer, zero new opportunities and one follow-up for November 25](/assets/guides/crm-sales-activity-report.png)
 
 ## Summary and next steps
 
-**Done when**: Due plans notify the current owner once, while completed or canceled plans produce no new reminders. Pause and resume, repeated execution, and recovery checks pass. Execution records and actual delivery outcomes are available, and a completed follow-up still shows Completed after reloading.
+**Done when**: The task generates the previous day’s report at 1 a.m. in the team’s time zone, and all three counts match the run record. The follow-ups logged at 23:55 and at 00:05 the next day each appear in the count for their own date.
 
-To connect personal mailboxes, view customer correspondence, and send formal quotations by email, continue to [Email integration and messaging](email.md).
+A scheduled task can also check for overdue follow-ups. To send a reminder to the owner, see [Business events and in-app notifications](notifications.md).

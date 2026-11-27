@@ -37,12 +37,12 @@ metaDescription: 签发带范围的 API 密钥接入外部线索来源，并打�
 
 ```prompt
 给 CRM 增加外部系统集成能力：
-1. 在系统设置增加个人“API 密钥”管理页，支持按“CRM 线索与客户”和“ERP 与财务同步”两个权限组及快捷预设签发带有效期的密钥，明文密钥只展示一次，并支持立即轮换和撤销。
+1. 销售可以在个人设置中用“线索接入”模板创建有期限的 API 密钥。主管还能用“ERP 与财务同步”模板创建同步密钥。密钥只能在持有人的权限范围内使用。
 2. 提供带范围密钥可调用的外部线索接入接口和客户查询接口，复用客户名称识别、skip/update/reject 冲突策略与 Idempotency-Key 幂等保护，新建线索默认归属密钥所属用户。
 3. 在系统设置增加“外部系统集成”页面，配置 ERP / 财务同步目标（默认提供本地模拟接收器并支持模拟 HTTP 503 故障），记录已确认报价与赢单商机的出站投递日志、外部单号和重试次数，支持失败后按同一幂等键手动重试；在已确认报价详情也提供同步入口。
 ```
 
-### 配置密钥权限与管理页面
+### 配置业务权限并签发个人密钥
 
 NocoBase 的 `@nocobase/app-plugin-api-keys` 插件已提供密钥认证与 `/api/apiKeys` 自助端点，应用负责在两处接入业务范围：
 
@@ -55,13 +55,13 @@ for (const path of ['/leads', '/customers', '/deliveries', '/deliveries/*', '/sy
 }
 ```
 
-登录应用后，打开 **System settings → API keys**，使用快捷预设或手动选择权限组签发密钥：
+Alex 登录后打开右上角的账号菜单，进入 **Personal settings → Integrations → API keys**，点击 **New key**。系统设置中的同名页面供管理员管理系统密钥和审查成员密钥。
 
-1. 点击 **Lead intake** 预设（自动勾选 `CRM leads & customers: Write`、`90 days`），填写名称 **Website lead capture**，点击 **Create API key**。
-2. 在页面顶部一次性提示框中复制生成的明文密钥并妥善保存（离开页面后列表仅显示前缀，不再展示明文）。
-3. 管理员或销售主管还可点击 **ERP & finance sync** 预设，签发 **ERP & finance order sync** 密钥用于后续单据同步。普通销售账号因未授予 `crm.integrations` 权限，该权限组选项会自动置灰不可选。
+1. 在 **Name** 填写 **Website lead capture**，保留 **Custom**。在 **What it can do** 中选择 **Lead intake** 模板，核对选中的客户与联系人操作及 90 天有效期。
+2. 点击 **Create key**，复制并妥善保存仅显示一次的密钥，然后点击 **I have saved it**。下一步用它提交外部线索。
+3. 需要同步订单时，由具备同步权限的管理员或销售主管在自己的个人设置中选择 **ERP & finance sync** 模板签发另一把密钥。
 
-![系统设置中的 API 密钥管理页，展示权限组、快捷预设与已签发密钥列表](/assets/guides/crm-api-keys.png)
+![Alex 在个人设置中为 Website lead capture 选择 Lead intake 模板及 90 天有效期](/assets/guides/crm-api-keys.png)
 
 ### 使用 API 密钥提交外部线索
 
@@ -109,8 +109,8 @@ curl -i -X POST "$APP_URL/api/crmIntegrations/leads" \
 
 ### 触发同步并查看投递记录
 
-1. 打开 **System settings → External integrations**，确认 **ERP & Finance sync target** 默认指向本地模拟接收器 `mock://erp-finance/orders` 且 **Sync enabled** 已开启。对接真实外部服务时，可在此替换为实际 HTTP(S) Webhook 地址并配置 `X-Integration-Secret`。
-2. 在 **Beacon BioLabs** 下创建一条阶段为 `won` 的商机（如 **Beacon enterprise rollout**），或打开一份已确认报价（参考[审批流程与待办中心](approval-workflows.md)）。
+1. 打开 **System settings → Data and files → External integrations**，确认 **ERP & Finance sync target** 默认指向本地模拟接收器 `mock://erp-finance/orders` 且 **Sync enabled** 已开启。对接真实外部服务时，可在此替换为实际 HTTP(S) Webhook 地址并配置 `X-Integration-Secret`。
+2. 在 **Beacon BioLabs** 下创建一条阶段为 `won` 的商机（如 **Beacon enterprise rollout**），或打开一份已确认报价（参考[审批流程与待办](approval-workflows.md)）。
 3. 在已确认报价详情页点击 **Sync to ERP**，或使用具备 `crm.integrations: write` 范围的密钥触发赢单同步：
 
 ```bash
@@ -118,7 +118,7 @@ curl -i -X POST "$APP_URL/api/crmIntegrations/sync/opportunities/<opportunityId>
   -H "x-api-key: $ERP_API_KEY"
 ```
 
-4. 回到 **System settings → External integrations**，在 **Outbound sync deliveries** 列表中可以看到该记录状态变为 **Succeeded**，`Attempts` 为 `1 (200)`，并显示外部系统返回的 `ERP-SO-...` 单号。
+4. 回到 **System settings → Data and files → External integrations**，在 **Outbound sync deliveries** 列表中可以看到该记录状态变为 **Succeeded**，`Attempts` 为 `1 (200)`，并显示外部系统返回的 `ERP-SO-...` 单号。
 
 ![系统设置中的外部集成配置与出站同步投递日志，展示成功单号与失败重试入口](/assets/guides/crm-external-integrations.png)
 

@@ -26,7 +26,7 @@ metaDescription: 为客户分配和报价结果接入站内通知，验证接收
 
 ## 准备站内通知
 
-本专题使用[站内通知](../../core/using-plugins/notifications/in-app.md)，不需要外部账号或密钥。让 Agent 按已安装版本的说明，将 `inbox` 配置为 `in-app` 渠道，并提供收件箱入口。[通知服务](../../core/using-plugins/notifications/notification.md)负责发送、记录结果和重试。
+确认应用已启用[站内信](../../core/using-plugins/notifications/in-app.md)，并已将 `inbox` 配置为 `in-app` 渠道。点击顶栏的站内信按钮，再选择 **打开站内信**，即可查看完整收件箱。[通知服务](../../core/using-plugins/notifications/notification.md)负责投递、记录结果和重试。
 
 其他渠道需另外配置，详见[邮件与群机器人](../../core/using-plugins/notifications/providers.md)及[浏览器推送](../../core/using-plugins/notifications/web-push.md)。本例未验证这些渠道；配置时不要把密钥写进提示词或截图。
 
@@ -54,7 +54,7 @@ metaDescription: 为客户分配和报价结果接入站内通知，验证接收
 
 ![Alex 的收件箱显示客户分配与报价确认通知](/assets/guides/crm-notification-inbox.png)
 
-在 **系统设置 → 通知管理** 查看实际模板、业务事件和投递记录。预览模板不会实际发送消息。
+管理员打开 **系统设置 → 消息 → 通知**。在 **通知类型** 中选择 **Customer assigned to you** 可预览示例消息；在 **发送记录** 中查看实际投递结果。要追踪某次客户分配或报价确认，打开同一分类下的 **CRM 通知记录**，找到对应事件并点击 **查看投递**。
 
 ## 检查通知送达与业务跳转
 
@@ -67,7 +67,7 @@ metaDescription: 为客户分配和报价结果接入站内通知，验证接收
 
 完整示例中的[客户分配](https://github.com/nocobase/doc-demo-crm/blob/main/server/routes/crm-access.ts)和[报价处理](https://github.com/nocobase/doc-demo-crm/blob/main/server/lifecycles/quote-approval.ts)会保存待发送记录，[CRM 通知服务](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/crm-notifications.ts)负责提交。已提交记录不会重复发送。
 
-![实际通知投递记录](/assets/guides/crm-notification-logs.png)
+![发送记录显示客户分配、报价确认和跟进提醒的站内投递结果与尝试次数](/assets/guides/crm-notification-logs.png)
 
 用独立账号检查：
 
@@ -78,10 +78,10 @@ metaDescription: 为客户分配和报价结果接入站内通知，验证接收
 
 重复请求、越权、保存失败，以及通知暂时无法提交的情况，由 Agent 自动检查。通知服务已接收、业务记录却未更新时，重试也应只送达一次。查看 Agent 报告中的实际结果和未完成的检查。
 
-管理页面只能查看投递结果。投递已终止失败时，先修复配置，再通过通知服务的授权重试功能处理。外部渠道和多个应用实例共同运行的部署方式，需要在对应环境另行验证。
+投递失败时，先修复原因，再由有管理权限的用户在 **发送记录** 打开失败项，选择重试并填写原因。外部渠道与多实例部署需在相应环境验证。
 
 ## 小结与下一步
 
 **完成的标志**：客户分配和报价结果通知已送达正确接收人的收件箱，业务事件与实际投递记录可对应；重复请求不增加消息，旧通知不能绕过当前客户权限，标记已读不关闭审批待办，暂时失败后的补发已验证。
 
-如果需要按时间周期扫描待跟进事项并自动提醒，可继续查看[定时任务与到期提醒](scheduled-reminders.md)。
+要按团队时区每天运行一次 CRM 任务，可继续查看[定时任务](scheduled-reminders.md)。

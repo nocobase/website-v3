@@ -1,4 +1,4 @@
 ---
-title: "定期タスクと期限リマインダー"
+title: "定期タスク"
 status: placeholder
 ---

@@ -1,11 +1,11 @@
 ---
-title: "Build a workspace and business pages"
+title: "Build business pages"
 metaDescription: Compose a CRM sales workspace, customer list, and detail pages with UI Library, connect follow-ups to opportunities and quotes, and verify filtering and navigation.
 ---
 
-Build a sales workspace in a CRM app with customer, follow-up, opportunity, and quote records. You can apply this directly in your own app or run the latest complete `doc-demo-crm` example to inspect the finished interface.
+Before contacting a customer again, a salesperson often reviews their last conversation and checks the related opportunities and quotes. You’ll build a sales workspace, a customer list, and customer detail pages in a CRM app so that a salesperson can go from a follow-up record to the customer’s profile and find the relevant quote.
 
-Follow the application's shadcn component conventions. Prefer installed UI Library components and business blocks, including tables, cards, and tabs.
+You can follow along in your own CRM app if it already has customer, follow-up, opportunity, and quote records. You can also run the `doc-demo-crm` example to explore the finished pages.
 
 **Modules covered**
 
@@ -14,8 +14,6 @@ Follow the application's shadcn component conventions. Prefer installed UI Libra
 - [Data requests and state](../../core/developing-apps/data-requests-and-state.md)
 
 ## Define the roles of the workspace, list, and detail pages
-
-At the start of the day, salespeople need to find recent conversations, opportunities in progress, and their quotes. Within a customer, they need to switch between account details, contacts, and business records.
 
 | Entry point              | Purpose                                                                       |
 | ------------------------ | ----------------------------------------------------------------------------- |
@@ -26,9 +24,13 @@ At the start of the day, salespeople need to find recent conversations, opportun
 
 Workspace counts and records come from existing business data. Recent follow-ups are recorded conversations, not tasks, and opening one does not mark anything complete.
 
-## Build pages with UI Library
+The wireframe below is a sketch of the pages you’re about to build. Each box shows what belongs on one page. The arrow shows how the two entry points lead to the same customer’s details.
 
-Send this request to the Agent in the application root:
+::figure crm-pages-wireframe | A recent follow-up opens the customer’s Follow-ups tab. The customer list offers another route to the same customer’s details through name search and status filters.
+
+## Build the interface
+
+From the application root, tell the Agent how salespeople need to find and work with customer records. You can attach a screenshot of the wireframe as a reference for the layout and navigation.
 
 ```prompt
 Turn the existing CRM into a workspace for daily sales work. Keep the current options to add and edit records.
@@ -39,9 +41,9 @@ Turn the existing CRM into a workspace for daily sales work. Keep the current op
 - Show clear loading, empty, and error messages. Let me view records and return to the list on my phone.
 ```
 
-The prompt only needs to describe your business needs. The application’s `AGENTS.md` directs the Agent to development Skills and component guidelines, which explain how to reuse existing components, add components from UI Library, and compose pages. This lets the Agent choose suitable standard components for requests such as viewing a customer list or switching between customer details. You do not need to know component names or specify UI Library in the prompt.
+You can leave UI Library and individual component names out of the prompt. The application’s `AGENTS.md` guides the Agent to follow the existing shadcn conventions, reuse installed components and business blocks, and add components from UI Library as needed. For example, ask to filter customers by status and let the Agent choose the table and filter controls.
 
-Check these behaviors when the pages are ready:
+Once the pages are ready, try the route from a recent follow-up to the customer’s details and compare it with the wireframe. Then check each page’s behavior.
 
 | Page | Components | Expected behavior |
 | --- | --- | --- |

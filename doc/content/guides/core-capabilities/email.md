@@ -77,7 +77,7 @@ The screenshot uses a local test fixture that is not available in an ordinary st
 
 ## Send a quotation file and inspect the result
 
-1. Download the DOCX from a confirmed quotation. If you have not generated one yet, see [Template printing and document generation](template-print.md).
+1. Download the DOCX from a confirmed quotation. If you have not generated one yet, see [Generate business documents from a template](template-print.md).
 2. Open **Mail → Compose**, select your sending account, enter an authorized test recipient and message, and use **Add attachment** to upload the downloaded file.
 3. Verify the recipient, quotation version and attachment, then click **Send**. Inspect **Mail logs → Submissions**. Confirm actual receipt and attachment contents from the receiving mailbox.
 
@@ -97,7 +97,7 @@ Check these items in the UI:
 | Transfer the customer and refresh Alex's old CRM entry | Page and API deny access; Alex's personal mailbox retains its mail |
 | Inspect sync and submission records | Sync errors remain distinct from pending, accepted and unknown sending outcomes |
 
-Administrators inspect accounts, synchronization and submissions in **System settings → Mail administration**. Sales and sales managers receive no administration grant by default.
+As an administrator, open **System settings → Messages → Mail**. Select **Accounts** to check mailbox connections, **Sync logs** for synchronization results, and **Send logs** for submissions. Sales and sales managers have no mail administration grant by default.
 
 Duplicate requests, changed content under the same request key and identical attachment bytes are automated checks, not UI steps. Run `pnpm test` from the project root; all checks should pass using an isolated database and local mailbox fixture without real credentials.
 
@@ -107,4 +107,4 @@ The Agent should automatically check mail synchronization, matching, unauthorize
 
 **Done when**: Synchronization works with your own authorized test mailbox, and customer mail matches contact addresses only within the current user’s mailbox. The test recipient has actually received the quotation email with the correct attachment. Access after customer handover has been checked, and logs distinguish provider acceptance, failure, and unknown outcomes.
 
-Return to [Topic tutorials](index.md) to explore other Core capabilities, or review [Template printing and document generation](template-print.md) for how formal quotation files are generated and snapshotted.
+Return to [Topic tutorials](index.md) to explore other Core capabilities, or review [Generate business documents from a template](template-print.md) for how formal quotation files are generated and snapshotted.

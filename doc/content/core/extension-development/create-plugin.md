@@ -5,7 +5,7 @@ description: Use @nocobase/create-plugin inside an existing App to generate a lo
 
 First [create an application](../../getting-started/develop-your-first-app.md#create-and-start-the-application) and install its dependencies. Plugins are generated under this App's `packages/` directory and developed and built with the application.
 
-Ask an agent to create the plugin, or run `pnpm create @nocobase/plugin@beta` yourself. Both approaches use `@nocobase/create-plugin`.
+Ask an agent to create the plugin, or run `pnpm create @nocobase/plugin` yourself. Both approaches use `@nocobase/create-plugin`.
 
 ## With Agent
 
@@ -22,7 +22,7 @@ The agent uses `@nocobase/create-plugin` to generate the plugin, select capabili
 
 ## Without Agent
 
-Run the following commands from the App root, using the Node.js and pnpm versions required by the application. The generator and App CLI must support application workspaces; `@beta` selects the generator's beta release channel. This guide uses `demo-tools` with only the `cli` capability and needs no running database or Web server.
+Run the following commands from the App root, using the Node.js and pnpm versions required by the application. The generator and App CLI must support application workspaces. This guide uses `demo-tools` with only the `cli` capability and needs no running database or Web server.
 
 ### What the generator does
 
@@ -44,7 +44,7 @@ After generation, implement the feature, complete its tests and register any run
 Basic usage:
 
 ```bash
-pnpm create @nocobase/plugin@beta <name> --with <capability>
+pnpm create @nocobase/plugin <name> --with <capability>
 ```
 
 `--with` selects **code capabilities to generate**. It does not install an existing plugin or enable a finished feature. Select at least one capability, or use `--empty` for the package foundation alone. Repeat `--with` to combine capabilities; do not join their names with commas.
@@ -103,13 +103,13 @@ These are independent examples. Select the capabilities your feature needs.
 Reusable components only:
 
 ```bash
-pnpm create @nocobase/plugin@beta feature-card --with client.components
+pnpm create @nocobase/plugin feature-card --with client.components
 ```
 
 A business module with pages, services, endpoints and plugin-owned data:
 
 ```bash
-pnpm create @nocobase/plugin@beta orders \
+pnpm create @nocobase/plugin orders \
   --with client.routes \
   --with server.service-providers \
   --with server.routes \
@@ -119,13 +119,13 @@ pnpm create @nocobase/plugin@beta orders \
 Tool commands with agent integration guidance:
 
 ```bash
-pnpm create @nocobase/plugin@beta audit-tools --with cli --with skills
+pnpm create @nocobase/plugin audit-tools --with cli --with skills
 ```
 
 Package foundation only:
 
 ```bash
-pnpm create @nocobase/plugin@beta shared-tools --empty
+pnpm create @nocobase/plugin shared-tools --empty
 ```
 
 `--empty` generates no feature directories and cannot be combined with `--with`. `--with all` selects every capability supported by that tool version and is useful for exploring the complete scaffold. For development, explicitly select the capabilities you need.
@@ -133,7 +133,7 @@ pnpm create @nocobase/plugin@beta shared-tools --empty
 ### 1. Preview the generation plan
 
 ```bash
-pnpm create @nocobase/plugin@beta demo-tools --with cli --dry-run --json
+pnpm create @nocobase/plugin demo-tools --with cli --dry-run --json
 ```
 
 A dry run generates no plugin files, changes no App files and installs no App dependencies. `pnpm create` itself may still download and cache the generator. The JSON response should have `ok: true` and `status: "success-noop"`. Check these fields:
@@ -156,7 +156,7 @@ The generator identifies an App through `nocobase.templateKind: "app"` in its `p
 Create the plugin with the same name and capability:
 
 ```bash
-pnpm create @nocobase/plugin@beta demo-tools --with cli
+pnpm create @nocobase/plugin demo-tools --with cli
 ```
 
 The generator:
@@ -183,7 +183,7 @@ Dependency installation makes the package resolvable; runtime registration deter
 The short name `demo-tools` generates `@nocobase/app-plugin-demo-tools` by default. Use a full package name to preserve your organization's scope:
 
 ```bash
-pnpm create @nocobase/plugin@beta @my-company/app-plugin-audit-tools --with cli
+pnpm create @nocobase/plugin @my-company/app-plugin-audit-tools --with cli
 ```
 
 The directory remains `packages/app-plugin-audit-tools/`; register using the full package name. The capability portion of the name starts with a lowercase letter and uses lowercase letters, digits and single hyphens. Existing directories and conflicting package names are rejected. Local plugins do not need publication. Before publishing later, review `private`, the package name, exports, compatibility and package contents.
@@ -209,7 +209,7 @@ Combine `--json` with generation or `--dry-run` for agents and scripts. Success 
 | Symptom | What to do |
 | --- | --- |
 | The App cannot be found | Run from an application generated by create-app, or select it with `--dir`; confirm installed dependencies and a generator version supporting App workspaces |
-| An error looks for `packages/plugins` | An older generator supporting only the source repository may have been resolved. Check the actual version with `pnpm create @nocobase/plugin@beta --version`, review package-manager caching and release-age settings, select a version supporting App workspaces and repeat the dry run. Do not create `packages/plugins` in the App to bypass the error. This tutorial was verified with `@nocobase/create-plugin@0.1.0-beta.26` |
+| An error looks for `packages/plugins` | An older generator supporting only the source repository may have been resolved. Check the actual version with `pnpm create @nocobase/plugin --version`, review package-manager caching and release-age settings, select a version supporting App workspaces and repeat the dry run. Do not create `packages/plugins` in the App to bypass the error. This tutorial was verified with `@nocobase/create-plugin@0.1.0-beta.26` |
 | Dependencies are missing or incompatible | Finish installing App dependencies, resolve the reported versions and preview again |
 | The directory, package name or application dependency already exists | Inspect the existing implementation or choose a non-conflicting name; preserve existing plugins |
 | Workspace rules exclude the destination | Review exclusions in `pnpm-workspace.yaml`, adjust them for your project and preview again |

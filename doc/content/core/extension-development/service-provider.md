@@ -22,7 +22,7 @@ make Tokens and public entries clear, and test lazy creation and instance reuse.
 This example is named `notice-services`. Run commands from the App root; file paths are relative to `packages/app-plugin-notice-services/`.
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-services --with server.service-providers --with client.service-providers
+pnpm create @nocobase/plugin notice-services --with server.service-providers --with client.service-providers
 ```
 
 The scaffold connects Providers, aggregation files and declarations on both sides. Keep those connections while implementing the services.

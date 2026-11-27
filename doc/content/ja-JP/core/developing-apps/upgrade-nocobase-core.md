@@ -95,12 +95,12 @@ npm view "$TEMPLATE" dist-tags --json
 
 先に未コミットの変更を確認してコミットします。テンプレートの取得元や基準がわからない場合は、続ける前にプロジェクトの履歴から確定させます。`templateKind: app` だけでは Default と Examples を区別できません。基準を推測しないでください。
 
-ベータ版のアプリは通常 `beta` のまま、安定版のアプリは通常 `latest` を使います。`latest` タグが `beta` より新しいとも、安定版のリリースを指しているとも限りません。ほかのプレリリースのチャネルは個別に確認してください。
+アプリは通常 `latest` タグを使います。このタグは現在の安定版を指します。プレリリースのチャネルは個別に確認してください。
 
-ベータ版のアプリでは、対象を一度だけ解決し、その正確なバージョンを保持します。
+対象を一度だけ解決し、その正確なバージョンを保持します。
 
 ```bash
-TARGET=$(npm view "$TEMPLATE@beta" version)
+TARGET=$(npm view "$TEMPLATE" version)
 printf 'Template: %s\nBase: %s\nTarget: %s\n' "$TEMPLATE" "$BASE" "$TARGET"
 ```
 

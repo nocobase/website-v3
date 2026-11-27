@@ -10,7 +10,7 @@ description: プラグインの Client、Server、CLI の提供内容を宣言�
 例では、Client のルートとロケール、Server のルートと ServiceProvider、任意の CLI の入口を持つ `@nocobase/app-plugin-announcements` プラグインを使います。初めて作成する場合は、次を選びます。
 
 ```bash
-pnpm create @nocobase/plugin@beta announcements \
+pnpm create @nocobase/plugin announcements \
   --with client.routes --with client.locales \
   --with server.routes --with server.service-providers --with cli
 ```

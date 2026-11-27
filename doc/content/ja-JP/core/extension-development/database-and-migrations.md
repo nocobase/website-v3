@@ -10,7 +10,7 @@ description: プラグインのマイグレーションとシードのディレ�
 新しいプラグインでは、アプリのルートでデータベースの機能を選びます。
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-data --with database
+pnpm create @nocobase/plugin notice-data --with database
 ```
 
 既存のプラグインでは、作り直さずにディレクトリと宣言を追加します。以下のプラグインのパスは `packages/app-plugin-notice-data/` からの相対パスです。

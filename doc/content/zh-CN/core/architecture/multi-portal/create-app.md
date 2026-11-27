@@ -12,7 +12,7 @@ metaDescription: 配置商业包源访问，创建、配置并启动多门户应
 多门户模板、管理插件和门户生成器都来自商业源。开始前先按[配置商业包的授权源](../../developing-apps/overview.md#配置商业包的授权源)完成配置，再验证当前账号可以查询多门户模板版本：
 
 ```bash
-npm view @nocobase/app-template-multi-portal@beta version --registry=https://pkg-v3.nocobase.com/
+npm view @nocobase/app-template-multi-portal version --registry=https://pkg-v3.nocobase.com/
 ```
 
 ## 使用 Agent 创建应用
@@ -48,12 +48,12 @@ npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
 PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 \
 NOCOBASE_REGISTRY=https://pkg-v3.nocobase.com/ \
 npm_config_registry=https://registry.npmjs.org \
-pnpm create @nocobase/app@beta my-portals \
-  --template=multi-portal --template-tag=beta
+pnpm create @nocobase/app my-portals \
+  --template=multi-portal
 cd my-portals
 ```
 
-`multi-portal` 对应 `@nocobase/app-template-multi-portal`。创建器会生成源码、安装依赖，并同步项目的开发 Skills。`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` 仅让本次命令可以安装刚发布的 beta 包。使用公共镜像时，可替换上面的公共 registry 地址。
+`multi-portal` 对应 `@nocobase/app-template-multi-portal`。创建器会生成源码、安装依赖，并同步项目的开发 Skills。`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` 仅让本次命令可以安装刚发布的包。使用公共镜像时，可替换上面的公共 registry 地址。
 
 创建器 `0.1.0-beta.36` 起支持商业源和第三方依赖源分开安装。项目 `.npmrc` 保存 `@nocobase:registry` 地址，认证信息仍由用户配置提供。后续开发以项目的 `AGENTS.md`、`.agents/rules/multi-portal.md` 和同步的 Skills 为准。
 

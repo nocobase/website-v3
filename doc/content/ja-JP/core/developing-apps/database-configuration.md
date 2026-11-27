@@ -25,11 +25,11 @@ SQLite はローカルファイルを使うため、ホスト、ポート、ア�
 Node.js 24 以降と pnpm 11 を用意します。Windows では WSL を使い、以下のコマンドは Bash などの POSIX シェルで実行します。プロジェクト作成後、SQLite の初期化はまだ実行しないでください。
 
 ```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app@beta my-app --template-tag=beta
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app my-app
 cd my-app
 ```
 
-作成ツールが `my-app` を生成し、依存関係をインストールします。NocoBase 3 はベータ版です。`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` は、この作成コマンドに限って公開直後のパッケージのインストールを許可します。
+作成ツールが `my-app` を生成し、依存関係をインストールします。`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` は、この作成コマンドに限って公開直後のパッケージのインストールを許可します。
 
 ## ドライバーをインストールしてデータベースを設定する
 
@@ -39,7 +39,7 @@ cd my-app
 
 `config.yml` は Git に入れないでください。既定のテンプレートでは、プロセスの環境変数 `DB_PASSWORD` でメイン接続のパスワードを指定することもできます。環境変数がファイルの値より優先されます。YAML に `${DB_PASSWORD}` と書いても展開されません。その他の優先順位は[設定リファレンス](../reference/configuration.md)を参照してください。
 
-すでに `config.yml` がある場合は、必要なドライバーをインストールし、既存のシークレットを保持して接続セクションを変更します。ドライバーのバージョンはアプリの依存関係と互換性が必要です。以下の `@beta` コマンドは新しいベータ版アプリ向けです。
+すでに `config.yml` がある場合は、必要なドライバーをインストールし、既存のシークレットを保持して接続セクションを変更します。ドライバーのバージョンはアプリの依存関係と互換性が必要です。
 
 ### SQLite
 
@@ -66,7 +66,7 @@ database:
 PostgreSQL のデータベースと、対象スキーマを使用できるアカウントを準備します。
 
 ```bash
-pnpm add @nocobase/db-postgres@beta
+pnpm add @nocobase/db-postgres
 pnpm nocobase config init --dialect postgres --json
 ```
 
@@ -92,7 +92,7 @@ database:
 MySQL と MariaDB は同じドライバーと `mysql` ダイアレクトを使います。
 
 ```bash
-pnpm add @nocobase/db-mysql@beta
+pnpm add @nocobase/db-mysql
 pnpm nocobase config init --dialect mysql --json
 ```
 
@@ -118,7 +118,7 @@ database:
 データベースと、そのデータベースへのアクセス、読み書き、構造管理を許可された SQL ログインを準備します。
 
 ```bash
-pnpm add @nocobase/db-mssql@beta
+pnpm add @nocobase/db-mssql
 pnpm nocobase config init --dialect mssql --json
 ```
 
@@ -144,7 +144,7 @@ database:
 Oracle のサービス名と、必要なスキーマ権限・表領域クォータを持つアプリ用ユーザーを準備します。
 
 ```bash
-pnpm add @nocobase/db-oracle@beta
+pnpm add @nocobase/db-oracle
 pnpm nocobase config init --dialect oracle --json
 ```
 
@@ -168,7 +168,7 @@ database:
 Dameng ドライバーには NocoBase Pro の商用ライセンスと Pro レジストリーへのアクセス権が必要です。先にレジストリー認証を設定してください。ドライバーは実験段階のため、対象のデータベースバージョンで検証してから使用します。レジストリーの設定手順は[商用パッケージの認証済みレジストリーを設定する](overview.md#商用パッケージの認証済みレジストリーを設定する)を参照してください。
 
 ```bash
-pnpm add @nocobase/db-dameng@beta
+pnpm add @nocobase/db-dameng
 pnpm nocobase config init --dialect dameng --json
 ```
 
@@ -192,7 +192,7 @@ database:
 サーバーが PostgreSQL 互換モード（`DB_MODE=pg`）で動作していることを確認し、データベースとスキーマを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。レジストリーの設定手順は[商用パッケージの認証済みレジストリーを設定する](overview.md#商用パッケージの認証済みレジストリーを設定する)を参照してください。
 
 ```bash
-pnpm add @nocobase/db-kingbase@beta
+pnpm add @nocobase/db-kingbase
 pnpm nocobase config init --dialect kingbase --json
 ```
 
@@ -218,7 +218,7 @@ database:
 OceanBase CE の MySQL 互換テナントを使い、そのテナント内にデータベースとアカウントを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。レジストリーの設定手順は[商用パッケージの認証済みレジストリーを設定する](overview.md#商用パッケージの認証済みレジストリーを設定する)を参照してください。
 
 ```bash
-pnpm add @nocobase/db-oceanbase@beta
+pnpm add @nocobase/db-oceanbase
 pnpm nocobase config init --dialect oceanbase --json
 ```
 

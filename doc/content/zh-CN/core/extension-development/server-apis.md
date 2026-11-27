@@ -20,7 +20,7 @@ description: 为插件添加接口，说明输入校验、响应格式、访问�
 以下命令在已有 App 根目录执行，文件路径相对于 `packages/app-plugin-notice-api/`。已有同名插件时先检查其实现，不要重复创建。
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-api --with server.routes --with server.service-providers
+pnpm create @nocobase/plugin notice-api --with server.routes --with server.service-providers
 ```
 
 在插件的 `package.json` 中把 `zod` 加到 `dependencies`，版本与当前 App 已安装的兼容版本保持一致，然后在 App 根目录运行 `pnpm install`。`hono` 和所需运行时由脚手架配置；保留生成的 Provider 聚合文件、Server 声明和公开入口。

@@ -25,11 +25,11 @@ This guide configures the new application's main database. Startup initializes t
 Prepare Node.js 24 or later and pnpm 11. On Windows, use WSL. Run the following in a POSIX shell such as Bash. After creating the project, do not initialize SQLite yet:
 
 ```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app@beta my-app --template-tag=beta
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app my-app
 cd my-app
 ```
 
-The creation tool generates `my-app` and installs dependencies. NocoBase 3 is in beta; `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` allows newly published packages for this creation command only.
+The creation tool generates `my-app` and installs dependencies. `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` allows newly published packages for this creation command only.
 
 ## Install a driver and configure the database
 
@@ -39,7 +39,7 @@ Each example provides a complete `database` section. After initialization, fill 
 
 Keep `config.yml` out of Git. The default template also accepts the process environment variable `DB_PASSWORD` for the main connection password, overriding the file value. Do not write `${DB_PASSWORD}` in YAML: it is not interpolated. See the [Configuration reference](../reference/configuration.md) for other override rules.
 
-If `config.yml` already exists, install the required driver and edit the connection section while preserving existing secrets. Driver versions must satisfy the application's dependency requirements; the `@beta` commands below are for a new beta application.
+If `config.yml` already exists, install the required driver and edit the connection section while preserving existing secrets. Driver versions must satisfy the application's dependency requirements.
 
 ### SQLite
 
@@ -66,7 +66,7 @@ Here, `database` is a file path. `database.sqlite` is stored under the applicati
 Prepare a PostgreSQL database and an account authorized to use the target schema:
 
 ```bash
-pnpm add @nocobase/db-postgres@beta
+pnpm add @nocobase/db-postgres
 pnpm nocobase config init --dialect postgres --json
 ```
 
@@ -92,7 +92,7 @@ database:
 MySQL and MariaDB share the driver and the `mysql` dialect:
 
 ```bash
-pnpm add @nocobase/db-mysql@beta
+pnpm add @nocobase/db-mysql
 pnpm nocobase config init --dialect mysql --json
 ```
 
@@ -118,7 +118,7 @@ The database must already exist and support the character set your application n
 Prepare a database and a SQL login authorized to access it, read and write data, and manage its schema:
 
 ```bash
-pnpm add @nocobase/db-mssql@beta
+pnpm add @nocobase/db-mssql
 pnpm nocobase config init --dialect mssql --json
 ```
 
@@ -144,7 +144,7 @@ database:
 Prepare the Oracle service name and an application user with the required schema permissions and tablespace quota:
 
 ```bash
-pnpm add @nocobase/db-oracle@beta
+pnpm add @nocobase/db-oracle
 pnpm nocobase config init --dialect oracle --json
 ```
 
@@ -168,7 +168,7 @@ Set `serviceName` to the service supplied by the administrator, such as the serv
 The Dameng driver requires a NocoBase Pro commercial license and Pro registry access. Configure registry authentication first. The driver is experimental; verify it against the target database version before use. For registry configuration steps, see [Configure the commercial package registry](overview.md#configure-the-commercial-package-registry).
 
 ```bash
-pnpm add @nocobase/db-dameng@beta
+pnpm add @nocobase/db-dameng
 pnpm nocobase config init --dialect dameng --json
 ```
 
@@ -192,7 +192,7 @@ Use the assigned schema name in `schema`, preserving its case. The example uses 
 Confirm the server uses PostgreSQL-compatible mode (`DB_MODE=pg`) and prepare the database and schema. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry. For registry configuration steps, see [Configure the commercial package registry](overview.md#configure-the-commercial-package-registry).
 
 ```bash
-pnpm add @nocobase/db-kingbase@beta
+pnpm add @nocobase/db-kingbase
 pnpm nocobase config init --dialect kingbase --json
 ```
 
@@ -218,7 +218,7 @@ Set `schema` to an authorized schema. TLS follows the PostgreSQL configuration: 
 Use an OceanBase CE MySQL-compatible tenant and prepare a database and account within that tenant. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry. For registry configuration steps, see [Configure the commercial package registry](overview.md#configure-the-commercial-package-registry).
 
 ```bash
-pnpm add @nocobase/db-oceanbase@beta
+pnpm add @nocobase/db-oceanbase
 pnpm nocobase config init --dialect oceanbase --json
 ```
 

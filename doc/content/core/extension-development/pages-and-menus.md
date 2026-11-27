@@ -27,7 +27,7 @@ The following steps explain the manual implementation.
 Start with a working App. **Run every command from the App root; file paths below are relative to `packages/app-plugin-help-center/`.** You do not need a checkout of NocoBase source.
 
 ```bash
-pnpm create @nocobase/plugin@beta help-center \
+pnpm create @nocobase/plugin help-center \
   --with client.routes --with client.locales
 
 pnpm --filter @nocobase/app-plugin-help-center exec shadcn add \

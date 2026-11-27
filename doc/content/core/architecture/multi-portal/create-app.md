@@ -12,7 +12,7 @@ Use Node.js 24 or later, pnpm 11, and an account authorized to download the comm
 The template, management plugin and portal generator use the commercial registry. First follow [Configure the commercial package registry](../../developing-apps/overview.md#configure-the-commercial-package-registry), then verify that your account can query the multi-portal template version:
 
 ```bash
-npm view @nocobase/app-template-multi-portal@beta version --registry=https://pkg-v3.nocobase.com/
+npm view @nocobase/app-template-multi-portal version --registry=https://pkg-v3.nocobase.com/
 ```
 
 ## Create the app with an Agent
@@ -48,12 +48,12 @@ Run from the parent directory. `my-portals` must be new or empty:
 PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 \
 NOCOBASE_REGISTRY=https://pkg-v3.nocobase.com/ \
 npm_config_registry=https://registry.npmjs.org \
-pnpm create @nocobase/app@beta my-portals \
-  --template=multi-portal --template-tag=beta
+pnpm create @nocobase/app my-portals \
+  --template=multi-portal
 cd my-portals
 ```
 
-`multi-portal` selects `@nocobase/app-template-multi-portal`. The creator generates source, installs dependencies and synchronizes development Skills. `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` lets this command install newly released beta packages. Replace the public registry URL if you use a public mirror.
+`multi-portal` selects `@nocobase/app-template-multi-portal`. The creator generates source, installs dependencies and synchronizes development Skills. `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` lets this command install newly released packages. Replace the public registry URL if you use a public mirror.
 
 Create-app `0.1.0-beta.36` and later separate commercial and third-party registry installation. The project `.npmrc` records the `@nocobase:registry` URL; credentials remain in user configuration. Continue development using the project's `AGENTS.md`, `.agents/rules/multi-portal.md` and synchronized Skills.
 

@@ -18,7 +18,7 @@ description: 为 App 注册插件命令，处理参数、JSON 输出、错误和
 命令在 App 根目录执行，文件路径相对于 `packages/app-plugin-notice-cli/`：
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-cli --with cli
+pnpm create @nocobase/plugin notice-cli --with cli
 ```
 
 脚手架生成 `cli/index.ts`、示例 `info` 命令、`./cli` 导出以及开发和构建配置。CLI 不需要同时存在 Client 或 Server 入口。

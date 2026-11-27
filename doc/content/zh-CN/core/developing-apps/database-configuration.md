@@ -25,11 +25,11 @@ SQLite 使用本地文件，不需要主机、端口或账号。支持版本、�
 准备 Node.js 24 或更高版本和 pnpm 11。Windows 使用 WSL；下列命令在 Bash 等 POSIX shell 中执行。创建项目后，先不要执行 SQLite 初始化步骤：
 
 ```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app@beta my-app --template-tag=beta
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app my-app
 cd my-app
 ```
 
-创建工具会生成 `my-app` 并安装依赖。NocoBase 3 处于 beta 阶段，`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` 仅让这次创建命令可以安装刚发布的包。
+创建工具会生成 `my-app` 并安装依赖。`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` 仅让这次创建命令可以安装刚发布的包。
 
 ## 安装驱动并配置数据库
 
@@ -39,7 +39,7 @@ cd my-app
 
 `config.yml` 不提交到 Git。默认模板也支持用进程环境变量 `DB_PASSWORD` 提供主连接密码，环境变量会覆盖文件值；不要在 YAML 中写 `${DB_PASSWORD}`，它不会被替换。其他覆盖规则见[配置项参考](../reference/configuration.md)。
 
-已有 `config.yml` 时，安装需要的驱动后直接调整连接分区，保留原有密钥。驱动版本需与应用依赖兼容；下列 `@beta` 命令用于新建 beta 应用。
+已有 `config.yml` 时，安装需要的驱动后直接调整连接分区，保留原有密钥。驱动版本需与应用依赖兼容。
 
 ### SQLite
 
@@ -66,7 +66,7 @@ database:
 准备 PostgreSQL 数据库和可使用目标 schema 的账号：
 
 ```bash
-pnpm add @nocobase/db-postgres@beta
+pnpm add @nocobase/db-postgres
 pnpm nocobase config init --dialect postgres --json
 ```
 
@@ -92,7 +92,7 @@ database:
 MySQL 和 MariaDB 共用驱动与 `mysql` 方言：
 
 ```bash
-pnpm add @nocobase/db-mysql@beta
+pnpm add @nocobase/db-mysql
 pnpm nocobase config init --dialect mysql --json
 ```
 
@@ -118,7 +118,7 @@ database:
 准备数据库和已获该数据库访问、读写及结构管理权限的 SQL 登录账号：
 
 ```bash
-pnpm add @nocobase/db-mssql@beta
+pnpm add @nocobase/db-mssql
 pnpm nocobase config init --dialect mssql --json
 ```
 
@@ -144,7 +144,7 @@ database:
 准备 Oracle 服务名、应用用户及其 schema 所需的权限和表空间配额：
 
 ```bash
-pnpm add @nocobase/db-oracle@beta
+pnpm add @nocobase/db-oracle
 pnpm nocobase config init --dialect oracle --json
 ```
 
@@ -168,7 +168,7 @@ database:
 达梦驱动需要 NocoBase Pro 商业授权和 Pro registry 访问权限，先配置仓库认证。驱动目前为实验性，需在目标数据库版本上验证后使用。商业驱动的源配置步骤见[配置商业包的授权源](overview.md#配置商业包的授权源)。
 
 ```bash
-pnpm add @nocobase/db-dameng@beta
+pnpm add @nocobase/db-dameng
 pnpm nocobase config init --dialect dameng --json
 ```
 
@@ -192,7 +192,7 @@ database:
 确认服务运行在 PostgreSQL 兼容模式（`DB_MODE=pg`），并准备数据库及 schema。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的源配置步骤见[配置商业包的授权源](overview.md#配置商业包的授权源)。
 
 ```bash
-pnpm add @nocobase/db-kingbase@beta
+pnpm add @nocobase/db-kingbase
 pnpm nocobase config init --dialect kingbase --json
 ```
 
@@ -218,7 +218,7 @@ database:
 使用 OceanBase CE 的 MySQL 兼容租户，准备该租户下的数据库和账号。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的源配置步骤见[配置商业包的授权源](overview.md#配置商业包的授权源)。
 
 ```bash
-pnpm add @nocobase/db-oceanbase@beta
+pnpm add @nocobase/db-oceanbase
 pnpm nocobase config init --dialect oceanbase --json
 ```
 

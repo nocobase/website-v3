@@ -27,7 +27,7 @@ Guide と FAQ の子ページを追加し、Guide を既定にしてください
 動作するアプリから始めます。**すべてのコマンドはアプリのルートで実行し、以下のファイルのパスは `packages/app-plugin-help-center/` からの相対パスです。** NocoBase のソースのチェックアウトは必要ありません。
 
 ```bash
-pnpm create @nocobase/plugin@beta help-center \
+pnpm create @nocobase/plugin help-center \
   --with client.routes --with client.locales
 
 pnpm --filter @nocobase/app-plugin-help-center exec shadcn add \

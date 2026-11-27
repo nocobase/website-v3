@@ -38,7 +38,7 @@ NocoBase 提供 8 种数据库方言。方言是连接配置中 `dialect` 的取
 在[创建应用](../../getting-started/develop-your-first-app.md#创建并启动应用)生成的项目目录中操作。下面以尚未生成 `config.yml` 的 PostgreSQL 应用为例；先准备可访问的 PostgreSQL 服务、数据库和账号，再执行：
 
 ```bash
-pnpm add @nocobase/db-postgres@beta
+pnpm add @nocobase/db-postgres
 pnpm nocobase config init --dialect postgres --json
 ```
 

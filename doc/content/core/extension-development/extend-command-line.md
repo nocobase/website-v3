@@ -19,7 +19,7 @@ test success and failure, and register the plugin in this App.
 Run from the App root. Paths are relative to `packages/app-plugin-notice-cli/`:
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-cli --with cli
+pnpm create @nocobase/plugin notice-cli --with cli
 ```
 
 The scaffold supplies `cli/index.ts`, an `info` command, the `./cli` export and development/build configuration. A CLI plugin does not require Client or Server entries.

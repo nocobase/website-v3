@@ -27,7 +27,7 @@ description: 在 App 的本地插件中添加页面、菜单和子页面，处�
 前提是已有一个可以正常启动的 App。**所有命令在 App 根目录执行；后文文件路径相对于 `packages/app-plugin-help-center/`。** 不需要下载 NocoBase 源码。
 
 ```bash
-pnpm create @nocobase/plugin@beta help-center \
+pnpm create @nocobase/plugin help-center \
   --with client.routes --with client.locales
 
 pnpm --filter @nocobase/app-plugin-help-center exec shadcn add \

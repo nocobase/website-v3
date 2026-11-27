@@ -38,10 +38,10 @@ Agent 会创建应用、生成配置并启动，完成后告诉你应用的地�
 在存放应用的目录执行下面的命令，创建工具会新建 `my-app` 目录并安装依赖：
 
 ```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app@beta my-app --template-tag=beta
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app my-app
 ```
 
-NocoBase 3 还在 beta 阶段。`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` 让 pnpm 可以安装刚发布的版本，只对这一次执行有效。
+`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` 让 pnpm 可以安装刚发布的版本，只对这一次执行有效。
 
 进入目录，生成配置，检查后启动：
 

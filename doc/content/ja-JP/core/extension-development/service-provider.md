@@ -22,7 +22,7 @@ Token と公開の入口を明確にして、遅延生成とインスタンス�
 この例の名前は `notice-services` です。コマンドはアプリのルートで実行し、ファイルのパスは `packages/app-plugin-notice-services/` からの相対パスです。
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-services --with server.service-providers --with client.service-providers
+pnpm create @nocobase/plugin notice-services --with server.service-providers --with client.service-providers
 ```
 
 ひな形は、両側の Provider、集約のファイル、宣言をつなぎます。サービスを実装する間も、それらのつながりは保ってください。

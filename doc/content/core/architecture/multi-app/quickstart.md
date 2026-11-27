@@ -17,7 +17,7 @@ Replace every occurrence of the example LAN IP `192.168.1.10` with your machine'
 From the directory where you keep projects:
 
 ```bash
-pnpm create @nocobase/app@beta platform --template multi-app --template-tag beta
+pnpm create @nocobase/app platform --template multi-app
 cd platform
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config set server.host=0.0.0.0 server.port=13230 app.publicOrigin=http://192.168.1.10:13230
@@ -61,7 +61,7 @@ If unavailable, check for a port conflict on `13231`, a writable node directory 
 Keep Main running. In another terminal, return to the parent projects directory:
 
 ```bash
-pnpm create @nocobase/app@beta child-app --template sub-app --template-tag beta
+pnpm create @nocobase/app child-app --template sub-app
 cd child-app
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config set server.host=0.0.0.0 server.port=13240 app.publicOrigin=http://192.168.1.10:13240

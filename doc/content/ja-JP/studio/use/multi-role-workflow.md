@@ -11,7 +11,7 @@ description: プロジェクトの既定のフロー、タスクごとの切り�
 
 コミュニティ版では、タスク担当者がタスクを引き受けて作業を開始します。エージェントが作業を終えたら、担当者が引き渡しレポートを確認し、マージまたは差し戻しを選びます。中央の開発手順には Standard または Simple を選べます。
 
-![コミュニティ版で担当者の作業と Standard の開発手順を確認する](https://static-docs.nocobase.com/studio-workflow-guide-en-ce-20261127-470ab4b081.webp)
+![コミュニティ版で担当者の作業と Standard の開発手順を確認する](https://static-docs.nocobase.com/studio-guide-en-ce-20261127-89ea19f5c5bb.webp)
 
 <span id="requester"></span>
 
@@ -19,7 +19,7 @@ description: プロジェクトの既定のフロー、タスクごとの切り�
 
 プロフェッショナル版とエンタープライズ版では、依頼者と開発担当者を分けられます。図の左右に要件確認と検収が加わります。依頼者が要件と成果を確認し、開発担当者が作業を開始してコードをマージします。
 
-![エンタープライズ版の画面で依頼者と開発担当者の分担を確認する](https://static-docs.nocobase.com/studio-workflow-guide-en-roles-20261127-305806db7d.webp)
+![エンタープライズ版の画面で依頼者と開発担当者の分担を確認する](https://static-docs.nocobase.com/studio-guide-en-roles-20261127-9cb2501adb88.webp)
 
 たとえば、取引を停止した仕入先への新規発注を止め、発注済みの注文では引き続き入荷処理できるようにします。購買担当者が依頼者となり、プロジェクトメンバーが開発を担当します。
 
@@ -29,29 +29,29 @@ description: プロジェクトの既定のフロー、タスクごとの切り�
 
 購買担当者がタスクを作成し、プロジェクトを選んで要件と受け入れ条件を入力し、開発担当者を指定します。作成者が依頼者になります。役割を分けた場合、依頼者は開発担当者やフローを変更できず、開発担当者も依頼者を変更できません。プロジェクト責任者またはプロジェクトの管理権限を持つメンバーは、どちらの担当者も変更できます。
 
-開発担当者を省略すると、[プロジェクト設定](../project/settings.md)の既定値が使われます。初期値はタスクの作成者です。同じ人が両方を兼ねる場合は、そのまま開発を開始し、検収できます。
+開発担当者を省略すると、プロジェクトのワークフローに設定した[既定の開発担当者](../project/settings.md#既定の開発担当者)が使われます。初期値はタスク作成者です。同じ人が両方を担当する場合は、そのまま開発と検収に進めます。
 
 #### 要件を確認して開発を開始する
 
-タスク上部の進捗表示は依頼者と開発担当者で共通です。右側の **Workflow** には、このタスクで使う開発フローが表示されます。依頼者は閲覧でき、開発担当者は切り替えられます。
+タスク上部の進捗表示では、引き受けや開始を待っている担当者、エージェントの実行状況、検収とマージの担当者を双方が確認できます。右側の **Workflow** には開発フローが表示され、開発担当者が切り替えられます。
 
 **開発担当者**は **My issues** で割り当てられたタスクを開きます。**Take over** が表示されたら選択します。
 
-![開発担当者が購買担当者からタスクを引き受ける](https://static-docs.nocobase.com/studio-workflow-guide-en-handoff-20261127-2fce61ef84.webp)
+![開発担当者が購買担当者からタスクを引き受ける](https://static-docs.nocobase.com/studio-guide-en-handoff-20261127-b9d403700101.webp)
 
 **依頼者**は[受信トレイの Requester decisions](inbox.md#受信トレイの表示) からタスクを開きます。説明と受け入れ条件を確認して **Confirm requirements** を選びます。Backlog の段階で説明を変更した場合は、再度確認が必要です。
 
-![依頼者が受け入れ条件を確認して Confirm requirements を選ぶ](https://static-docs.nocobase.com/studio-workflow-guide-en-confirm-20261127-26715534e5.webp)
+![依頼者が受け入れ条件を確認して Confirm requirements を選ぶ](https://static-docs.nocobase.com/studio-guide-en-confirm-20261127-348234208ba1.webp)
 
 確認が済んだら、**開発担当者**が **Start** を選びます。コーディネーターエージェントが開発作業を割り振ります。
 
-![要件の確認が済み、開発担当者がタスクを開始できる状態](https://static-docs.nocobase.com/studio-workflow-guide-en-start-20261127-787b1c1b4f.webp)
+![要件の確認が済み、開発担当者がタスクを開始できる状態](https://static-docs.nocobase.com/studio-guide-en-start-20261127-05c759dfe470.webp)
 
 #### 開発中の質問に答える
 
 たとえば、エージェントから「取引停止前に発注した商品は入荷処理できますか？」と質問が届きます。依頼者は **Requester decisions** で「はい。制限は新規発注だけに適用します」と回答します。回答はタスクのコメントに記録され、エージェントが作業を続けられます。回答待ちの間もタスクは In progress のままです。
 
-![開発中のタスクで依頼者が業務上の質問に回答する](https://static-docs.nocobase.com/studio-workflow-guide-en-question-20261127-b00e2e9c7d.webp)
+![開発中のタスクで依頼者が業務上の質問に回答する](https://static-docs.nocobase.com/studio-guide-en-question-20261127-ddebc96b1be4.webp)
 
 開発担当者がルールを把握している場合は、タスク上で代理回答できます。
 
@@ -64,17 +64,17 @@ description: プロジェクトの既定のフロー、タスクごとの切り�
 
 両方とも期待どおりなら **Accept** を選びます。既存の注文も処理できない場合は **Send back** を選び、どの操作で問題が起きたかを入力します。必要に応じて画像を添付できます。タスクは **In progress** に戻り、エージェントが修正します。
 
-![依頼者が検収を完了するか、修正を依頼する](https://static-docs.nocobase.com/studio-workflow-guide-en-accept-20261127-a8dbf59e3d.webp)
+![依頼者が検収を完了するか、修正を依頼する](https://static-docs.nocobase.com/studio-guide-en-accept-20261127-a2c5dc91ed1b.webp)
 
 この時点で、開発担当者にも「Awaiting Avery Chen’s acceptance」と表示されます。依頼者の検収が済むまで、開発担当者はタスクを完了できません。
 
-![依頼者の検収を待っている開発担当者のタスク画面](https://static-docs.nocobase.com/studio-workflow-guide-en-wait-20261127-d178756ff0.webp)
+![依頼者の検収を待っている開発担当者のタスク画面](https://static-docs.nocobase.com/studio-guide-en-wait-20261127-7b5e1cb3fb89.webp)
 
 #### マージまたはタスクを完了する
 
 検収後、開発担当者は [PR のチェックとコードレビュー](../project/checks-and-review.md)を確認します。条件を満たしたら **Merge** を選びます。PR のないタスクは成果を確認してそのまま完了できます。
 
-![PR のないタスクでは、依頼者による検収後に開発担当者が完了できる](https://static-docs.nocobase.com/studio-workflow-guide-en-complete-20261127-fc14299532.webp)
+![PR のないタスクでは、依頼者による検収後に開発担当者が完了できる](https://static-docs.nocobase.com/studio-guide-en-complete-20261127-853b6053a198.webp)
 
 検収後に別の PR を追加した場合は、依頼者による再検収が必要です。開発担当者が差し戻す際、修正で機能の動きが変わる場合は **Require the requester to accept again** を選びます。
 
@@ -93,7 +93,7 @@ description: プロジェクトの既定のフロー、タスクごとの切り�
 
 プロジェクトの **Workflow** タブでフローを選び、**Set as project default** をクリックします。既定のフローを使うタスクには次回の実行から反映されます。
 
-![プロジェクトの Workflow タブで Standard を既定に設定する](https://static-docs.nocobase.com/studio-workflow-guide-en-project-default-20261127-3466397cd5.webp)
+![プロジェクトの Workflow タブで Standard を既定に設定する](https://static-docs.nocobase.com/studio-guide-en-project-default-20261127-a99ce048f522.webp)
 
 **Workflow** タブの **Resident skills** で、プロジェクト全体または対象リポジトリを選びます。**Add skill** でチームの規約などの通常スキルを選んで保存すると、次回の実行から読み込まれます。作成や更新の手順は[スキル](../project/skills.md)を参照してください。
 
@@ -101,7 +101,7 @@ description: プロジェクトの既定のフロー、タスクごとの切り�
 
 タスクを開いて **Workflow** を選びます。プロジェクトの既定値を使うか、このタスクに使うフローを選択します。たとえば、通常は Standard を使うプロジェクトでも、項目名の修正には Simple を選べます。変更は次回の実行から有効です。実行中の作業は元のフローで続きます。現在の段階はタスクの進捗バーで確認できます。
 
-![項目名を変更するタスクで Simple を選ぶ](https://static-docs.nocobase.com/studio-workflow-guide-en-task-switch-20261127-91b2c23b62.webp)
+![項目名を変更するタスクで Simple を選ぶ](https://static-docs.nocobase.com/studio-guide-en-task-switch-20261127-69c705cd8150.webp)
 
 <span id="不具合修正用のフローを作成する"></span>
 
@@ -113,7 +113,7 @@ description: プロジェクトの既定のフロー、タスクごとの切り�
 
 1. プロジェクトの **Workflow** タブで **New workflow** を開き、**Blank workflow** を選びます。
 
-   ![New workflow メニューで Blank workflow を選ぶ](https://static-docs.nocobase.com/studio-workflow-guide-en-blank-menu-20261127-4d1ece1afc.webp)
+   ![New workflow メニューで Blank workflow を選ぶ](https://static-docs.nocobase.com/studio-guide-en-blank-menu-20261127-b3fe43af5495.webp)
 
 2. 開いたエージェントとの会話で、不具合修正の手順を伝えます。
 
@@ -121,18 +121,18 @@ description: プロジェクトの既定のフロー、タスクごとの切り�
    「Bug fix」というフローを作ってください。まず不具合を再現するテストを書き、失敗することを確認します。原因を特定して修正し、同じテストをもう一度実行してください。テストが通ったら別のエージェントにレビューを依頼し、修正前後のテスト結果を添えて引き渡してください。
    ```
 
-   ![新規フローの会話で不具合修正の手順を伝える](https://static-docs.nocobase.com/studio-workflow-guide-en-blank-chat-20261127-8d8db19712.webp)
+   ![新規フローの会話で不具合修正の手順を伝える](https://static-docs.nocobase.com/studio-guide-en-blank-chat-20261127-ce8c5031bea3.webp)
 
 3. エージェントの下書きを確認し、フローの作成を依頼します。**Workflow** に戻って **Bug fix** を選ぶと、キャンバスの中央に「再現」「原因の特定と修正」「検証」「独立レビュー」「引き渡し」の順で表示されます。
 
-   ![プロジェクトのキャンバスに表示された Bug fix の 5 つのステップ](https://static-docs.nocobase.com/studio-workflow-guide-en-bug-fix-canvas-20261127-3fb132ce62.webp)
+   ![プロジェクトのキャンバスに表示された Bug fix の 5 つのステップ](https://static-docs.nocobase.com/studio-guide-en-bug-fix-canvas-20261127-3f753bb7b5c0.webp)
 
    **View rules** を開くと、各ステップの指示を確認できます。たとえば、テストがまだ失敗する場合は修正に戻り、通ったら別のエージェントにレビューを依頼します。
 
-   ![回帰テストが失敗した場合の手順を示す Bug fix のルール](https://static-docs.nocobase.com/studio-workflow-guide-en-bug-fix-rules-20261127-cf96d47297.webp)
+   ![回帰テストが失敗した場合の手順を示す Bug fix のルール](https://static-docs.nocobase.com/studio-guide-en-bug-fix-rules-20261127-25131598b9ea.webp)
 
 4. 発注書の二重送信を修正するタスクを開き、**Workflow** で **Bug fix** を選びます。この選択は対象のタスクにだけ適用されます。
 
-   ![発注書の二重送信を修正するタスクで Bug fix を選ぶ](https://static-docs.nocobase.com/studio-workflow-guide-en-bug-fix-task-20261127-8ff30fbf27.webp)
+   ![発注書の二重送信を修正するタスクで Bug fix を選ぶ](https://static-docs.nocobase.com/studio-guide-en-bug-fix-task-20261127-fdc640420562.webp)
 
 プロフェッショナル版とエンタープライズ版のイメージおよびライセンスは[お問い合わせください](https://www.nocobase.com/ja-JP/contact/)。

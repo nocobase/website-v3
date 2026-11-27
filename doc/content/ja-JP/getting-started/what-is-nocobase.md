@@ -96,7 +96,7 @@ AI + NocoBase は、業務システムの開発から日々の運用まで、次
 
 ## はじめよう
 
-- おすすめの 2 段階の進め方と、Core から Studio へ切り替えるタイミングを確認する：[Core から始めて Studio へ](from-core-to-studio.md)
+- おすすめの 2 段階の進め方と、Core から Studio へ切り替えるタイミングを確認する：[おすすめの始め方](from-core-to-studio.md)
 - Core から単体で始め、ローカルの Coding Agent で開発する：[Core で最初のアプリを開発する](develop-your-first-app.md)
 - 1 つのコマンドで無料の Studio コミュニティ版をインストールし、最初の要件を一通り試す：[Studio をインストールして使う](collaborate-with-studio.md)
 - IT 資産管理を題材に、本格的な開発から運用までを通して実践する：[NocoBase 3 で信頼できるエンタープライズアプリを構築する](../guides/build-reliable-enterprise-apps.md)

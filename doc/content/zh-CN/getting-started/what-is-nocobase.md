@@ -96,7 +96,7 @@ AI + NocoBase 正在改变业务系统的开发和使用方式，变化发生在
 
 ## 开始使用
 
-- 了解推荐的两阶段推进方式，看清何时从本地 Core 切入 Studio：[先用 Core，再接入 Studio](from-core-to-studio.md)
+- 了解推荐的两阶段推进方式，看清何时从本地 Core 切入 Studio：[最佳上手路径](from-core-to-studio.md)
 - 从 Core 起步，直接搭配本地 Coding Agent 开发：[用 Core 开发第一个应用](develop-your-first-app.md)
 - 一条命令安装免费的 Studio 社区版并走完第一个需求：[安装并使用 Studio](collaborate-with-studio.md)
 - 跟随一个完整的 IT 资产管理项目实践：[基于 NocoBase 3 开发可靠的企业应用](../guides/build-reliable-enterprise-apps.md)

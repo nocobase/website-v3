@@ -1,11 +1,21 @@
 ---
-title: Start with Core, scale with Studio
-metaDescription: "Learn the two-stage way to build with NocoBase 3: build an MVP quickly with a local Coding Agent and Core, then connect the same repository to Studio with zero migration to polish in parallel and ship reliably."
+title: Best way to get started
+metaDescription: "See the best path to get started with NocoBase 3 through a real project: build an MVP locally with a Coding Agent and Core, then connect the same repository to Studio with zero migration to polish in parallel and ship reliably."
 ---
 
-Building a real business system with NocoBase 3 does not require setting up heavy team processes on day one, nor does starting light create migration work later.
+Building a real business system with NocoBase 3 does not require setting up heavy team processes on day one, nor does starting light create migration work later. The best path is a **two-stage progression**: **build an MVP locally with a Coding Agent and Core first, then connect the same repository to Studio with zero migration once frontline feedback pours in so an agent team can polish and ship it reliably.**
 
-The recommended path is a **two-stage progression**: during early exploration, use a local Coding Agent and NocoBase Core to align on requirements and build a minimum viable product (MVP) quickly; once business colleagues start trying it out and feedback pours in, connect the exact same repository to NocoBase Studio with zero migration cost so an agent team can handle parallel changes with process and review guardrails.
+## Start with a real project
+
+Look at how a real enterprise project ran end to end. A large manufacturing enterprise needed an international quoting system with 400+ configuration parameters, regional standards, and commercial terms:
+
+- **First 3 days (business discovery)**: Product managers interviewed regional sales and solution teams to clarify parameters, pricing logic, and first-release scope.
+- **Next 1 week (local Coding Agent + Core for MVP)**: Developers built a working minimum viable product (MVP) locally using a Coding Agent and NocoBase Core, reusing built-in permissions, auth, and workflows while aligning live with product managers until the core flows stabilized.
+- **MVP ready (preview and connect to Studio)**: The team deployed a preview for frontline colleagues; as feedback poured in, they connected the exact same repository to NocoBase Studio with zero migration.
+- **1 more week (parallel polish and launch)**: Studio coordinated an agent team to resolve hundreds of frontline feedback items in parallel through automated checks, cross-model review, and acceptance—shipping version 1 to production.
+- **Next ~2 months (continuous growth)**: Keeping the same Studio rhythm, the team steadily grew 10+ modules covering leads, proposals, quotes, orders, dashboards, a document hub, and AI assistants.
+
+Actual timelines vary with complexity: a focused internal tool may finish Stage 1 in a single day, while a large core system can roll out module by module. Below is how this two-stage path works in practice.
 
 ## Two-stage progression at a glance
 
@@ -31,7 +41,7 @@ The recommended path is a **two-stage progression**: during early exploration, u
 
 Early in a project, requirements shift fast and tight feedback loops matter most. The goal is to get core business capabilities running quickly rather than introducing process overhead too early.
 
-### Clarify the business before asking the Agent to code
+### Clarify the business before asking the Coding Agent to code
 
 AI writes code fast, which means unclear requirements turn into fast rework. Before generating code, align on four essentials:
 
@@ -40,13 +50,13 @@ AI writes code fast, which means unclear requirements turn into fast rework. Bef
 - User roles and what each role can view or modify;
 - What belongs in the first release and what can wait.
 
-Capture these in a short design document (see [Write a system design doc first](../guides/write-a-design-doc.md)) so every agent session shares the same baseline.
+Capture these in a short design document (see [Write a system design doc first](../guides/write-a-design-doc.md)) so every Coding Agent session shares the same baseline.
 
 ### Iterate locally on Core
 
 A developer initializes an application from the NocoBase Core default template on their own machine and builds the MVP with Claude Code, Codex, or Cursor (see [Build your first app with Core](develop-your-first-app.md)):
 
-- **Reuse the foundation, focus on business logic**: Over 30 capabilities—users, permissions, authentication, databases, workflows, and approvals—are ready out of the box, leaving agents to implement your business logic.
+- **Reuse the foundation, focus on business logic**: Over 30 capabilities—users, permissions, authentication, databases, workflows, and approvals—are ready out of the box, leaving Coding Agents to implement your business logic.
 - **Align live and converge quickly**: Discuss and refine directly against running pages and APIs with product or business stakeholders, without waiting on tickets or status relays.
 - **Consistent architecture from day one**: Although iteration feels as fast as prototyping, Core enforces a standard directory layout, coding conventions, and versioned Skills shipped with the packages. The result is a maintainable application ready for production, not a throwaway demo.
 
@@ -93,19 +103,6 @@ As the system runs, confirmed business rules and lessons learned accumulate in S
 | Working cadence | Live local chat and edits, minute-by-minute alignment | Structured tasks, parallel branches, gated reviews and acceptance |
 | Key participants | Product/business + developer (local Coding Agent) | Business users + developers + 24/7 agent team |
 | Core strength | Zero setup overhead and fastest direction changes on a clean architecture | High parallel throughput, quality guardrails, and shared team knowledge |
-
-## A real-world timeline reference
-
-> [!NOTE] How a cross-border quoting system went live in practice
-> A large manufacturing enterprise followed this exact two-stage pattern to build an international quoting system with 400+ configuration parameters, regional standards, and commercial terms:
->
-> - **First 3 days**: Product managers interviewed regional sales and solution teams to clarify parameters, pricing logic, and first-release scope.
-> - **Next 1 week**: Developers built a working MVP locally using a Coding Agent and NocoBase Core, aligning live with product managers until the core flows stabilized.
-> - **MVP ready**: The team deployed a preview for frontline users; as feedback poured in, they connected the repository to Studio with zero migration.
-> - **1 more week**: Studio coordinated an agent team to resolve hundreds of frontline feedback items in parallel through automated checks, cross-model review, and acceptance—shipping version 1 to production.
-> - **Next ~2 months**: Keeping the same Studio rhythm, the team steadily expanded into 10+ modules covering leads, proposals, quotes, orders, dashboards, a document hub, and AI assistants.
->
-> Actual timelines vary with complexity: a focused internal tool may finish Stage 1 in a single day, while a large core system can roll out module by module.
 
 ## When you do not need two stages
 

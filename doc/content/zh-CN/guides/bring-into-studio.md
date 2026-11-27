@@ -13,7 +13,7 @@ metaDescription: 把 itam-lite 接入 NocoBase Studio，让 Agent 团队接着�
 ![Studio 的「我的任务」：等你处理的排在最前面](https://static-docs.nocobase.com/20261028173135810.png)
 
 > [!NOTE] 使用免费的 Studio 社区版即可完成本部分
-> 本机快速试用见[安装并使用 Studio](../getting-started/collaborate-with-studio.md)，为团队部署见[安装概览](../studio/setup/index.md)，关于何时从 Core 切入 Studio 见[先用 Core，再接入 Studio](../getting-started/from-core-to-studio.md)。多角色流程、部署审批和质量管理等进阶能力属于专业版或企业版，见[选择版本](../studio/setup/index.md#选择版本)。
+> 本机快速试用见[安装并使用 Studio](../getting-started/collaborate-with-studio.md)，为团队部署见[安装概览](../studio/setup/index.md)，关于何时从 Core 切入 Studio 见[最佳上手路径](../getting-started/from-core-to-studio.md)。多角色流程、部署审批和质量管理等进阶能力属于专业版或企业版，见[选择版本](../studio/setup/index.md#选择版本)。
 
 ## 1. 让 Agent 搭建 Studio
 

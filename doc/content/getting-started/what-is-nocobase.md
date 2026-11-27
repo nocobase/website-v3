@@ -96,7 +96,7 @@ AI + NocoBase is changing how business systems are built and used in four places
 
 ## Get started
 
-- See the recommended two-stage approach and when to move from local Core to Studio: [Start with Core, scale with Studio](from-core-to-studio.md)
+- See the recommended two-stage approach and when to move from local Core to Studio: [Best way to get started](from-core-to-studio.md)
 - Start directly with Core and your local Coding Agent: [Build your first app with Core](develop-your-first-app.md)
 - Install the free Studio Community Edition with one command and walk through your first request: [Install and use Studio](collaborate-with-studio.md)
 - Follow a complete IT asset management project from start to finish: [Build reliable enterprise apps with NocoBase 3](../guides/build-reliable-enterprise-apps.md)

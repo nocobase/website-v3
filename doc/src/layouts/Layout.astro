@@ -1,5 +1,5 @@
 ---
-// The shell of every docs page: head (title, canonical, hreflang, analytics), the shared header and footer, the sidebar and table of contents columns (on narrow screens a bar under the header opens them as a drawer and a drop-down), and the search dialog. Styles: tokens and shell of the shared package, then the docs' own.
+// The shell of every docs page: head (title, canonical, hreflang, link-preview cards, analytics), the shared header and footer, the sidebar and table of contents columns (on narrow screens a bar under the header opens them as a drawer and a drop-down), and the search dialog. Styles: tokens and shell of the shared package, then the docs' own.
 import '@nocobase/site-shared/styles/tokens.css';
 import '@nocobase/site-shared/fonts/fonts.css';
 // The Latin subset of Archivo is used by every page; preloading it lets the first paint use it instead of swapping from the fallback font
@@ -11,6 +11,7 @@ import Analytics from '@nocobase/site-shared/Analytics.astro';
 import Footer from '@nocobase/site-shared/Footer.astro';
 import Icon from '@nocobase/site-shared/Icon.astro';
 import Header from '@nocobase/site-shared/Header.astro';
+import SocialMeta from '@nocobase/site-shared/SocialMeta.astro';
 import { footerProps, headerProps } from '../lib/chrome.mjs';
 import { getSite } from '../lib/site.mjs';
 import Sidebar from '../components/Sidebar.astro';
@@ -59,11 +60,7 @@ const chat = askUi[lang] || askUi.en;
 {pageKey && !noindex && <link rel="canonical" href={abs(site.urlOf(lang, pageKey))}>}
 {alternates.map(l => <link rel="alternate" hreflang={l.hreflang} href={abs(site.urlOf(l.code, pageKey!))}>)}
 {pageKey && <link rel="alternate" hreflang="x-default" href={abs(site.urlOf(config.defaultLanguage.code, pageKey))}>}
-<meta property="og:type" content="website">
-<meta property="og:site_name" content={siteTitle}>
-<meta property="og:title" content={title}>
-{pageKey && <meta property="og:url" content={abs(site.urlOf(lang, pageKey))}>}
-<meta property="og:locale" content={config.byCode[lang].hreflang.replace('-', '_')}>
+<SocialMeta title={title} description={description} url={pageKey && abs(site.urlOf(lang, pageKey))} siteName={siteTitle} locale={config.byCode[lang].hreflang} />
 <Analytics {...config.analytics} />
 <link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">

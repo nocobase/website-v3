@@ -1,4 +1,4 @@
-// 官网和文档站共用的配置：v2 旧文档地址的一级路径名单、GitHub 星标数。
+// 官网和文档站共用的配置：v2 旧文档地址的一级路径名单、GitHub 星标数、分享卡片的默认图片和 X 账号。
 import { existsSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
@@ -30,3 +30,9 @@ export function githubStars(env = process.env) {
   const raw = (env.GITHUB_STARS || '').trim();
   return (/^\d+$/.test(raw) && formatStars(raw)) || GITHUB_STARS_DEFAULT;
 }
+
+// 链接分享到 X、LinkedIn、Slack 等处时卡片用的图（og:image）：页面没有自己的图（博客、客户案例的封面）就用这张，文档站也用它。
+// 文件在 homepage/public/social/，随官网发布；X 的大图卡片按 2:1 裁切，换图时用 2:1、至少 1200×600、5 MB 以内的 JPG 或 PNG。
+export const SHARE_IMAGE = 'https://www.nocobase.com/social/nocobase-share.png';
+// X 卡片署名的账号（twitter:site）
+export const X_HANDLE = '@NocoBase';

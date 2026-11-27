@@ -2,6 +2,7 @@
 // - 站内链接指向的页面和文件都存在（地址按 CDN 回源规则映射到文件：以 / 结尾或最后一段不带点号的读 index.html）；
 // - 译文格式正确；
 // - 每种语言的页面数一致（12 种语言的页面每种语言一样多；中英文的页面（博客等，部分另有日文版）英文和简体中文一样多），产物里每个页面都在；
+// - 每个页面都有分享卡片的标签（og:image 是 X 支持的 JPG、PNG、WEBP 或 GIF，twitter:card）；
 // - 产物根目录没有会被 CDN 回源规则误处理的名字（/en/ 会被去掉前缀映射到根目录，/api/ai/ 原样透传），也没有带点号的目录。
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
@@ -66,6 +67,12 @@ export function checkRoot(names, isDir = () => true) {
   return errors;
 }
 
+// 分享卡片：少了 og:image 或 twitter:card，链接发到 X 等处只显示一条链接，没有标题和图片的卡片；X 不显示 SVG、AVIF 等格式的图
+export function checkShareTags(files) {
+  const missing = Object.keys(files).filter(u => !/<meta property="og:image" content="https:\/\/[^"?#]+\.(?:jpe?g|png|webp|gif)(?:[?#][^"]*)?"/i.test(files[u]) || !/<meta name="twitter:card" content="[^"]+"/.test(files[u])).sort();
+  return missing.length ? [`${missing.length} 个页面缺少分享卡片的标签（og:image、twitter:card）或 og:image 不是 JPG、PNG、WEBP、GIF，如 ${missing.slice(0, 3).join('、')}`] : [];
+}
+
 // 产物里应该有的每个页面
 export function expectedFiles(pages) {
   return pages.flatMap(p => p.langs.map(l => p.path(l)));
@@ -78,6 +85,7 @@ export function runChecks(dist, pages) {
   errors.push(...checkCounts(counts));
   const files = readOutput(dist);
   for (const url of expectedFiles(pages)) if (!(url in files)) errors.push(`产物里缺少页面 ${url}`);
+  errors.push(...checkShareTags(files));
   const drafts = new Set(pages.filter(p => p.noindex && /^(blog|customers)\//.test(p.id)).flatMap(p => p.langs.map(l => p.path(l))));
   const checked = links.check(files, makeExists(dist), isArticleUrl, url => drafts.has(url));
   errors.push(...checked.errors);

@@ -60,7 +60,7 @@ When Studio shows a request ID, copy it from the error details. Give the adminis
 
 ## Checks, previews, and merging
 
-When results are missing, check the repository's selected source. Code-host CI, external CI, and Agent self-check do not combine their results. See [Configure repository checks and CI](../configure/checks.md).
+When results are missing, check the repository's selected source. Code-host CI, external CI, and Agent self-check do not combine their results. See [Configure repository checks](../configure/checks.md).
 
 For missing previews, inspect build records, CI connectivity to Studio, required variables, and the `no-preview` label. Stopped or dormant previews restart when visited.
 

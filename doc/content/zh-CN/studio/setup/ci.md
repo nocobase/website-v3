@@ -21,4 +21,4 @@ description: 以 GitHub 为例，设置仓库检查来源和 PR 预览构建方�
 
 ## 下一步
 
-配置完成后，[邀请成员](invite.md)加入项目。要调整仓库设置，见[配置仓库检查与 CI](../configure/checks.md)和[配置仓库的 PR 预览](../configure/pr-previews.md)。
+配置完成后，[邀请成员](invite.md)加入项目。要调整仓库设置，见[配置仓库检查](../configure/checks.md)和[配置仓库的 PR 预览](../configure/pr-previews.md)。

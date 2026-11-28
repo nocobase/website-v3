@@ -7,7 +7,7 @@ Before delivery, the Lead Agent arranges verification and code review according 
 
 ## Follow checks
 
-Open **Code & previews** on the task to see each PR's check source, results, and log links. The repository selects the source: code-host CI, external CI, or Agent self-check. See [Configure repository checks and CI](../configure/checks.md).
+Open **Code & previews** on the task to see each PR's check source, results, and log links. The repository selects the source: code-host CI, external CI, or Agent self-check. See [Configure repository checks](../configure/checks.md).
 
 ![PR check results on a task](https://static-docs.nocobase.com/studio-en-req-preview-20261111-normal-2x.webp)
 

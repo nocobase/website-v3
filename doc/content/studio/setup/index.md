@@ -65,7 +65,7 @@ After [accepting an invitation and signing in](../join/sign-in.md), members [wal
 | Setting | Documentation |
 | --- | --- |
 | Model responsibilities, execution machines, and shared skills | Agent management: [Agents](../configure/agents.md), [Runtimes](../configure/runtimes.md), and [Skills](../project/skills.md) |
-| Check sources and CI pipelines | [Configure repository checks and CI](../configure/checks.md) |
+| Check sources and CI pipelines | [Configure repository checks](../configure/checks.md) |
 | Repository preview builds | [Configure PR previews](../configure/pr-previews.md) |
 | Project information and members | Project management: [Project settings](../project/settings.md) |
 | Git connections and other code platforms | Administration: [Code platforms](../configure/git.md) |

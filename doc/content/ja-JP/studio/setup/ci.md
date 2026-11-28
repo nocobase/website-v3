@@ -21,4 +21,4 @@ description: GitHub を例に、リポジトリのチェック結果の取得元
 
 ## 次のステップ
 
-設定が完了したら、プロジェクトに[メンバーを招待](invite.md)します。ほかの設定は[リポジトリのチェックと CI](../configure/checks.md)と [PR プレビューの設定](../configure/pr-previews.md)を参照してください。
+設定が完了したら、プロジェクトに[メンバーを招待](invite.md)します。ほかの設定は[リポジトリのチェック](../configure/checks.md)と [PR プレビューの設定](../configure/pr-previews.md)を参照してください。

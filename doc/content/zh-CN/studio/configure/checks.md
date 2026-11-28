@@ -1,5 +1,5 @@
 ---
-title: 配置仓库检查与 CI
+title: 配置仓库检查
 description: 选择 PR 检查结果的来源，设置分支规则，并在任务中核对结果。
 ---
 
@@ -17,11 +17,19 @@ description: 选择 PR 检查结果的来源，设置分支规则，并在任务
 
 ## 接入外部 CI
 
-1. 在「检查」中选择「外部 CI」，生成仓库 CI 密钥。
-2. 将密钥保存为流水线的保密变量 `NB_STUDIO_API_KEY`，将 `NB_STUDIO_URL` 设为执行机能访问的 Studio 地址。
-3. 把面板提供的上报脚本加入流水线，发送各项检查的状态和日志链接。
+在仓库的「检查」中选择「外部 CI」。下面以 Jenkins 已能为 PR 运行测试为例。选择「Jenkins」后，可以复制面板里的提示词，让本地 Coding Agent 修改仓库；也可以展开手动配置。
 
-密钥只在生成时显示，默认有效期为 90 天。更换密钥后，同步更新流水线变量。
+1. 在面板中生成仓库 CI 密钥。在 Jenkins 为这条流水线添加 **Secret text** 凭据，ID 填 `nb-studio-api-key`。密钥只显示一次，默认有效期为 90 天。
+2. 将面板生成的 `ci/nb-studio-check.sh` 加入仓库。复制生成的 `Jenkinsfile`；如果仓库已有该文件，将示例中的环境变量和检查阶段并入现有流水线。`NB_STUDIO_URL` 应指向执行机能访问的 Studio 地址，`NB_STUDIO_API_KEY` 从上一步的凭据读取。
+3. 按项目实际命令修改检查阶段。每个需要在 Studio 中单独查看的检查使用一个名称。例如，用以下命令运行名为 `test` 的检查：
+
+```bash
+sh ci/nb-studio-check.sh test pnpm test
+```
+
+脚本先上报 `pending`，再按命令退出码上报成功或失败，并附上 Jenkins 构建日志链接。提交改动并运行 PR 流水线，在任务的「代码与预览」中核对当前提交是否出现了 `test`。
+
+使用其他流水线时，选「其他 CI」，将同样的上报脚本用于已有检查，并配置 Studio 地址和仓库密钥。将本次流水线的日志地址传给 `BUILD_URL`，即可从 Studio 打开日志。如果 CLI 无法识别仓库或提交，在脚本的 `nb-studio check report` 调用中显式传入 `--repository` 和 `--sha`。
 
 ## 配置分支规则
 

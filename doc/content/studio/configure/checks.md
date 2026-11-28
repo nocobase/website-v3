@@ -1,5 +1,5 @@
 ---
-title: Configure repository checks and CI
+title: Configure repository checks
 description: Choose where PR check results come from, set branch rules, and verify results on a task.
 ---
 
@@ -17,11 +17,19 @@ Open **Project settings › Code repositories**. On the repository card, edit **
 
 ## Connect external CI
 
-1. Select **External CI** under **Checks** and generate a repository CI key.
-2. Store the key as the pipeline secret `NB_STUDIO_API_KEY`. Set `NB_STUDIO_URL` to a Studio address the CI runner can reach.
-3. Add the reporting script from the panel to your pipeline. It sends the status and log link for each check.
+Select **External CI** under the repository’s **Checks**. This example uses a Jenkins pipeline that already builds pull requests. Choose **Jenkins** to copy the setup prompt for a local Coding Agent, or expand the manual setup.
 
-The key is shown once and expires after 90 days by default. When you replace it, update the pipeline secret.
+1. Generate a repository CI key in the panel. In Jenkins, add a **Secret text** credential available to the pipeline with the ID `nb-studio-api-key`. The key is shown once and expires after 90 days by default.
+2. Add the generated `ci/nb-studio-check.sh` to the repository. Copy the generated `Jenkinsfile`, or add its environment variables and check stages to your existing pipeline. Set `NB_STUDIO_URL` to a Studio address the runner can reach. The pipeline reads `NB_STUDIO_API_KEY` from the Jenkins credential.
+3. Set each stage to run your project’s check command. Give each check you want to see in Studio its own name. For example, run a check named `test` with:
+
+```bash
+sh ci/nb-studio-check.sh test pnpm test
+```
+
+The script reports `pending`, runs the command, then reports success or failure from its exit code and links to the Jenkins build log. Commit the changes and run the PR pipeline. In the task’s **Code & previews** tab, look for `test` on the current commit.
+
+For an existing pipeline in another CI system, choose **Other CI**, configure the Studio URL and repository key, and wrap the existing checks with the same reporting script. Set `BUILD_URL` to the job log URL so readers can open it from Studio. If the CLI cannot identify the repository or commit, pass `--repository` and `--sha` explicitly to the script’s `nb-studio check report` calls.
 
 ## Configure branch rules
 

@@ -1,9 +1,9 @@
 ---
 title: 最佳上手路径
-metaDescription: "从一个真实项目看 NocoBase 3 的最佳上手路径：探索期用本地 Coding Agent 和 Core 快速做出 MVP，交付试用、反馈涌来后零迁移接入 Studio 并行打磨并投产。"
+metaDescription: "从一个真实项目看 NocoBase 3 的最佳上手路径：探索期用本地 Coding Agent 和 Core 快速做出 MVP，交付试用、反馈涌来后直接把仓库接入 Studio 并行打磨并投产。"
 ---
 
-用 NocoBase 3 开发一个真实业务系统，不必一上来就搭建完整的团队流程，也不用担心先轻后重会带来迁移成本。推荐采用**两阶段接力**的上手路径：**先在本地用 Coding Agent 和 Core 快速出 MVP，交付一线试用、反馈成批涌来后再零迁移接入 Studio 并行打磨并投产。**
+用 NocoBase 3 开发一个真实业务系统，不必一上来就搭建完整的团队流程，也不用担心后期切入 Studio 需要重写或改造。推荐采用**两阶段接力**的上手路径：**先在本地用 Coding Agent 和 Core 快速出 MVP，交付一线试用、反馈成批涌来后，再直接将代码仓库接入 Studio 并行打磨并投产。**
 
 ## 从一个真实项目看起
 
@@ -11,7 +11,7 @@ metaDescription: "从一个真实项目看 NocoBase 3 的最佳上手路径：�
 
 - **前 3 天（业务调研）**：产品经理深入一线走访区域销售与方案人员，梳理核心参数、报价规则与首版范围。
 - **接下来 1 周（本地 Coding Agent + Core 出 MVP）**：开发在自己电脑上用 Coding Agent 搭配 NocoBase Core 搭出可运行的最小可用版本（MVP），复用底座自带的权限、认证与流程能力，一边演示一边与产品高频对齐定型。
-- **MVP 完成后（预览试用并接入 Studio）**：将 MVP 部署到预览环境开放给一线同事试用，改进意见迅速涌来；团队直接将同一个代码仓库零迁移接入 NocoBase Studio。
+- **MVP 完成后（预览试用并接入 Studio）**：将 MVP 部署到预览环境开放给一线同事试用，改进意见迅速涌来；团队直接将同一个代码仓库接入 NocoBase Studio，无需任何改造。
 - **再经过 1 周（并行打磨并投产）**：Studio 调度 Agent 团队并行消化数百条一线反馈，通过自动检查、跨模型评审与验收把关质量，复杂报价首版正式投产使用。
 - **后续约 2 个月（持续演进）**：沿同一套 Studio 节奏继续并行推进，逐步长出商机、方案、报价、订单、看板、资料库与 AI 助手等 10+ 业务模块。
 
@@ -19,7 +19,7 @@ metaDescription: "从一个真实项目看 NocoBase 3 的最佳上手路径：�
 
 ## 两阶段推进全貌
 
-<figure class="two-stage-flow" aria-label="阶段一先理清业务并用本地 Coding Agent 与 Core 快速出 MVP，预览试用后零迁移接入 Studio 进入阶段二并行打磨与持续演进">
+<figure class="two-stage-flow" aria-label="阶段一先理清业务并用本地 Coding Agent 与 Core 快速出 MVP，预览试用后直接将仓库接入 Studio 进入阶段二并行打磨与持续演进">
 <div class="ts-stage">
 <p class="ts-head"><b>阶段一 · 快速成型</b><span>本地 Coding Agent + Core</span></p>
 <div class="ts-steps">
@@ -73,7 +73,7 @@ MVP 跑通后，可以先部署到测试或预览环境（见[选择部署方式
 - **进入投产前控质阶段**：系统即将正式上线，担心改新需求把已有功能改坏，需要自动检查、跨模型独立评审和统一的验收记录。
 - **业务同事要直接参与**：希望业务负责人自己在界面上提需求、回答规则提问、看预览做验收，不再依赖开发居中转述。
 
-### 零迁移成本接入现有仓库
+### 直接接入现有代码仓库
 
 从 Core 切入 Studio 不需要重写代码或调整架构。Studio 管理的正是同一个基于 Core 的 Git 仓库，工程结构、Skill 与运行方式完全一致。
 

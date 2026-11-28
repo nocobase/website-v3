@@ -1,9 +1,9 @@
 ---
 title: Best way to get started
-metaDescription: "See the best path to get started with NocoBase 3 through a real project: build an MVP locally with a Coding Agent and Core, then connect the same repository to Studio with zero migration to polish in parallel and ship reliably."
+metaDescription: "See the best path to get started with NocoBase 3 through a real project: build an MVP locally with a Coding Agent and Core, then connect the same repository directly to Studio to polish in parallel and ship reliably."
 ---
 
-Building a real business system with NocoBase 3 does not require setting up heavy team processes on day one, nor does starting light create migration work later. The best path is a **two-stage progression**: **build an MVP locally with a Coding Agent and Core first, then connect the same repository to Studio with zero migration once frontline feedback pours in so an agent team can polish and ship it reliably.**
+Building a real business system with NocoBase 3 does not require setting up heavy team processes on day one, nor does starting light require rewriting anything later. The best path is a **two-stage progression**: **build an MVP locally with a Coding Agent and Core first, then connect the same repository directly to Studio once frontline feedback pours in so an agent team can polish and ship it reliably.**
 
 ## Start with a real project
 
@@ -11,7 +11,7 @@ Look at how a real enterprise project ran end to end. A large manufacturing ente
 
 - **First 3 days (business discovery)**: Product managers interviewed regional sales and solution teams to clarify parameters, pricing logic, and first-release scope.
 - **Next 1 week (local Coding Agent + Core for MVP)**: Developers built a working minimum viable product (MVP) locally using a Coding Agent and NocoBase Core, reusing built-in permissions, auth, and workflows while aligning live with product managers until the core flows stabilized.
-- **MVP ready (preview and connect to Studio)**: The team deployed a preview for frontline colleagues; as feedback poured in, they connected the exact same repository to NocoBase Studio with zero migration.
+- **MVP ready (preview and connect to Studio)**: The team deployed a preview for frontline colleagues; as feedback poured in, they connected the exact same repository directly to NocoBase Studio without any restructuring.
 - **1 more week (parallel polish and launch)**: Studio coordinated an agent team to resolve hundreds of frontline feedback items in parallel through automated checks, cross-model review, and acceptance—shipping version 1 to production.
 - **Next ~2 months (continuous growth)**: Keeping the same Studio rhythm, the team steadily grew 10+ modules covering leads, proposals, quotes, orders, dashboards, a document hub, and AI assistants.
 
@@ -19,7 +19,7 @@ Actual timelines vary with complexity: a focused internal tool may finish Stage 
 
 ## Two-stage progression at a glance
 
-<figure class="two-stage-flow" aria-label="Stage 1 clarifies business scope and builds an MVP locally with Core; after preview testing, the same repository connects to Studio with zero migration for Stage 2 parallel delivery and ongoing evolution">
+<figure class="two-stage-flow" aria-label="Stage 1 clarifies business scope and builds an MVP locally with Core; after preview testing, the same repository connects directly to Studio for Stage 2 parallel delivery and ongoing evolution">
 <div class="ts-stage">
 <p class="ts-head"><b>Stage 1 · Fast MVP</b><span>Local Coding Agent + Core</span></p>
 <div class="ts-steps">
@@ -73,9 +73,9 @@ Any of the following signs means the project has moved from solo exploration int
 - **Production readiness requires quality gates**: Before going live, you need automated checks, independent cross-model reviews, and traceable acceptance so new changes do not break working features.
 - **Business colleagues want to participate directly**: Business owners want to submit requests, answer rule questions, and verify previews directly instead of relaying everything through developers.
 
-### Connect the existing repository with zero migration
+### Connect your existing repository directly
 
-Moving from Core to Studio requires no rewrite and no structural migration. Studio operates on the exact same Core-based Git repository, using the same project layout, Skills, and runtime model.
+Moving from Core to Studio requires no rewrite and no structural changes. Studio operates on the exact same Core-based Git repository, using the same project layout, Skills, and runtime model.
 
 Once Studio is running (try it locally with [Install and use Studio](collaborate-with-studio.md), or deploy it for your team via the [Installation overview](../studio/setup/index.md)), create a project linked to your existing repository without re-initializing it, and continue right where you left off (see [Bring the project into Studio](../guides/bring-into-studio.md)).
 

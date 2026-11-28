@@ -27,7 +27,7 @@ description: 管理项目成员、代码仓库和运行变量。
 
 ![在仓库卡片中配置检查、分支规则和预览](https://static-docs.nocobase.com/studio-zh-project-repositories-20261111-normal-2x.webp)
 
-多个仓库按顺序排列，第一个为主仓库。移除关联不会删除 Git 平台上的仓库。检查和预览的配置见[配置仓库检查与 CI](../configure/checks.md)，技能配置见[技能](skills.md)。
+多个仓库按顺序排列，第一个为主仓库。移除关联不会删除 Git 平台上的仓库。检查来源和预览构建方式分别见[配置仓库检查](../configure/checks.md)和[配置仓库的 PR 预览](../configure/pr-previews.md)，技能配置见[技能](skills.md)。
 
 ### 默认开发负责人
 

@@ -7,7 +7,7 @@ description: "チェック結果、エージェントのレビュー、マージ
 
 ## チェックを確認する
 
-タスクの **Code & previews** で、各 PR のチェック取得元、結果、ログを確認します。取得元はリポジトリで選んだコードプラットフォームの CI、外部 CI、エージェントのセルフチェックです。[リポジトリのチェックと CI を設定する](../configure/checks.md)を参照してください。
+タスクの **Code & previews** で、各 PR のチェック取得元、結果、ログを確認します。取得元はリポジトリで選んだコードプラットフォームの CI、外部 CI、エージェントのセルフチェックです。[リポジトリのチェックを設定する](../configure/checks.md)を参照してください。
 
 ![タスク上で PR のチェック結果を確認する](https://static-docs.nocobase.com/studio-en-req-preview-20261111-normal-2x.webp)
 

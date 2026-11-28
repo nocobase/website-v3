@@ -43,4 +43,4 @@ Agent 受代表成员的权限和 Agent 可用操作共同限制。任务工作�
 
 执行 Agent 可提交分支、推送和创建 PR。它不能验收或合并 PR，也不能管理成员和角色。知识库只读，项目记忆随任务 PR 维护。
 
-预览发布受仓库检查来源限制；选择 Agent 自检时，Agent 可发布任务 PR 的预览。详情见[配置仓库检查与 CI](../configure/checks.md)。
+发布预览的权限取决于仓库的[预览构建方式](../configure/pr-previews.md)。选择「Agent 构建」时，由执行任务的 Agent 发布。

@@ -1,36 +1,22 @@
 ---
 title: PR previews
-description: Open the application for a PR and verify changes before merging.
+description: Open the preview for the task’s commit to verify changes before merging.
 ---
 
-A PR preview is an isolated application running a specific commit. First [configure checks and previews](../configure/checks.md) on the repository. CI publishes previews for CI sources; the working Agent publishes them for Agent self-check.
+## Open a task’s preview
 
-## Open a preview
+1. Open **Code & previews** on the task and find the PR you want to verify.
+2. Check the commit shown for the preview. If the PR has newer changes, wait for the new build to be published.
+3. Open the preview app. If sign-in is required, anyone who can edit the task can select **Account** on the PR row at the top of the task to copy the initial administrator credentials.
 
-Use the task's **Code & previews** tab to see its URL, commit, and build status. **Releases › Previews** lists all previews for the selected project.
+![The PR preview includes build status and an access link](https://static-docs.nocobase.com/studio-en-req-preview-20261111-normal-2x.webp)
 
-![PR previews and their build status](https://static-docs.nocobase.com/studio-en-previews-20261111-normal-2x.webp)
+Try the acceptance scenarios from the delivery report in the app, then return to [task acceptance](../use/accept.md) to accept the delivery or request changes.
 
-New commits update the preview after the new build completes. Before accepting a task, confirm that the preview matches the changes being merged.
-
-Initial deployment loads sample data, not business data. Once the preview has started, people who can edit the task can select **Account** on its PR line to copy the initial administrator credentials. Set missing required variables on the preview environment or individual application as indicated.
+An idle preview wakes on the next visit. Studio removes the preview app when the PR is merged or closed. See [Hosted environments](../admin/environments.md#manage-preview-applications).
 
 ## Skip a preview
 
 Enable **No preview needed** in the task properties. The Agent adds the `no-preview` label to the PR, which generated CI templates respect. Existing previews are not automatically deleted by this setting.
 
-## Lifecycle
-
-The default policy below can be changed in [Hosted environments](../admin/environments.md).
-
-| Condition | Behavior |
-| --- | --- |
-| No visits for 10 minutes | Stop the process; restart on the next visit |
-| No visits for 24 hours | Go dormant and remove extracted files, keeping configuration and data |
-| PR merged, closed, or preview destroyed | Delete the preview and its data |
-
-The default capacity is 20 previews. A dormant application takes longer to prepare on its next visit.
-
-Previews run as application subprocesses started by Studio. For team use, configure a separate preview domain and a restricted system user. See [Configuration reference](../reference/config.md).
-
-Applications hosted within Studio share the host process’s memory. Before starting an application, Studio checks available capacity and stops an idle application when safe. If none can be reclaimed, the page reports that capacity is full. Retry later or adjust the hosting resources.
+See [Configure PR previews for a repository](../configure/pr-previews.md) to change the repository default.

@@ -1,35 +1,24 @@
 ---
 title: Configure checks and previews
-description: Choose Agent self-checks, GitHub Actions, or external CI to verify changes and provide previews.
+description: Choose a repository check source and a PR preview build mode using GitHub as an example.
 ---
 
-New repositories use Agent self-checks by default. If your team already runs a pipeline, switch the repository to code-host or external CI.
+Each repository has a check source and a separate preview build mode. This example uses GitHub Actions for checks and the Agent to build PR previews.
 
 ## Choose a check source
 
-Open **Project settings › Code repositories** and select the repository's **Checks**.
+Open **Project settings › Code repositories** and edit **Checks** on the repository. If GitHub Actions already runs checks, choose **GitHub Actions** and save. Studio reads the results from GitHub. For a repository without CI, keep the default **Agent self-check**.
 
-| Source | Use it when | Setup |
-| --- | --- | --- |
-| Agent self-checks | You want Agents to verify changes without a CI pipeline | Select and save; Agents run project checks, report results, and publish previews |
-| GitHub Actions | You want GitHub workflows to run checks and builds | Add a workflow file and CI secret |
-| External CI | You already use another CI service | Report check results and publish previews from your pipeline |
+![Select GitHub Actions as the repository check source](https://static-docs.nocobase.com/studio-guide-en-checks-20261127-a6340eebb255.webp)
 
-Each repository accepts results only from its selected source. After switching sources, reports from the previous source are no longer accepted.
+## Choose a preview build mode
 
-![Select a check source, trigger, and preview environment](https://static-docs.nocobase.com/studio-en-ci-20261111-normal-2x.webp)
+1. On the same repository card, edit **Previews**.
+2. Choose **Agent build** and save. At delivery, the Agent builds the application with the project scripts and publishes the preview. Choose **No build** for a repository that does not need previews.
+3. Open a task with a PR. **Code & previews** shows its check results and a link once the preview is published.
 
-## Use GitHub Actions
-
-1. Select **GitHub Actions**, the **Pull request** trigger, and the **Preview** environment.
-2. Use `.` for an application at the repository root. Keep the generated application ID.
-3. Copy the prompt for your local Coding Agent. It adds the workflow, stores the CI secret, and opens a PR.
-4. Wait for the workflow to finish. Find check results and open the preview in the task's **Code & previews** tab.
-
-GitHub Actions must be able to reach Studio. For localhost or private networks, use a self-hosted runner that can reach it, or configure a reachable HTTPS address.
-
-See [Configure repository checks and CI](../configure/checks.md) for manual setup, external CI, branch and tag triggers, and key maintenance.
+![Choose a build mode in the Previews drawer](https://static-docs.nocobase.com/studio-guide-en-preview-20261127-ad12d3e0f876.webp)
 
 ## Next steps
 
-[Invite members](invite.md) to the project. See [Configure repository checks and CI](../configure/checks.md) whenever you need external CI, other triggers, or key maintenance.
+Next, [invite members](invite.md) to the project. For other repository settings, see [Configure repository checks](../configure/checks.md) and [Configure PR previews](../configure/pr-previews.md).

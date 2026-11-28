@@ -18,17 +18,39 @@ The default in-process mode runs application subprocesses and uses archive artif
 
 Deploy production on your own infrastructure rather than creating a production hosted environment here.
 
+## Manage preview applications
+
+Open a hosted environment with the **Previews** purpose to see its PR applications and their runtime states. For one project’s previews, open **Previews** under the project’s **Releases** tab.
+
+![PR previews and their build status](https://static-docs.nocobase.com/studio-en-previews-20261111-normal-2x.webp)
+
+Studio’s built-in preview environment uses the defaults below. Adjust capacity and idle times in the hosted environment settings.
+
+| Condition | Behavior |
+| --- | --- |
+| No visits for 10 minutes | Stop the process; restart on the next visit |
+| No visits for 24 hours | Go dormant and remove extracted files, keeping configuration and data |
+| PR merged, closed, or preview destroyed | Delete the preview and its data |
+
+The default capacity is 20 previews. A dormant application takes longer to prepare on its next visit.
+
+Previews run as application subprocesses started by Studio. For team use, configure a separate preview domain and a restricted system user. See [Configuration reference](../reference/config.md).
+
+Hosted applications draw on the same host’s available memory. Before starting an application, Studio checks available capacity and stops an idle application when safe. If none can be reclaimed, the page reports that capacity is full. Retry later or adjust the hosting resources.
+
 ## Deliver test applications
 
 Add a test application from its hosted environment or the project's release page, or let CI create it on its first report. The deployment dialog offers an Agent prompt, CI setup, and manual commands.
 
-Use branch-push CI for continuous testing; see [Configure repository checks and CI](../configure/checks.md). Application details provide deployment history, logs, stop, wake, and delete actions.
+For continuous test deployments, choose a branch push or tag trigger in the deployment panel and set the target test environment and application directory. Generate a workflow for each trigger. Open the application to inspect deployment history and logs, or to stop, wake, or delete it.
 
 ## Configure application environment variables
 
 Values set on an environment apply to all its applications. To change only one test application, set its variables on the application itself. Application values take precedence.
 
 The deployment page lists any missing required variables.
+
+When sample data is enabled for the environment, both initial deployment and redeployment load any outstanding samples. To turn this off for one app, set `APP_SAMPLE_DATA=false` in its variables and select **Apply & restart**.
 
 For example, to connect an inventory test application to PostgreSQL:
 

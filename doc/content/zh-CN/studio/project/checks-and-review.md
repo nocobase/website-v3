@@ -7,7 +7,7 @@ description: 跟进检查结果、Agent 评审和合并条件。
 
 ## 跟进检查
 
-在任务的「代码与预览」中查看 PR 的检查来源、结果和日志链接。来源由仓库配置决定，可以是代码平台 CI、外部 CI 或 Agent 自检，见[配置仓库检查与 CI](../configure/checks.md)。
+在任务的「代码与预览」中查看 PR 的检查来源、结果和日志链接。来源由仓库配置决定，可以是代码平台 CI、外部 CI 或 Agent 自检，见[配置仓库检查](../configure/checks.md)。
 
 ![任务中的 PR 检查结果](https://static-docs.nocobase.com/studio-zh-req-preview-20261111-normal-2x.webp)
 

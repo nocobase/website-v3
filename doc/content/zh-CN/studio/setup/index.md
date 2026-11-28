@@ -67,7 +67,8 @@ Agent 先检查目标环境，询问缺少的信息，再按下方步骤完成�
 | 要调整的内容 | 文档所在板块 |
 | --- | --- |
 | 模型分工、执行机器、团队技能 | Agent 管理：[Agent 配置](../configure/agents.md)、[运行环境](../configure/runtimes.md)、[技能](../project/skills.md) |
-| 检查来源、CI 流水线 | [配置仓库检查与 CI](../configure/checks.md) |
+| 检查来源、CI 流水线 | [配置仓库检查](../configure/checks.md) |
+| 仓库的 PR 预览方式 | [配置仓库的 PR 预览](../configure/pr-previews.md) |
 | 项目资料与成员 | 项目管理：[项目设置](../project/settings.md) |
 | Git 连接、其他代码平台 | 系统管理：[代码平台](../configure/git.md) |
 | 数据库、访问地址等部署参数 | 参考：[配置项](../reference/config.md) |

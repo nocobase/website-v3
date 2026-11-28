@@ -27,7 +27,7 @@ description: "メンバー、リポジトリ、実行変数を管理します。
 
 ![リポジトリごとにチェック、ブランチルール、プレビューを設定する](https://static-docs.nocobase.com/studio-en-project-repositories-20261111-normal-2x.webp)
 
-最初のリポジトリが主リポジトリです。関連付けを外しても、Git プラットフォームのリポジトリは削除しません。[リポジトリのチェックと CI を設定する](../configure/checks.md)、[スキル](skills.md)も参照してください。
+最初のリポジトリが主リポジトリです。関連付けを外しても、Git プラットフォームのリポジトリは削除しません。[リポジトリのチェックを設定する](../configure/checks.md)、[PR プレビューを設定する](../configure/pr-previews.md)、[スキル](skills.md)も参照してください。
 
 ### 既定の開発担当者
 

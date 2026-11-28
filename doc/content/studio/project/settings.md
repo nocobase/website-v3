@@ -27,7 +27,7 @@ Change status, priority, and dates in the project properties.
 
 ![Configure checks, branch rules, and previews on each repository](https://static-docs.nocobase.com/studio-en-project-repositories-20261111-normal-2x.webp)
 
-The first repository is the primary repository. Removing a link does not delete the repository on the Git platform. See [Configure repository checks and CI](../configure/checks.md) and [Skills](skills.md) for their configuration.
+The first repository is the primary repository. Removing a link does not delete the repository on the Git platform. See [Configure repository checks](../configure/checks.md), [Configure PR previews](../configure/pr-previews.md), and [Skills](skills.md) for their configuration.
 
 ### Default owner
 

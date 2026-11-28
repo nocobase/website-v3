@@ -85,6 +85,10 @@
         },
         {
           "type": "page",
+          "path": "release/previews"
+        },
+        {
+          "type": "page",
           "path": "use/accept"
         },
         {
@@ -108,6 +112,10 @@
         {
           "type": "page",
           "path": "configure/checks"
+        },
+        {
+          "type": "page",
+          "path": "configure/pr-previews"
         },
         {
           "type": "page",
@@ -183,10 +191,6 @@
         {
           "type": "page",
           "path": "release/overview"
-        },
-        {
-          "type": "page",
-          "path": "release/previews"
         },
         {
           "type": "page",

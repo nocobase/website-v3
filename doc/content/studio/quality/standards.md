@@ -1,6 +1,6 @@
 ---
 title: Quality standards
-description: Metrics, default pass criteria, and test methods for the five dimensions, and how a project adjusts them.
+description: Metrics, default pass criteria, and test methods for each dimension, and how a project adjusts them.
 ---
 
 Studio includes a set of metrics and pass criteria for each dimension. During a test, the tools run and produce a result for each metric, and the server compares the results with the standards to decide whether they pass.
@@ -61,3 +61,7 @@ Security tests run in an isolated environment the test prepares itself; they nev
 | High-level issues from Agent review | = 0 | Agent | Review design, project conventions, and test value by module |
 
 Code quality judges only **new** code. Issues in existing code are counted separately and do not affect the conclusion. Lint and type checks run in CI, not in this dimension.
+
+## User experience
+
+Check desktop and mobile pages against the project’s UI standards. Record reproduction steps and screenshots. Must violations on the same page are grouped into one defect. Should findings appear as suggestions in the report. Pages that could not be checked are listed separately.

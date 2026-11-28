@@ -3,7 +3,11 @@
   "pages": [
     {
       "type": "page",
-      "path": "create-app"
+      "path": "quickstart"
+    },
+    {
+      "type": "page",
+      "path": "enable-in-existing-app"
     },
     {
       "type": "page",
@@ -16,6 +20,14 @@
     {
       "type": "page",
       "path": "manage"
+    },
+    {
+      "type": "page",
+      "path": "migrate"
+    },
+    {
+      "type": "page",
+      "path": "reference"
     }
   ]
 }

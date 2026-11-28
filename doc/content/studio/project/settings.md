@@ -25,15 +25,15 @@ Change status, priority, and dates in the project properties.
 | Code repositories | Repositories, checks, branch rules, and previews |
 | Agent run variables | Environment variables and secrets for development tasks |
 
-![Configure checks, branch rules, and previews on each repository](https://static-docs.nocobase.com/studio-en-project-repositories-20261111-normal-2x.webp)
+![Configure checks, branch rules, and previews on each repository](https://static-docs.nocobase.com/studio-guide-en-repository-20261127-ef8757adea8b.webp)
 
 The first repository is the primary repository. Removing a link does not delete the repository on the Git platform. See [Configure repository checks and CI](../configure/checks.md) and [Skills](skills.md) for their configuration.
 
 ### Default owner
 
-Open the general project settings and set **Default owner** to the task creator, project lead, or a specific project member. This applies to new tasks. Members can override it when creating a task. See [Workflows](../use/multi-role-workflow.md#requester).
+On the project’s **Workflow** tab, project managers can select **Change** at the owner’s start step. Choose the task creator, project lead, or a specific member, then select **Save**. Members can still assign a different owner when creating a task. See [Workflows](../use/multi-role-workflow.md#requester).
 
-![Choose the default owner for new issues](https://static-docs.nocobase.com/studio-en-multi-role-default-owner-20261119-d223c51313.webp)
+![Set the default owner for new tasks on the workflow canvas](https://static-docs.nocobase.com/studio-guide-en-owner-20261127-fc6c92c9ec8e.webp)
 
 ### Connect an existing repository
 

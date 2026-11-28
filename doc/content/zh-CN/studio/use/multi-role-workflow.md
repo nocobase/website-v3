@@ -11,7 +11,7 @@ description: 为项目选择默认流程，为单个任务切换流程，并设�
 
 社区版中，任务负责人接手并启动任务。Agent 完成开发后，负责人查看交付报告，决定合并或退回修改。画布中间可以选择标准流程或精简流程。
 
-![社区版画布：负责人启动任务，Agent 执行标准流程，负责人完成合并](https://static-docs.nocobase.com/studio-workflow-zh-ce-20261126-30f10a2b59.webp)
+![社区版画布：负责人启动任务，Agent 执行标准流程，负责人完成合并](https://static-docs.nocobase.com/studio-guide-zh-ce-20261127-eb7d81d5ac10.webp)
 
 <span id="requester"></span>
 
@@ -19,7 +19,7 @@ description: 为项目选择默认流程，为单个任务切换流程，并设�
 
 在专业版和企业版，可以分别指派需求负责人和开发负责人。画布两侧增加了「需求确认」和「交付验收」。需求负责人确认做什么、交付是否符合要求。开发负责人启动任务并合并代码。
 
-![企业版画布中的需求确认、开发启动、交付验收和合并](https://static-docs.nocobase.com/studio-workflow-zh-roles-20261126-23d33f8a77.webp)
+![企业版画布中的需求确认、开发启动、交付验收和合并](https://static-docs.nocobase.com/studio-guide-zh-roles-20261127-63bc8a5b5b72.webp)
 
 例如，采购团队要求禁止向暂停合作的供应商新建订单，同时保留已有订单的收货能力。采购经理担任需求负责人，项目成员担任开发负责人。
 
@@ -29,25 +29,29 @@ description: 为项目选择默认流程，为单个任务切换流程，并设�
 
 采购经理在「新建任务」中选择项目，填写需求和验收标准，并指定开发负责人。创建人默认为需求负责人。两人分工时，需求负责人不能更换开发负责人或任务流程，开发负责人也不能更换需求负责人。项目负责人或有项目管理权限的成员可以调整双方人选。
 
-如果创建时不指定开发负责人，Studio 使用[项目设置](../project/settings.md)里的默认人选，初始值是任务创建人。同一人兼任两个角色时，可以直接开始开发和验收交付。
+未指定开发负责人时，Studio 使用项目工作流程中的[默认开发负责人](../project/settings.md#默认开发负责人)，初始值是任务创建人。同一人兼任两个角色时，可以直接开始开发和验收交付。
 
 #### 确认需求并开始开发
 
+任务顶部的阶段条对双方都可见。它显示正在等谁接手或启动、Agent 是否在执行，以及接下来由谁验收和合并。右侧「流程」显示 Agent 使用的开发流程，开发负责人可以切换。
+
 **开发负责人**在「我的任务」中打开分给自己的任务。点「接手」接受指派。
 
-![开发负责人接手采购经理分配的任务](https://static-docs.nocobase.com/studio-zh-multi-role-handoff-20261119-276f41af4b.webp)
+![开发负责人接手采购经理分配的任务](https://static-docs.nocobase.com/studio-guide-zh-handoff-20261127-5831e3981670.webp)
 
 **需求负责人**从[收件箱的「需求待办」](inbox.md#收件箱的视图)打开任务，核对描述和验收标准，点「确认需求」。如果在「待规划」阶段修改了描述，需要再次确认。
 
-![需求负责人核对验收标准后，点「确认需求」](https://static-docs.nocobase.com/studio-zh-multi-role-confirm-20261119-90be57b521.webp)
+![需求负责人核对验收标准后，点「确认需求」](https://static-docs.nocobase.com/studio-guide-zh-confirm-20261127-f31143ad1030.webp)
 
 **开发负责人**看到需求已确认后，点「开始」。调度 Agent 随即安排开发。
+
+![需求已确认，开发负责人可以开始任务](https://static-docs.nocobase.com/studio-guide-zh-start-20261127-72f37047f28f.webp)
 
 #### 回答开发中的问题
 
 如果 Agent 需要确认“暂停合作前下的订单还能收货吗？”，需求负责人可以在「需求待办」中回复“可以，限制只适用于新建订单”。回答会出现在任务评论里，供 Agent 继续开发。等待回答期间，任务保持「进行中」。
 
-![任务保持「进行中」，需求负责人可以直接回复业务问题](https://static-docs.nocobase.com/studio-zh-multi-role-question-20261119-785f249342.webp)
+![任务保持「进行中」，需求负责人可以直接回复业务问题](https://static-docs.nocobase.com/studio-guide-zh-question-20261127-fb0d422e05b2.webp)
 
 开发负责人了解业务规则时，也可以在任务中代为回答。
 
@@ -60,13 +64,17 @@ description: 为项目选择默认流程，为单个任务切换流程，并设�
 
 两项都符合预期，点「通过」。如果旧订单也被拦截，点「退回」，写明哪一步与预期不符，可附上截图。任务回到「进行中」，Agent 根据反馈修改。
 
-![需求负责人选择通过或退回，开发负责人稍后处理合并](https://static-docs.nocobase.com/studio-zh-multi-role-accept-20261119-abf74ac30b.webp)
+![需求负责人选择通过或退回，开发负责人稍后处理合并](https://static-docs.nocobase.com/studio-guide-zh-accept-20261127-51e5dac0657c.webp)
+
+此时，开发负责人看到的阶段同样是「待林悦验收」，「验收通过」按钮暂不可用。
+
+![开发负责人等待需求方验收，暂时无法完成任务](https://static-docs.nocobase.com/studio-guide-zh-wait-20261127-b568d7888e81.webp)
 
 #### 合并代码或完成任务
 
 需求验收通过后，开发负责人核对 [PR 检查与代码评审](../project/checks-and-review.md)。满足合并条件时，点「合并」。没有 PR 的任务可直接点「验收通过」完成。
 
-![无 PR 的任务：需求负责人已通过，开发负责人可以完成任务](https://static-docs.nocobase.com/studio-zh-multi-role-complete-20261119-ede686073d.webp)
+![无 PR 的任务：需求负责人已通过，开发负责人可以完成任务](https://static-docs.nocobase.com/studio-guide-zh-complete-20261127-f7c8284d388b.webp)
 
 如果验收后又关联了新的 PR，需要需求负责人重新验收。开发负责人主动退回修改时，如果改动会影响业务行为，可勾选「需要需求负责人重新验收」。
 
@@ -85,7 +93,7 @@ description: 为项目选择默认流程，为单个任务切换流程，并设�
 
 在项目的「工作流程」中选中流程，点「设为项目默认」。跟随项目默认的任务从下一轮运行起使用它。
 
-![在项目的「工作流程」中把标准流程设为默认](https://static-docs.nocobase.com/studio-workflow-zh-project-default-20261126-043437af92.webp)
+![在项目的「工作流程」中把标准流程设为默认](https://static-docs.nocobase.com/studio-guide-zh-project-default-20261127-5f0993f6a131.webp)
 
 团队的开发规范可以随每次运行加载。在「工作流程」下方的「常驻技能」中选择整个项目或一个代码仓库，点「添加技能」，勾选所需的普通技能并保存。更改从下一轮运行生效。创建和维护技能见[技能](../project/skills.md)。
 
@@ -93,7 +101,7 @@ description: 为项目选择默认流程，为单个任务切换流程，并设�
 
 打开任务，点「流程」。选择「跟随项目默认」，或为这项任务指定一个流程。例如，项目通常使用标准流程，改正字段名称的任务可以单独使用精简流程。切换会在下一轮运行生效，当前运行仍按原流程执行。任务的阶段条显示当前进展。
 
-![在任务详情中为字段改名选择精简流程](https://static-docs.nocobase.com/studio-workflow-zh-task-switch-20261126-8944edcab0.webp)
+![在任务详情中为字段改名选择精简流程](https://static-docs.nocobase.com/studio-guide-zh-task-switch-20261127-25f52d0a9715.webp)
 
 <span id="新建缺陷修复流程"></span>
 
@@ -105,7 +113,7 @@ description: 为项目选择默认流程，为单个任务切换流程，并设�
 
 1. 在项目的「工作流程」中点「新建流程」，选择「空白流程」。
 
-   ![选择「空白流程」](https://static-docs.nocobase.com/studio-workflow-zh-blank-menu-20261126-ffdb1a7e47.webp)
+   ![选择「空白流程」](https://static-docs.nocobase.com/studio-guide-zh-blank-menu-20261127-e7d75521bb79.webp)
 
 2. 在打开的 Agent 对话中说明缺陷修复的步骤。
 
@@ -113,18 +121,18 @@ description: 为项目选择默认流程，为单个任务切换流程，并设�
    创建一个「缺陷修复」流程。先写一个能复现缺陷的失败测试，再定位原因并修复。修复后重跑同一个测试，通过后交给另一位 Agent 评审。交付时附上测试结果。
    ```
 
-   ![在「新建流程」对话中输入缺陷修复要求](https://static-docs.nocobase.com/studio-workflow-zh-blank-chat-20261126-81f7f4c7f3.webp)
+   ![在「新建流程」对话中输入缺陷修复要求](https://static-docs.nocobase.com/studio-guide-zh-blank-chat-20261127-bbf1e2463915.webp)
 
 3. 核对 Agent 给出的草稿，确认后让它创建流程。回到项目的「工作流程」，选中「缺陷修复」。画布中央依次显示复现缺陷、定位与修复、回归验证、独立评审和交付。
 
-   ![项目工作流程画布中央的「缺陷修复」流程及五个开发步骤](https://static-docs.nocobase.com/studio-workflow-zh-bug-fix-canvas-20261126-587508dde0.webp)
+   ![项目工作流程画布中央的「缺陷修复」流程及五个开发步骤](https://static-docs.nocobase.com/studio-guide-zh-bug-fix-canvas-20261127-8bb6ac617889.webp)
 
    点「查看规则」可以读到每一步的具体要求。例如，回归验证仍然失败时，要继续排查并修复，通过后再交给另一位 Agent 评审。
 
-   ![缺陷修复的执行规则，包括测试失败时如何处理](https://static-docs.nocobase.com/studio-workflow-zh-bug-fix-rules-20261126-480ad3d215.webp)
+   ![缺陷修复的执行规则，包括测试失败时如何处理](https://static-docs.nocobase.com/studio-guide-zh-bug-fix-rules-20261127-b4a8b69f0818.webp)
 
 4. 打开「修复采购单重复提交」任务，在「流程」中选择「缺陷修复」。这个选择只对该任务生效。
 
-   ![为采购单重复提交问题选择「缺陷修复」](https://static-docs.nocobase.com/studio-workflow-zh-bug-fix-task-20261126-15ccfd7e3d.webp)
+   ![为采购单重复提交问题选择「缺陷修复」](https://static-docs.nocobase.com/studio-guide-zh-bug-fix-task-20261127-4b7635da0059.webp)
 
 专业版和企业版的镜像及授权请[联系我们](https://www.nocobase.com/zh-CN/contact/)获取。

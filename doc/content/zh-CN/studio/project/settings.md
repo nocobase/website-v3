@@ -25,15 +25,15 @@ description: 管理项目成员、代码仓库和运行变量。
 | 代码仓库 | 仓库、检查来源、分支规则和预览 |
 | Agent 运行变量 | 开发任务使用的环境变量与密钥 |
 
-![在仓库卡片中配置检查、分支规则和预览](https://static-docs.nocobase.com/studio-zh-project-repositories-20261111-normal-2x.webp)
+![在仓库卡片中配置检查、分支规则和预览](https://static-docs.nocobase.com/studio-guide-zh-repository-20261127-d5912d8234f7.webp)
 
 多个仓库按顺序排列，第一个为主仓库。移除关联不会删除 Git 平台上的仓库。检查和预览的配置见[配置仓库检查与 CI](../configure/checks.md)，技能配置见[技能](skills.md)。
 
 ### 默认开发负责人
 
-打开项目设置的「常规」，选择「默认开发负责人」。可以选任务创建人、项目负责人或指定项目成员。此设置用于新任务，成员创建任务时可另选负责人。业务与开发分工的操作见[工作流程](../use/multi-role-workflow.md#requester)。
+项目管理者在项目的「工作流程」页，点开发负责人启动节点旁的「更改」。选择任务创建人、项目负责人或指定成员，再点「保存」。创建任务时仍可另选开发负责人。见[工作流程](../use/multi-role-workflow.md#requester)。
 
-![选择新任务默认指派给谁](https://static-docs.nocobase.com/studio-zh-multi-role-default-owner-20261119-663a272543.webp)
+![在工作流程画布中设置新任务的默认开发负责人](https://static-docs.nocobase.com/studio-guide-zh-owner-20261127-b5c73bd25e2f.webp)
 
 ### 接入已有仓库
 

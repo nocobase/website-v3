@@ -25,15 +25,15 @@ description: "メンバー、リポジトリ、実行変数を管理します。
 | Code repositories | リポジトリ、チェック、ブランチルール、プレビュー |
 | Agent run variables | 開発タスクの環境変数とシークレット |
 
-![リポジトリごとにチェック、ブランチルール、プレビューを設定する](https://static-docs.nocobase.com/studio-en-project-repositories-20261111-normal-2x.webp)
+![リポジトリごとにチェック、ブランチルール、プレビューを設定する](https://static-docs.nocobase.com/studio-guide-en-repository-20261127-ef8757adea8b.webp)
 
 最初のリポジトリが主リポジトリです。関連付けを外しても、Git プラットフォームのリポジトリは削除しません。[リポジトリのチェックと CI を設定する](../configure/checks.md)、[スキル](skills.md)も参照してください。
 
 ### 既定の開発担当者
 
-プロジェクトの一般設定で **Default owner** を選びます。新規タスクの作成者、プロジェクト責任者、指定したメンバーのいずれかに設定できます。タスクの作成時には別の担当者も指定できます。詳しくは[ワークフロー](../use/multi-role-workflow.md#requester)を参照してください。
+プロジェクト管理者は **Workflow** タブの開発担当者の開始ステップで **Change** を選びます。タスク作成者、プロジェクト責任者、指定メンバーのいずれかを選び、**Save** で保存します。タスク作成時には別の担当者も指定できます。[ワークフロー](../use/multi-role-workflow.md#requester)も参照してください。
 
-![新しいタスクの既定の担当者を選ぶ](https://static-docs.nocobase.com/studio-en-multi-role-default-owner-20261119-d223c51313.webp)
+![ワークフローのキャンバスで新規タスクの既定の開発担当者を設定する](https://static-docs.nocobase.com/studio-guide-en-owner-20261127-fc6c92c9ec8e.webp)
 
 ### 既存リポジトリを接続する
 
